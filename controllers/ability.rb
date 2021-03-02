@@ -1,3 +1,34 @@
+# user roles control flow
+if user.role?(:cgn)
+  # model based auth
+  # the first attribute is an array of permissible actions  
+  # the second attribute is the model to test against (you will test against a specific instance of the model when actually used)
+  # the final hash is the restrictions (the user can only take the action on the instnace of the model if these condition are met)
+  # the keys are database attributes or relationships
+  # the values are anything you can come up with. Usually user.something or some scope ending in some logic. Can be an array.
+  # every layer of hash is a relationship
+  can [:cgn], cgn::cgn, cgn:{ cgn: user.cgn, cgn: { cgn: cgn::cgn.where(cgn: cgn).cgn } }
+  # symbol based auth
+  # the first attribute is an array of permissible actions  
+  # the second is a limitation of the permission 
+  can [:cgn], :cgn
+end
+ 
+# Auth in controller actions:
+  # Model Based
+  authorize!(:cgn, @cgn)
+  # Non-Model Based
+  authorize!(:cgn, :cgn)
+
+# can? method in views AND controllers
+  # Model Based
+  can?(:cgn, @cgn)
+  # Non-Model Based
+  can?(:cgn, :cgn)
+
+
+# OLD
+
 # for ability file: 
       #--- [App] App ---#
         # [App] Admin Role
