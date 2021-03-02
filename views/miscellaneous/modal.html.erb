@@ -1,0 +1,126 @@
+<%# NOTE: for button and actual modal, see button section of standard frame %>
+
+<%# begin modal %> 
+<div class="modal fade" id="adjective-fodel-<%= fodel.id %>-nouns-action-modal" tabindex="-1" role="dialog">
+<%# NOTE: update id %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span class="mdi mdi-close"></span></button>
+      </div>
+      <div class="modal-body">
+
+<%# modal header %>
+        <div class="text-center">
+          <div class="text-warning"> 
+            <%# NOTE: update text color for icon%>
+            <span class="modal-main-icon mdi mdi-alert-triangle"></span>
+            <%# NOTE: update MDI: mdi-check, mdi-info-outline mdi-alert-triangle mdi-close-circle-o %>
+          </div>
+          <h3>
+            TITLE
+            <%# NOTE: update title %>
+          </h3> 
+        </div>
+
+<%# INSERT: modal body %>
+
+<%# end modal %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# modal body with 2 column form %>
+<%# NOTE to make it single column, just delete second column and make first col whatever width you want %>
+
+        <%# Edit Partial With Errors NOTE: Needs to be on top in case there are check boxes %>
+        <div id="edit-adjective-fodel-<%= fodel.id %>-nouns-with-errors" class="adjective-fodel-<%= fodel.id %>-nouns-edit-element">
+        </div>
+
+        <%# Edit Partial %>
+        <div id="edit-adjective-fodel-<%= fodel.id %>-nouns" class="adjective-fodel-<%= fodel.id %>-nouns-edit-element">
+          <%= render(partial: 'fpp/fection/fiddle_fath/fesources_or_fodel_nouns/edit', locals: { fodel: fodel }) %> 
+        </div>
+
+<%# Modal Edit Partial %>
+<%# NOTE: if there is no invalid render, then you do not need the partial divs above NOR do you need the error messages below %>
+
+        <%# error messages if modal has form body %>
+        <div id="fodel_error_messages">
+          <%= render 'shared/error_messages.html.erb', object: fodel %>
+        </div>
+
+        <%# Begin Form %>
+        <%# INSERT: form option %>
+
+          <%# INSERT: hidden field tags if needed %>
+
+          <%# begin row %>
+          <div class= "row">
+            <%# begin first column %>
+            <div class="col-sm-6 pt-2">
+              <div class="form-group">
+                <%# Label %>
+                <%= f.label :attribute, "Attribute:" %>
+                <%# INSERT: edit data %>
+              <%# end first column %>
+              </div>
+            </div>
+            <%# begin second column %>
+            <div class="col-sm-6 pt-2">
+              <div class="form-group">
+                <%# Label %>
+                <%= f.label :attribute, "Attribute:"  %>
+                <%# INSERT: edit data %>
+              <%# end second column %>
+              </div>
+            </div>
+          <%# end row %>
+          </div>
+
+          <%# begin buttons %>
+          <div class="mt-3 mr-3 d-flex justify-content-end">
+            <button class="mr-1 btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <%= f.submit "SOME SUBMIT", class: "ml-1 btn btn-primary" %>
+          </div>
+
+        <%# End Form %>
+        <% end %>
+
+<%# modal body for destroy modal (or any single button to Controller Action) %>
+        <p>
+        <%# NOTE: add class="text-center" to <p> if message is short. One line messages look bad if aligned left. 2 line messages look better aligned left. %>
+          Are you sure you want to permanently delete the <strong class="text-primary">"<%= fodel.attribute %>"</strong>? This action cannot be undone.
+          <%# NOTE: update thing to delete - typically fodel.name or fodel.is_type or something like that %>
+        </p> 
+        <div class="mt-6 d-flex justify-content-around">
+          <button class="btn w-75x mr-2 btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <%= link_to("Delete", insert_named_path_based_on_route_type_and_rules, class: "btn w-75x btn-danger", method: :delete, remote: true ) %>
+          <%# NOTE: update route %>
+          <%# NOTE: standard is remote with AJAX response... remove "remote: true" if html response %>
+        </div>
+
+<%# modal body with text %>
+        <div>
+          <p>
+            CONTENT HERE
+          </p> 
+
+          <%# If this is a standard modal %>
+          <div class="mt-6 d-flex justify-content-center">
+            <button class="btn w-75x btn-secondary" type="button" data-dismiss="modal">OK</button> <%# UPDATE button text and colers -success -primary -warnint -danger %>
+          </div>
+        </div>
+
+<%# modal body with image %>
+        <div>
+          <%# NOTE: adjust width and height as needed  %>
+          <%= image_tag(fodel.processed_attribute, style: "width:100%;height:auto") %>  
+          <div class="mt-3 d-flex justify-content-center">
+            <button class="btn w-75x btn-primary" type="button" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+

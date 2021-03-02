@@ -1,0 +1,304 @@
+<%# GENERAL FRAMING %>
+<%# standard row-col wrapper %>
+<div class="row">
+  <div class="col-12">
+  </div>
+</div>
+<%# NOTE: row is d-flex and flex-wrap by default; Col is not. Row has -15px right and left margin. Col has 15px left and right padding (equivalent to px-3). So, they even out)%>
+
+<%# row-col wrapper with d-flex col %>
+<div class="row">
+  <div class="col-12 d-flex flex-wrap">
+  </div>
+</div>
+<%# NOTE: col needs flex-wrap when using d-flex or items will not wrap %>
+      
+
+...
+<%# UPSERV FRAME CASCADE %>
+THIS NEEDS CLEANING
+subdivider
+gray and/or accordion
+
+subsection
+label
+data group 
+data row (with or without columns)
+columns with data / error message... OR
+data / error messages
+
+...
+              <%# begin card body wrapper %>
+              <div class="row mx-2" style="background-color: <%= "#f5f5f5" if row.even? %>;">
+              <%# NOTE: if not using gray / white, delete  style %>
+                <% row += 1 %> 
+                <%# NOTE: if not using gray / white, delete line "row += 1" above and style above that as well %>
+                <div class="col-12 px-2">
+
+
+                <%# end card body wrapper %>
+                </div>
+              </div>
+
+...
+                  <%# card body contents %>
+                  <%# INSERT: Top of page error messages (if "edit"; not if "show")%>
+                  <%# INSERT: <path result> %>
+                  <%# NOTE: if add show, then first dataframe may need edit & delete buttons %>
+                  <%# NOTE: if accordion show, first dataframe should have accordion buttons %>
+                  <%# begin hidden section for show accordion %>
+                  <div class="row some-name-secondary-element" style="display: none;">
+                    <div class="col-12">
+                      <%# INSERT: <path result> %>
+                    <%# end hidden section (if accordion) %>
+                    </div>
+                  </div>
+                  <%# NOTE: Delete hidden section if not using accordian %>
+
+...
+                <%# Top of Page Error Messages %>
+                <div class="row mx-4">
+                  <div class="col-12 px-0">
+                    <%# if only base error messages (and attribute error messages on actual inputs) %>
+                    <%= render(partial: 'shared/base_error_messages.html.erb', object: fodel) %>
+                    <%# if showing all error messages at top (and not showing attribute error messages on actual inputs) %>
+                    <%= render(partial: 'shared/error_messages.html.erb', locals: { object: fodel }) %>
+                    <%# NOTE: I kept running into erros when using object here, so I changed to locals... but I'm not sure why locals worked and object didn't... %>
+                  </div>
+                </div>
+
+...
+                <%# paths: %>
+
+                  <%# no label - this is the exact same as the single column path but starting after the "group" stage %>
+                    <%# Show %>
+                      <%# INSERT: show data frame; OR %>
+                      <%# INSERT: show data frame with edit / delete / accordion buttons %>
+                      <%# NOTE: use edit / delete / accordian buttons frame if it's a single row that you can edit %>
+                      <%# NOTE: use class="fs-3" on actual data to make it a no label title. %>
+                    <%# Edit %>
+                      <%# INSERT: data row with columns; OR %> 
+                      <%# INSERT: data rows without columns; OR %>
+                      <%# INSERT: edit data frame; OR %> 
+                      <%# INSERT: edit data frame with cancel / submit buttons (if only 1 item) %> 
+
+                  <%# single column with label %>
+                    <%# INSERT: subdividers; OR %>
+                    <%# INSERT: single column subsections; OR %> 
+                    <%# INSERT: Cancel & Submit Buttons Wrapper %> 
+
+                  <%# 2 column with labels (or stacked single column) %>
+                    <%# Show %>
+                      <%# INSERT: 2 column show subsection %> 
+                    <%# Edit %>
+                      <%# INSERT: 2 column edit subsection %> 
+
+
+...
+
+
+
+...
+                    <%# Subdivider %>
+                    <div class="row pt-3">
+                      <p class="col-12 col-form-label py-0 fs-subsection">
+                      <%# NOTE: add class item "text-center" for center aligned subtitle %>
+                        SOME SUBSECTION
+                      </p>  
+                    </div>
+
+                    <%# begin single column subsection %>
+                    <%# NOTE: NO spaces between subsection items %>
+                    <div class="form-group row pt-1">
+                      <%# INSERT: label %>
+                      <%# INSERT: group %>
+                    <%# end subsection %>
+                    </div>
+
+                    <%# Cancel & Submit Buttons Wrapper %>
+                    <div class="form-group row pt-2">
+                      <div class="col-12 col-sm-2 px-0 mr-6">
+                      </div>
+                      <div class="d-flex justify-content-between col-12 col-sm-8 col-xl-7 pl-0">
+                       <%# INSERT: cancel and submit buttons - see templates/views/elements/buttons_and_links.html.erb %>
+                      </div>
+                    </div>
+
+...
+                      <%# show label %>
+                      <p class="col-12 col-sm-2 col-form-label font-weight-bold pr-0 mr-6">
+                        some label:
+                      </p>
+
+                      <%# edit label %>
+                      <p class="col-12 col-sm-2 col-form-label font-weight-bold pr-0 pt-4 mr-6">
+                        Some Label:
+                      </p>
+
+...
+                      <%# begin show group %>
+                      <div class="col-12 col-sm-9 col-xl-8 col-form-label pl-2">
+                        <%# INSERT: show data frame %> 
+                      <%# end show group %>
+                      </div>
+                    
+                      <%# begin edit group %>
+                      <div class="col-12 col-sm-8 col-xl-7 pl-2">
+                        <%# INSERT: data row with columns; OR %> 
+                        <%# INSERT: data rows without columns; OR %>
+                        <%# INSERT: edit data frame %> 
+                      <%# end edit group %>
+                      </div>
+
+...
+                        <%# begin data row with XX-XX-XX columns %>
+                        <div class="row">
+                          <div class="col-12 pr-2">
+                            <%# INSERT: columns %>
+                          <%# end data row with XX-XX-XX columns %>  
+                          </div>
+                        </div>
+...
+
+                            <%# First 50-50 column with data / error messages %>
+                            <div class="col-sm-12 col-lg-6 py-1 pl-0 pr-1">
+                              <%# INSERT: edit data frame %>
+                              <%# end column %>
+                            </div>
+                            <%# Second 50-50 column with data / error messages %>
+                            <div class="col-sm-12 col-lg-6 py-1 pl-0 pr-1">
+                              <%# INSERT: edit data frame %>
+                              <%# end column %>
+                            </div>
+
+                            <%# First 50-25-25 column with data / error messages %>
+                            <div class="col-sm-12 col-lg-6 py-1 pl-0 pr-1">
+                              <%# INSERT: edit data frame %>
+                              <%# end column %>
+                            </div>
+                            <%# Second 50-25-25 column with data / error messages %>
+                            <div class="col-sm-12 col-lg-3 py-1 pl-0 pr-1">
+                              <%# INSERT: edit data frame %>
+                              <%# end column %>
+                            </div>
+                            <%# Third 50-25-25 column with data / error messages %>
+                            <div class="col-sm-12 col-lg-3 py-1 pl-0 pr-1">
+                              <%# INSERT: edit data frame %>
+                              <%# end column %>
+                            </div>
+
+                            <%# 100 column with data / error messages %>
+                            <div class="col-12 py-1 pl-0 pr-1">
+                              <%# INSERT: edit data frame %>
+                              <%# end column %>
+                            </div>
+                            
+...
+                        <%# begin data row without columns %>
+                        <div class="row">
+                          <div class="col-12">
+                            <%# INSERT: edit data frame %>
+                          <%# end data row %>
+                          </div>
+                        </div>
+
+...                        
+                        <%# begin show data frame  %>
+                        <div class="row">
+                          <div class="col-12">
+                            <%# INSERT: show element - see templates/views/elements/show_elements.html.erb %>
+                          <%# end show data frame  %>
+                          </div>
+                        </div>
+
+                        <%# begin show data frame with edit / delete / accordion buttons %>
+                        <div class="row">
+                          <div class="col-12 d-flex">
+                            <%# INSERT: actual data %>
+                            <div class="ml-auto d-flex align-items-center">
+                              <%# INSERT: edit and / or delete and / or accordion buttons %>
+                            </div>
+                          </div>
+                        </div>
+
+                        <%# edit data frame %>
+                        <div class="row">
+                          <div class="col-12">
+                            <%# INSERT fields_for frame; OR %> 
+                            <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+                          <%# end edit data frame  %>
+                          </div>
+                        </div>
+                        <%# error messages %>
+                        <div class="row">
+                          <div class="col-12">
+                            <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+                            <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+                          </div>
+                        </div>
+                        
+                        <%# begin edit data frame with cancel / submit icons %>
+                        <div class="d-flex">
+                          <div class="pr-2">
+                            <div class="row mx-0">
+                              <div class="col-12 px-0">
+                                <%# INSERT fields_for frame; OR %> 
+                                <%# INSERT: actual input %>
+                              <%# end edit data frame  %>
+                              </div>
+                            </div>
+                            <%# error messages %>
+                            <div class="row">
+                              <div class="col-12">
+                                <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+                                <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="ml-auto d-flex align-items-center">
+                            <%# INSERT: Cancel and Submit Buttons - Icon Pair %>
+                          </div>
+                        </div>
+
+                        <%# error messages when initial foedel load could possibly be nil %>
+                        <div class="row">
+                          <div class="col-12">
+                          <% if fodel %>
+                            <%# INSERT: error message render - see  above) %>
+                          <% end %>
+                          </div>
+                        </div>
+
+...                    
+                        <%# begin fields_for frame %> 
+                        <%# NOTE: non-rails helper methods do not need fields for helper method %>
+                        <%= f.fields_for(fodel.other_model) do |ff| %>
+                          <%# INSERT: actual input %>
+                        <%# end fields_for frame %>
+                        <% end %>
+
+...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

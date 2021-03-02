@@ -1,0 +1,98 @@
+<%# Common show formats %>
+
+<%# Date: Month DD, YYYY %>
+<%= fodel.attribute.strftime("%B %-d, %Y") %>
+
+<%# Date: Day of week, Month DD, YYYY %>
+<%= fodel.attribute.strftime("%A, %B %-e, %Y") %>
+
+
+
+
+<%# Actual Data (ie for Show) %>
+<%# Basic Data %>
+<span class=""><%= fodel.attribute %></span>
+
+<%# Data with Single Data Point %>
+<% if fodel.attribute %>
+  <span class=""><%= fodel.attribute %></span>
+<% else %>
+  <span class="text-label">&#8212;&#8212;</span>
+<% end %>
+
+<%# Data with Single Data Point But Multiple Options %>
+<% if fodel.attribute %>
+  <%= "Display" if fodel.attribute == "value" %>
+  <%= "Display" if fodel.attribute == "value" %>
+<% else %>
+  <span class="text-label">&#8212;&#8212;</span>
+<% end %>
+
+<%# Data with 2 attributes (both optional)%>
+<% if fodel.attribute && fodel.attribute_2 %>
+  <%= fodel.attribute %>
+  <span><%= " | " if fodel.attribute && fodel.attribute_2 %></span>
+  <%= fodel.attribute_2 %>
+<% else %>
+  <span class="text-label">&#8212;&#8212;</span>
+<% end %>
+
+<%# Data with list printed with ', ' between each item %>
+<% if fodel.attribute %>
+  <% fodel.attribute.join(', ') %>
+<% else %>
+  <span class="text-label">&#8212;&#8212;</span>
+<% end %>
+
+<%# Data with swap %>
+<div class="row">
+  <div class="col-12 d-flex">
+    <% if fodel.attribute %>
+      <div class="fodel-attribute-primary-element mr-3">
+        <%# starter ideas... %>
+        <%= "...#{fodel.attribute[-4..-1]}" %>
+        <%= "#{"*" * (fodel.attribute.length - 4)}#{fodel.attribute[-4..-1]}" %>
+      </div>  
+      <a class="text-primary btn-link fodel-attribute-primary-element" onclick="displaySecondary('fodel-attribute')">
+        Show
+      </a>
+      <div class="fodel-attribute-econdary-element mr-3" style="display:none;">
+        <%= fodel.attribute %>
+      </div>  
+      <a class="text-primary btn-link fodel-attribute-secondary-element do-not-disable" style="display: none;" onclick="displayPrimary('fodel-attribute')">
+        Hide
+      </a>
+    <% else %>
+      <span class="text-label">&#8212;&#8212;</span>
+    <% end %>
+  </div>
+</div>
+
+<%# Rich Text %>
+
+<%# Video %>
+<%= video_tag(url_for(fodel.processed_attribute), style: "max-width: 100%; max-height: 600px; width: auto; height:auto;", controls: "") %>  
+<%# NOTE: this has Upserv baseline width and height. Understand each and adjust as needed  %>
+
+<%# Image %> 
+<%= image_tag(fodel.processed_attribute, alt: "some alternative text", style: "max-width: 100%; max-height: 600px; width: auto; height:auto;") %>  
+<%# NOTE: using instance method called processed_attribute. If not using processed_attribute method, then just use fodel.attribute %>
+<%# NOTE: this has Upserv baseline width and height. Understand each and adjust as needed  %>
+
+<%# Image - link to open image in modal %>
+<button class="text-wrap text-left btn-link p-0" data-toggle="modal" data-target="#attribute_show_modal-<%= some_unique_identifier_if_necessary %>"><%= fodel.attribute.blob.filename.sanitized.truncate(12) %></button>
+<%= render partial: 'attribute_preview_modal', locals: { fodel: fodel } %>   
+
+<%# PDF - show in page%>
+<%# use iframe or embed... WIP %>
+
+<%# PDF - link to open PDF in new tabs %>
+<%= link_to fodel.attribute.blob.filename.sanitized.truncate(12), fodel.attribute, class:  "text-wrap text-left btn-link p-0", target: :_blank %>
+
+<%# PDF OR Image- Link to open attachment that could be image (in modal) OR PDF (in new tab) %>
+<% if fodel.attribute.variable? %>
+  <button class="text-wrap text-left btn-link p-0" data-toggle="modal" data-target="#attribute_preview_modal"><%= fodel.attribute.blob.filename.sanitized.truncate(12) %></button>
+  <%= render partial: 'fpp/fection/fab/attribute_preview_modal', locals: { fodel: fodel } %>   
+<% elsif fodel.attribute.previewable? %>
+  <%= link_to fodel.attribute.blob.filename.sanitized.truncate(12), fodel.attribute, class:  "text-wrap text-left btn-link p-0", target: :_blank %>
+<% end %>

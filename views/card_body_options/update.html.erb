@@ -1,0 +1,42 @@
+<%# REVIEW: replace the below and delete this section when done %> 
+adjective-model-<%= model.id %>-nouns - name of the identifier (ask manager if you are not sure)
+
+
+<%# begin card body wrapper %>
+<div class="row mx-2">
+  <div class="col-12 px-2">
+
+    <%# NOTE: if a card has multiple subsections, create partials per subsection. If not, then delete the below code %>
+    <%# card subsection %>
+    <div id="final-controller-card">
+      <%= render(partial: 'app/section/middle_path/final_controller_card_subsection', locals: { model: @model, fesources: @fesources }) %>
+      <%# REVIEW: update path to partial %>
+      <%# NOTE: copy code below for show, edit with errors and edit per subsection %> 
+    </div>
+    <%# REVIEW: repeate above for card subsections %>
+
+
+
+
+    <%# NOTE: if a card only has one subsections, use the below code for show, edit with errors and edit %>
+    <%# Show partial %>
+    <div id="show-adjective-model-<%= model.id %>-nouns" class="adjective-model-<%= model.id %>-nouns-show-element"> 
+      <%= render(partial: 'app/section/middle_path/final_controller/show', locals: { model: model }) %> 
+      <%# REVIEW: update path to partial and locals %>
+      <%# REVIEW: create actual partial if you have not already %>
+    </div>
+
+    <%# Edit Partial With Errors. Needs to be on top in case there are check boxes %>
+    <div id="edit-adjective-model-<%= model.id %>-nouns-with-errors" class="adjective-model-<%= model.id %>-nouns-edit-element" style="display: none;">
+    </div>
+
+    <%# Edit Partial %>
+    <div id="edit-adjective-model-<%= model.id %>-nouns" class="adjective-model-<%= model.id %>-nouns-edit-element" style="display: none;">
+      <%= render(partial: 'app/section/middle_path/final_controller/edit', locals: { model: model }) %> 
+      <%# REVIEW: update path to partial and locals %>
+      <%# REVIEW: create actual partial if you have not already %>
+    </div>
+
+  <%# end card body wrapper %>
+  </div>
+</div>

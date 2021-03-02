@@ -1,0 +1,28 @@
+            <%# check app %>
+            <% if can? :show, :fpp %>
+              <li class="parent"><a href="#"><i class="icon mdi mdi-accounts"></i><span>HR</span></a>
+                <ul class="sub-menu">
+
+                  <%# namespace section %>
+                  <% if can? :show, :fpp_fection %>
+                    <li><a href="<%= fpp_fection_path %>">Fection</a></li>
+                  <% end %>
+
+                  <%# resource section - index %>
+                  <% if can? :index, :fpp_fection %>
+                    <li><a href="<%= fpp_fesources_path %>">Fesources</a></li>
+                  <% end %>
+
+                  <%# resource section - show %>
+                  <% if can? :show_fpp_fection, @fodel %>
+                    <li><a href="<%= fpp_fodel_path(@fodel) %>">My [Fpp]</a></li>
+                  <% end %>
+
+                  <%# resource section - "My [Fpp]" %>
+                  <% if can?(:show_fpp_fection, current_user.fpp_unit) && current_user.role?(:fpp_unit) %>
+                   <li><a href="<%= fpp_unit_path(current_user.fpp_unit) %>">My [Fpp]</a></li>
+                  <% end %>
+
+                </ul>
+              </li>
+            <% end %>

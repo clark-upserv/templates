@@ -1,0 +1,47 @@
+<%# Tooltip %>
+<div id="some-element-with-tooltip"  style="position: relative;">
+  <script>
+    // Tool tip
+    $('#some-element-with-tooltip').hover(function() {
+      $('#some-element-tooltip-explanation')[0].style.display = "block";
+    })
+    $('#some-element-with-tooltip').mouseleave(function() {
+      $('#some-element-tooltip-explanation')[0].style.display = "none";
+    })
+  </script>
+  <div id="some-element-tooltip-explanation" class="p-1" style="display: none; z-index: 1000; position: absolute; top: -XXpx; background-color: #f5f5f5; border: 1px solid #404040; border-radius: 3px; white-space: nowrap">
+    <span>Some explanation</span>
+  </div>
+</div>
+
+
+
+<%# please wait modal container %>
+<div id="please-wait-modal-container">
+  <%= render(partial: 'fpp/fection/fiddle_fath/fesources_or_fodel_nouns/please_wait_modal', locals: { }) %>
+</div>
+<%# please wait modal %>
+<div id="please-wait-modal" class="d-flex justify-content-center align-items-center" style="position: absolute; width: 100%; height: 100%; z-index: -1; visibility: hidden;">
+  <div class="d-flex flex-column" style="border: 1px solid #e3e3e3; background-color: #f5f5f5; box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.4); border-radius: 3px; max-width: 300px;">
+    <div class="m-3 align-self-start">
+      [Some action is taking place]. This may take a few minutes for [large things].
+    </div>
+    <div id="loader" class="loader align-self-center mb-3">
+    </div>
+  </div>
+</div>
+<script>
+  $('#please-wait-trigger').click(function() {
+    $("#please-wait-modal").css("z-index", 1000);
+    $("#please-wait-modal").css("visibility", "visible");
+    $("#loader")[0].classList.add("spin");
+  })
+</script>
+<%# NOTE: Add JS at bottom of template because you want the script to be run after all the elements on the page have been loaded %>
+<%# NOTE: add class "please-wait-trigger" to any submit that needs to trigger the please_wait_modal %>
+
+
+<%# NOTE: background shadow css %>
+<div style="background-color: #f5f5f5; border: 1px solid #e3e3e3; border-radius: 3px; box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.4);">
+</div>
+

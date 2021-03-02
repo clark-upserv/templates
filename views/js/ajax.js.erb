@@ -1,0 +1,83 @@
+// re-run beagle js app.init
+$("#init-beagle-js").html("<%= escape_javascript(render('layouts/init_beagle_js')) %>");
+// render top bar for collapsable side nav
+$("#top-bar").html("<%= escape_javascript(render('layouts/beagle_top_bar')) %>");
+// render the appropriate side nav. NOTE: beagle navigation bugs out on mobile after ajax. So every ajax needs to re-render the left side nav. BUT You need to make sure it's the correct side nav version
+$("#left-sidebar").html("<%= escape_javascript(render('layouts/beagle_left_sidebar')) %>");
+
+// set flash.now 
+<% flash.now[:success] = "Fodel_ [insert action]." %>  
+<%# NOTE: if ation is deactivate destroy, you may want to add notes about recovering "deleted" records %>
+// render flash.
+$("#flash").html("<%= escape_javascript(render('layouts/flash')) %>");
+
+// Partial(s) to render on success
+$("#copy_id_from_view").html("<%= escape_javascript(render(partial: 'copy_render_from_code', locals: { })) %>");
+
+// [if coming from an edit on "show edit swap] restore links and buttons because we are now showing show and user is allowed to click around
+restoreLinksAndButtons();
+
+// [if rendering from modal]
+// manually finish closing the modal
+<%# NOTE: rendering partial above should have re-rendered the entire modal which basically closes the modal. The steps below help finish closing the modal. If the render above does not render the entire modal (ie it only renders some of the modal contents) then you will need to manually close the modal with js below. HOWEVER that option is not preferable, so just re-render the entire modal and not parts of it %> 
+// Remove the be-modal-open class from the <HTML> element 
+$('.be-modal-open')[0].classList.remove('be-modal-open');
+// Remove the modal-open class from the <body> element 
+$('.modal-open')[0].classList.remove('modal-open');
+// remove modal back drop elements  
+$('.modal-backdrop').remove();
+
+// [insert or initiate any custom js / event listeners that need to be initiated on ajax]
+
+// OTHER / OPTIONS
+
+// if you want to open the edit form on ajax
+displayEditForm('description-fe-sources-<%= some_id %>')
+<%# NOTE: if you ever need to dispalyEditForm(), you have to do it AFTER the restoreLinksAndButtons() BECAUSE if coming from a form, the user will have triggered the dispalyEditForm function. If you trigger the dispalyEditForm function again, it will set the originals AND data values to the same thing and the actual origianls will be lost %>
+
+// If replacing window with AJAX:
+<%# NOTE: first, delete everything above %>
+// set regular flash (ie. not .now) 
+<% flash[:success] = "Fodel_ [insert action]." %>  
+// replace window (ie redirect to [some page])
+window.location.replace("<%= named_route_url %>");
+
+// [if checkboxes are causing issues with nested forms / select multiple inputs] 
+//clean beagle check boxes because beagle creates input that screws things up
+removeFirstCheckBoxInput();
+
+// if this wasn't alredy put for calendars, add this to remove buggy inline calendars that beagle adds to calendar inputs after AJAX (add to all AJAX files even if form doesn't have datepicker because a different form on the page might have a datepicker) - If any other form on the page has a beagle datepicker calendar, we have to remove the inline calendars beagle adds. NOTE: you have to add this to every AJAX file - success and invalid - for ever form on the page, even if the calendar is on a form that is different that the one submitted, because any AJAX affect ALL forms on the page, not just the one being re-rendered
+removeInlineCalendarsAfterAjax();
+
+// open modal at close of another modal
+// Render modal so that it removes the "in" and "show" classes 
+$("#first-modal-or-some-parent-container").html("<%= escape_javascript(render(partial: 'copy_render_from_code', locals: { })) %>");
+// OR manually close the modal by removing the "in" and "show" classes, but don't remove the modal back-drop, the modal open or be-modal-open
+$('#first-modal')[0].classList.remove('in', 'show');
+// show second modal by adding the "in" and "show" classes
+$('#second-modal')[0].classList.add('in', 'show');
+// the above code messes up the cancel button and cancel X so add classes "modal-close-button" to buttons and add event listeners so user can close the second modal (NOTE: the second modal cannot be closed by clicking the modal backdrop like on other modals
+$('.modal-close-button').click(function() {
+  // Remove the be-modal-open class from the <HTML> element 
+  $('.be-modal-open')[0].classList.remove('be-modal-open');
+  // Remove the modal-open class from the <body> element 
+  $('.modal-open')[0].classList.remove('modal-open');
+  // remove modal back drop elements  
+  $('.modal-backdrop').remove();
+}) 
+
+// full code for closing modal manually - this is helpful if you want to add an event listener to a something that will close the modal OR if getting hacky on ajax
+// remove classes "in" and "show" from modal NOTE: this is not included in ajax close modal because by re-rendering the modal, theses classes will be removed in the re-render
+$('#designation-update-modal')[0].classList.remove('in', 'show');
+// Remove the be-modal-open class from the <HTML> element 
+$('.be-modal-open')[0].classList.remove('be-modal-open');
+// Remove the modal-open class from the <body> element 
+$('.modal-open')[0].classList.remove('modal-open');
+// remove modal back drop elements  
+$('.modal-backdrop').remove();
+
+// Open a modal manually (THIE NEEDS TO BE CHECKED...)
+// click the modal button
+$('#modal-button').trigger('click');
+// add classes "in" and "show" from modal NOTE: "show" may not be necessary, but idk... need to check
+$('#designation-update-modal')[0].classList.add('in', 'show');

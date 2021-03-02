@@ -1,0 +1,54 @@
+<%# NOTE: all styles must be inline %>
+<p>
+  Hi <%= @to_user.first_name %>,
+</p>
+
+<p>
+  Some regular paragraph
+</p>
+
+<p style="margin-bottom: 0px;">
+  Some paragraph with list directly following (ie no margin-bottom)
+</p>
+<ul style="margin-top: 0px;">
+  <% some_list_of_items.order(:some_attribute).each do |item| %>
+    <li>
+      Some list item in a list directly following a paragraph (ie no margin-top)
+    </li>
+  <% end %>
+</ul>
+
+<ul>
+  <% some_list_of_items.order(:some_attribute).each do |item| %>
+    <li>
+      Some list item in a list with normal margin
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to("Some link as needed", "#", style: "color: #4285f4;", target: :_blank) %>
+<%# NOTE: use URL and NOT PATH. Also see buttons template for more options %>
+
+<span style="color: #4285f4">Some text with upserv blue font</span>
+<span style="color: #ea4335">Some text with upserv danger font</span>
+<span style="color: #ff6a0d">Some text with upserv warning-2 font</span>
+
+
+<p>
+  Sincerely,
+</p>
+<%# NOTE: do not include "Sincerely" if sending on behalf of another user %>
+
+<p>
+  <%# for cron job triggers %>
+  Upserv Reminders
+  <%# for controller / model based triggers %>
+  Upserv Notifications
+  <%# if sent on behalf of some user %>
+  <%= @from_user.full_name %>
+</p>
+
+<%# on text version where user needs to take action: %>
+Follow the url below to do something:
+<%# on text version where user does not need to take action to take action: %>
+You can do something by following the url below:

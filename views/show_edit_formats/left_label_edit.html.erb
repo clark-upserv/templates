@@ -1,0 +1,291 @@
+<%# Begin Form %>
+<%# REVIEW: insert form option - see templates/views/show_edit_formats/form_options.html.erb %>
+
+  <%# REVIEW: insert hidden field tags here if needed %>
+  <%# Hiddent fields %>
+
+  <%# Top of Page Error Messages %>
+  <div class="row mx-4">
+    <div class="col-12 px-0">
+      <%# if only base error messages (and attribute error messages on actual inputs) %>
+      <%= render(partial: 'shared/base_error_messages.html.erb', object: fodel) %>
+      <%# if showing all error messages at top (and not showing attribute error messages on actual inputs) %>
+      <%= render(partial: 'shared/error_messages.html.erb', locals: { object: fodel }) %>
+      <%# NOTE: I kept running into erros when using object here, so I changed to locals... but I'm not sure why locals worked and object didn't... %>
+    </div>
+  </div>
+
+
+  <%# Subdivider %>
+  <div class="row pt-3">
+    <p class="col-12 col-form-label py-0 fs-subsection">
+    <%# NOTE: add class item "text-center" for center aligned subtitle %>
+      SOME SUBSECTION
+    </p>  
+  </div>
+
+  <%# begin single column left label subsection without rows %>
+  <div class="form-group row pt-1">
+    <%# edit label %>
+    <p class="col-12 col-sm-2 col-form-label font-weight-bold pr-0 pt-4 mr-6">
+      Some Label:
+    </p>
+    <%# begin edit group %>
+    <div class="col-12 col-sm-8 col-xl-7 pl-2">
+      <%# edit data frame %>
+      <div class="row">
+        <div class="col-12">
+          <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+        <%# end edit data frame  %>
+        </div>
+      </div>
+      <%# error messages %>
+      <div class="row">
+        <div class="col-12">
+          <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+          <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+        </div>
+      </div>
+    <%# end edit group %>
+    </div>
+  <%# end subsection %>
+  </div>
+
+  <%# begin single column left label subsection with rows %>
+  <div class="form-group row pt-1">
+    <%# edit label %>
+    <p class="col-12 col-sm-2 col-form-label font-weight-bold pr-0 pt-4 mr-6">
+      Some Label:
+    </p>
+    <%# begin edit group %>
+    <div class="col-12 col-sm-8 col-xl-7 pl-2">
+      <%# begin first data row without columns %>
+      <div class="row">
+        <div class="col-12">
+          <%# edit data frame %>
+          <div class="row">
+            <div class="col-12">
+              <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+            <%# end edit data frame  %>
+            </div>
+          </div>
+          <%# error messages %>
+          <div class="row">
+            <div class="col-12">
+              <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+              <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+            </div>
+          </div>
+        <%# end data row %>
+        </div>
+      </div>
+      <%# begin second data row without columns %>
+      <div class="row">
+        <div class="col-12">
+          <%# edit data frame %>
+          <div class="row">
+            <div class="col-12">
+              <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+            <%# end edit data frame  %>
+            </div>
+          </div>
+          <%# error messages %>
+          <div class="row">
+            <div class="col-12">
+              <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+              <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+            </div>
+          </div>
+        <%# end data row %>
+        </div>
+      </div>
+    <%# end edit group %>
+    </div>
+  <%# end subsection %>
+  </div>
+
+  <%# begin multi column left label subsection with or without rows %>
+  <div class="form-group row pt-1">
+    <%# edit label %>
+    <p class="col-12 col-sm-2 col-form-label font-weight-bold pr-0 pt-4 mr-6">
+      Some Label:
+    </p>
+    <%# begin edit group %>
+    <div class="col-12 col-sm-8 col-xl-7 pl-2">
+      <%# begin data row with 1 column %>
+      <div class="row">
+        <div class="col-12 pr-2">
+          <%# Single column with data / error messages %>
+          <div class="col-12 py-1 pl-0 pr-1">
+            <%# edit data frame %>
+            <div class="row">
+              <div class="col-12">
+                <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+              <%# end edit data frame  %>
+              </div>
+            </div>
+            <%# error messages %>
+            <div class="row">
+              <div class="col-12">
+                <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+                <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+              </div>
+            </div>
+            <%# end column %>
+          </div>
+        <%# end data row %>  
+        </div>
+      </div>
+      <%# begin data row with 2 50-50 columns %>
+      <div class="row">
+        <div class="col-12 pr-2">
+          <%# First 50-50 column with data / error messages %>
+          <div class="col-sm-12 col-lg-6 py-1 pl-0 pr-1">
+            <%# edit data frame %>
+            <div class="row">
+              <div class="col-12">
+                <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+              <%# end edit data frame  %>
+              </div>
+            </div>
+            <%# error messages %>
+            <div class="row">
+              <div class="col-12">
+                <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+                <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+              </div>
+            </div>
+            <%# end column %>
+          </div>
+          <%# Second 50-50 column with data / error messages %>
+          <div class="col-sm-12 col-lg-6 py-1 pl-0 pr-1">
+            <%# edit data frame %>
+            <div class="row">
+              <div class="col-12">
+                <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+              <%# end edit data frame  %>
+              </div>
+            </div>
+            <%# error messages %>
+            <div class="row">
+              <div class="col-12">
+                <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+                <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+              </div>
+            </div>
+            <%# end column %>
+          </div>
+        <%# end data row %>  
+        </div>
+      </div>
+      <%# begin data row with 3 columns 50:25:25 %>
+      <div class="row">
+        <div class="col-12 pr-2">
+          <%# First 50-25-25 column with data / error messages %>
+          <div class="col-sm-12 col-lg-6 py-1 pl-0 pr-1">
+            <%# edit data frame %>
+            <div class="row">
+              <div class="col-12">
+                <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+              <%# end edit data frame  %>
+              </div>
+            </div>
+            <%# error messages %>
+            <div class="row">
+              <div class="col-12">
+                <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+                <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+              </div>
+            </div>
+            <%# end column %>
+          </div>
+          <%# Second 50-25-25 column with data / error messages %>
+          <div class="col-sm-12 col-lg-3 py-1 pl-0 pr-1">
+            <%# edit data frame %>
+            <div class="row">
+              <div class="col-12">
+                <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+              <%# end edit data frame  %>
+              </div>
+            </div>
+            <%# error messages %>
+            <div class="row">
+              <div class="col-12">
+                <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+                <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+              </div>
+            </div>
+            <%# end column %>
+          </div>
+          <%# Third 50-25-25 column with data / error messages %>
+          <div class="col-sm-12 col-lg-3 py-1 pl-0 pr-1">
+            <%# edit data frame %>
+            <div class="row">
+              <div class="col-12">
+                <%# INSERT: edit element - see templates/views/elements/edit_elements.html.erb %>
+              <%# end edit data frame  %>
+              </div>
+            </div>
+            <%# error messages %>
+            <div class="row">
+              <div class="col-12">
+                <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+                <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+              </div>
+            </div>
+            <%# end column %>
+          </div>
+        <%# end data row %>  
+        </div>
+      </div>
+    <%# end edit group %>
+    </div>
+  <%# end subsection %>
+  </div>
+
+  <%# begin single column left label subsection without rows AND with cancel / submit buttons %>
+  <div class="form-group row pt-1">
+    <%# edit label %>
+    <p class="col-12 col-sm-2 col-form-label font-weight-bold pr-0 pt-4 mr-6">
+      Some Label:
+    </p>
+    <%# begin edit group %>
+    <div class="col-12 col-sm-8 col-xl-7 pl-2">
+      <%# begin edit data frame with cancel / submit icons %>
+      <div class="d-flex">
+        <div class="pr-2">
+          <div class="row mx-0">
+            <div class="col-12 px-0">
+              <%# INSERT fields_for frame; OR %> 
+              <%# INSERT: actual input %>
+            <%# end edit data frame  %>
+            </div>
+          </div>
+          <%# error messages %>
+          <div class="row">
+            <div class="col-12">
+              <%= render "shared/attr_error_messages_only", object: fodel.errors[:attribute] %>
+              <%= render partial: "shared/attr_full_error_messages", locals: { record: fodel, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+            </div>
+          </div>
+        </div>
+        <div class="ml-auto d-flex align-items-center">
+          <%# INSERT: Cancel and Submit Buttons - Icon Pair %>
+        </div>
+      </div>
+    <%# end edit group %>
+    </div>
+  <%# end subsection %>
+  </div>
+
+  <%# Cancel & Submit Buttons Wrapper %>
+  <div class="form-group row pt-1">
+    <div class="col-12 col-sm-2 pr-0 mr-6">
+    </div>
+    <div class="d-flex justify-content-between col-12 col-sm-8 col-xl-7 pl-2">
+     <%# INSERT: cancel and submit buttons - see templates/views/elements/buttons_and_links.html.erb %>
+    </div>
+  </div>
+
+<%# End Form %>
+<% end %>

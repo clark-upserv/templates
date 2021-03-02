@@ -1,0 +1,33 @@
+replace: 
+model
+<%# NOTE: make sure you don't replace the model keys below with the actual name of the model %>
+
+<%# Form options %>
+<%# NOTE: if you want to respond with HTML, you need to add "local: true" to the form_with() method %>
+
+<%# if using model %>
+<%= form_with(model: model) do |f| %>
+<%# REVIEW: make sure you didn't replace the model key above with the actual name of the model %>
+
+<%# if manual url %>
+<%= form_with(model: model, url: some_named_path) do |f| %>
+<%# REVIEW: update url %>
+<%# REVIEW: make sure you didn't replace the model key above with the actual name of the model %>
+
+<%# if using same form for new & edit %>
+<% if model.new_record? %>
+  <% url = some_named_path %>
+  <%# REVIEW: update url %>
+  <% id_or_new = "new" %>
+<% else %>
+  <% url = some_named_path %>
+  <%# REVIEW: update url %>
+  <% id_or_new = model.id %>
+<% end %>
+<%= form_with(model: model, url: url) do |f| %>
+<%# REVIEW: make sure you didn't replace the model key above with the actual name of the model %>
+
+<%# if totally manual form %>
+<%= form_with(scope: :some_scope, url: some_url, method: :some_method) do |f| %>
+<%# REVIEW: update url and method %>
+

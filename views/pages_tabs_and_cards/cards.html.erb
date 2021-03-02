@@ -1,0 +1,45 @@
+<%# start card %>
+      <div class="card card-border-color card-border-color-primary card-table"> 
+      <%# REVIEW: remove classes "card-border-color" and "card-border-color-primary" if you do not want a card with color %>
+        <div class="row"> <%# used for left and right margin if needed. if not, delete classes but keep divs %>
+          <div class="col-12 col-lg-1 col-xl-2"> 
+          </div>
+          <%# NOTE: the above element is used to create left margin on really wide screens. The classes on the element below create the corresponding right margins %>
+          <div class="col-12 col-lg-10 col-xl-8"> <%# used for left and right margin if needed. if not, delete classes but keep divs %>
+
+<%# card header %>
+            <div class="card-header card-header-divider">
+              <div class="row px-3"> <%# helps with spacing title vs. buttons... not perfect but really close. tried putting d-flex, d-sm-flex and row inside previous line, but none worked %>
+                <%# card header title and subtitle %>
+                <div class="card-title mr-auto font-weight-bold">
+                  CARD TITLE
+                  <%# REVIEW: update card title %>
+                  <span class="card-subtitle">
+                    Card Subtitle Here
+                    <%# REVIEW: update or remove card sub-title %>
+                  </span>
+                </div>
+                <%# card header buttons %>
+                <div>
+                  <%# NOTE: add px-2 if next to a delete button or any other button %>
+                  <%# REVIEW: insert card header buttons here if necessary.%>
+                  <%# NOTE: if multiple buttons, all buttons EXCEPT FOR THE LAST BUTTON need a class of mr-2 %>
+                  <%# NOTE: Show edit swap edit button is super common - see templates/views/elements/buttons_and_links.html.erb and search "show edit swap edit examples" %>
+                  <%# NOTE: Add button for add index or add is also super common %>
+                </div>
+              </div>
+            </div>
+
+<%# start card body %>
+            <div class="card-body pb-3">
+
+              <%# REVIEW: insert card body option (see templates/views/card_body_options) %>
+
+<%# finish card body %>
+            </div>
+
+<%# finish card %>
+          </div>
+        </div>
+      </div>
+

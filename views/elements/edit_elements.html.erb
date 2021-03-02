@@ -1,0 +1,296 @@
+<%# common input attributes %>
+  main 
+    id (auto-generated if using rails helpers)
+    class 
+    type (auto-generated if using rails helpers)
+    name (auto-generated if using rails helpers)
+    value (auto-generated if using rails helpers)
+    required: "true"
+    maxlength: "255" 
+    placeholder: "some placeholder" "999-999-9999"
+
+  others 
+    autocomplete
+    autofocus
+    checked 
+    data-whatever
+    disabled
+    max 
+    min
+    pattern 
+    read only
+    value
+
+  js options
+    onkeypress="return isNumberKey(event)" # only allows numbers (and c0 commands) for text inputs
+    
+<%# actual input (ie for Edit) %>
+<%# Decimal %>
+<%= f.number_field :attribute, step: 0.5, class: "form-control", required: "true", placeholder: "Some placeholder or 999-9999", value: fodel.attribute %>
+
+<%# Integer %>
+<%= f.number_field :attribute, step: 1, class: "form-control", required: "true", placeholder: "Some placeholder or 999-9999", value: fodel.attribute %>
+
+<%# string: %>
+<%= f.text_field :attribute, class: "form-control", required: "true", maxlength: "255", placeholder: "Some placeholder or 999-9999", value: fodel.attribute %>
+
+<%# text: %>
+<%= f.text_area :attribute, class: "form-control", required: "true", maxlength: "255", placeholder: "Some placeholder or 999-9999", value: fodel.attribute %>
+
+<%# rich text: %>
+<%= f.rich_text_area :attribute, required: "true" %>
+
+<%# email: %>
+<%= f.email_field :attribute, class: "form-control", required: "true", maxlength: "255", placeholder: "Some placeholder or 999-9999", value: fodel.attribute %>
+
+<%# password: %>
+<%= f.password_field :attribute, class: "form-control", required: "true", maxlength: "255", placeholder: "Some placeholder or 999-9999", value: fodel.attribute %>
+
+<%# hidden field: %>
+<%= f.hidden_field :attribute, value: "some_value" %>
+
+<%# hidden field tag: %>
+<%= hidden_field_tag :param_name, "some_value" %>
+
+<%# basic select with simple manual options %>
+<%= f.select :attribute, ["Option 1", "Option 2", "Etc"], { include_blank: true, include_blank: "Select", prompt: "Select" }, { class: "form-control" }  %>
+
+<%# basic select with options loaded from some model %>
+<%= f.select :attribute, fodel.sorted_options.collect { |option| [option.display, option.value] }, { include_blank: true, include_blank: "Select", prompt: "Select" }, { class: "form-control" }  %>
+
+<%# basic select with custom manual options %>
+<%= f.select :attribute, [ ], { include_blank: true, include_blank: "Select", prompt: "Select" }, { class: "form-control" } do  %>
+  <option <%= "selected='true'" if fodel.attribute == some_value %> value="<%= some_value %>" >Some Display</option>
+  <%# NOTE: This is a manual option. Default is for when attribute is nil... However, you can make it any logic you want and display can be any display you want %>
+  <% fodel.sorted_options.each do |option| %>
+    <option <%= "selected='true'" if fodel.attrubute == option %> value="<%= option.value %>"><%= option.display %></option>
+    <%# NOTE: logic is defaulted to be selected if fodel attribute is the option, but you can add whatever logic you want %>
+  <% end %>
+<% end %>
+
+<%# search select with "select2" %>
+<%# INSERT: any basic selelct with html %>
+<%# NOTE: add class of "select2" and style of "color: #FFFFFF" %>
+<%# NOTE: The class sets it to seelct2.  The color is because, for a split second, the page will load a basic select, which then is converted to a select2. By setting the color to #FFFFFF, the basic select will blend with background making it effecitely invisible. An alternative approad is to add the class of "invisible" as well, but then front end validation messages (ex. "required") will also be hidden by the browser. So changing the color is a better solution. %>
+<%# NOTE: to add a blank selection, you cannot use include_blank: true. Instead, you have to add amanual select option with no value.)%>
+  <%# NOTE: if you want the user to be able to select the blank option, then you have to give the blank option a value or 0 (or some non-nil representation of nil) AND THEN convert it from 0 to nil in the strong params in the controller. Reason for this is because if there is no value for the option, then select2 will hide the option %>
+<%# NOTE: if inside a modal, need to remove tabindex="-1" on the hightest modal container or else the search bar wont work... but this could have side effects such as trying to scroll or press esc...??? %>
+
+<%# select multiple - basic %>
+<div class="pt-3">
+  <%# INSERT: any basic selelct with html option of multiple="multiple" added %>
+<div>
+
+<%# search select multiple with select2 %>
+<%# INSERT: search select with "select2" with html option of multiple="multiple" added %>
+
+<%# add/remove select multiple with no search %> 
+<%# NOTE: need to inlcde swap elements js file %>
+<%# fields to select from %>
+<div class="pt-3">
+  <strong class="">Select From:</strong>
+  <%= f.select :attribute, {}, {}, { class: "form-control" }  do  %>
+    <option class="option-some-manual-unique-identifier-primary-element" style="display: <%= some_logic_if_already_selected ? "none" : "block" %>;" onclick="addArrayElement('option-some-manual-unique-identifier');" value="">Some Manaul Option</option>
+    <% fodel.sorted_options.each do |option| %>
+      <option class="option-<%= option.some_unique_identifier %>-primary-element" style="display: <%= some_logic_if_already_selected ? "none" : "block" %>;" onclick="addArrayElement('option-<%= option.some_unique_identifier %>');" value=""><%= option.display %></option>
+    <% end %>
+  <% end %>
+<div>
+<%# Selected fields %>
+<div class="pt-2">
+  <strong>Selected:</strong>
+</div>
+<div class="col-12">
+  <div class="row">
+    <% fodel.sorted_options.each do |option| %>
+      <div class="mt-1 mr-1 selected-box py-2 option-<%= option.some_unique_identifier %>-secondary-element" style="display: <%= some_logic_if_already_selected ? "block" : "none" %>;" onclick="removeArrayElement('location-<%= location.id %>');">
+        <span class="d-flex align-items-center"><%= location.name %><span class="pl-3 mdi mdi-close"></span></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# add/remove select multiple with search... %>
+
+<%# 2 column multi-select %>
+<div class="pt-3">
+  <%= ff.select :attribute, {}, {}, { id: "my-select" } do %> 
+  <% fodel.sorted_options.each do |option| %>
+    <option value="<%= option.value %>"><%= option.display %></option>
+  <% end %>
+<% end %>
+</div>
+<%# NOTE: you can change the behavior by changing the id (see foxy themes for demos). my-select, pre-selected-options, callbacks, optgroup, disabled-attribute, custom-headers, searchable %>
+<%# NOTE: since it uses the id attribute, you can only have one per type per page :( %> 
+<%# NOTE: I think if you do add id of searchable or pre-selected (but I'm not sure) and then add code (see to the right) to each option, then pre-selected options will be loaded on right columns - <%= "selected='true'" if some_logic_to_test_if_this_option_is_already_selected %> 
+
+<%# accepts_nested_attributes child multi-select friendly select %>
+<%# NOTE: need to inlcde swap elements js file %>
+<%# fields to select from %>
+<% sorted_options = some_logic_to_get_array_of_sorted_options %>
+<div class="pt-4">
+  <strong class="">Select From:</strong>
+  <%= select nil, nil, {}, {}, { class: "form-control", multiple: "multiple" } do %> 
+    <% if !sorted_options.empty? %>
+      <% sorted_options_options.each do |option| %>
+        <% (defined?(sodel_ids_on_invalid) ? sodel_ids_on_invalid : fodel.try(:sesources).try(:pluck, :id)).try(:include?, sodel.id) ? selected = true : selected = false %>
+        <%# NOTE: on invalid, you will be loading from memory and often the children or through relationships will not pass to the view in memory (only on valid and from db). In that case, you also need to pass through a local called sodel_ids_on_invalid and check those instead of pulling from the db %>
+        <%# NOTE: for the above, you will also have to make sure the invalid render defines the sodel_ids_on_invalid loacl %>
+        <% array_of_actually_selected_options.include?(option) ? selected = true : selected = false %>
+        <%# NOTE: if not having memory issues with invalid, use somethign like this above %>
+        <option class="option-<%= option.some_unique_identifier %>-primary-element <%= selected ? "pre-selected-option" : "non-pre-selected-option" %>" name= "" style="display: <%= selected ? "none" : "block" %>;" onclick="addArrayElement('option-<%= option.some_unique_identifier %>');" value=""><%= option.display %></option>
+      <% end %>
+    <% end %>
+    <%end %>
+  <% end %>
+</div>
+<%# Selected fields %>
+<div class="pt-2">
+  <strong>Selected:</strong>
+</div>
+<div class="col-12">
+  <div class="row">
+    <% if !sorted_options.empty? %>
+      <% sorted_options_options.each do |option| %>
+        <% (defined?(sodel_ids_on_invalid) ? sodel_ids_on_invalid : fodel.try(:sesources).try(:pluck, :id)).try(:include?, sodel.id) ? selected = true : selected = false %>
+        <%# NOTE: on invalid, you will be loading from memory and often the children or through relationships will not pass to the view in memory (only on valid and from db). In that case, you also need to pass through a local called sodel_ids_on_invalid and check those instead of pulling from the db %>
+        <%# NOTE: for the above, you will also have to make sure the invalid render defines the sodel_ids_on_invalid loacl %>
+        <% array_of_actually_selected_options.include?(option) ? selected = true : selected = false %>
+        <%# NOTE: if not having memory issues with invalid, use somethign like this above %>
+        <div class="mb-1 mr-1 selected-box py-2 option-<%= option.some_unique_identifier %>-secondary-element <%= selected ? "pre-selected-display" : "non-pre-selected-display" %>" style="display: <%= selected ? "block" : "none" %>;" onclick="removeArrayElement('location-<%= location.id %>');">
+          <span class="d-flex align-items-center"><%= location.name %><span class="pl-3 mdi mdi-close"></span></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<%# hidden inputs that crate actual params %>
+<div>
+  <% if !sorted_options.empty? %>
+    <% sorted_options_options.each do |option| %>
+      <% (defined?(sodel_ids_on_invalid) ? sodel_ids_on_invalid : fodel.try(:sesources).try(:pluck, :id)).try(:include?, sodel.id) ? selected = true : selected = false %>
+      <%# NOTE: on invalid, you will be loading from memory and often the children or through relationships will not pass to the view in memory (only on valid and from db). In that case, you also need to pass through a local called sodel_ids_on_invalid and check those instead of pulling from the db %>
+      <%# NOTE: for the above, you will also have to make sure the invalid render defines the sodel_ids_on_invalid loacl %>
+      <% array_of_actually_selected_options.include?(option) ? selected = true : selected = false %>
+      <%# NOTE: if not having memory issues with invalid, use somethign like this above %>
+      <% if selected %>
+        <%= f.hidden_field_stored_name :attribute, id: "option-#{some_unique_identifierd}", value: option.value %>
+      <% else %>
+        <%= f.hidden_field_hidden_name :attribute, id: "option-#{some_unique_identifierd}", value: option.value %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<%# Radio - Inline %>
+<%# NOTE: for input to be "unchecked", the "checked" html attrubute needs to be "". If you leave the checked attribute out, the input will actually be checked on the page %>
+<div class="row">
+  <div class="col-12 d-flex">
+    <label class="custom-control custom-radio custom-control-inline mb-0 text-wrap">
+      <%= f.radio_button :attribute, some_value, class: "custom-control-input", checked: "#{true if attribute == "some value"} %>
+      <span style="color:#6b6b6b" class="custom-control-label">Some Value</span>
+    </label>
+    <label class="custom-control custom-radio custom-control-inline mb-0 text-wrap">
+      <%= f.radio_button :attribute, some_value, class: "custom-control-input", checked: "#{true if attribute == "some value"} %>
+      <span style="color:#6b6b6b" class="custom-control-label">Some Value</span>
+    </label>
+  </div>
+</div>
+
+<%# Radio stacked - NOTE: needs to be reviewd %>
+<%# NOTE: for input to be "unchecked", the "checked" html attrubute needs to be "". If you leave the checked attribute out, the input will actually be checked on the page %>
+  <div class="form-group">
+    <label class="custom-control custom-radio text-wrap">
+      <%= f.radio_button :attribute, some_value, class: "custom-control-input", checked: "#{true if attribute == "some value"} %>
+      <span style="color:#6b6b6b" class="custom-control-label">Some Value</span>
+    </label>
+    <label class="custom-control custom-radio text-wrap">
+      <%= f.radio_button :is_template, some_value, class: "custom-control-input", checked: "#{true if attribute == "some value"} %>
+      <span style="color:#6b6b6b" class="custom-control-label">Some Value</span>
+    </label>
+  </div>
+
+
+<%# checkbox inline #>
+
+<%# cheeckbox stacked %>
+<%# NOTE: beagle puts in 2 inputs for each input. If the user selects the input, it will add a param: "some_param_name" => "1" and if the input is not checked it will add the param "some_param_name" => "0" %>
+<%# NOTE: for booleans, "" and nil are nil; false, 0 and "0" are false; true, 1, "1" and any other string are true"%>
+<%# NOTE: if you do not want to create the param when the checkbox is unchecked (ie "some_param_name" => "0"), then you need to follow the instructions below. %> 
+<%# NOTE: examples of when you may not want the "0" param: if the form is nested and / or select multiple. Regardless, if params don't work as expected or the "0" param causes issues, follow the below steps to remove the hidden field %>
+  <%# NOTE: need to includ input_manager js file so you can user "removeFirstCheckBoxInput();" (see below) %>
+  <%# NOTE: need to include "removeFirstCheckBoxInput();". Easist option is on edit button, but could also do on on page load - basically you just need to make sure it is run before the form is submitted. %>
+  <%# NOTE: you will also need to include "removeFirstCheckBoxInput();" on invalid ajax file (or any ajax file that renders the checkbox directly) because the method used to initially run the function probably was not used in the ajax render %>
+  <%# NOTE: if you are doing nested (ie the form is for 10 users, and each user you can select if they are cool or not), then you will need to give a custom "id:" to the checkbox with the user.id AND you will need to update the "for:" on the label with the exact same string as the checkbock id. Do not change the "name:" on the checkbock though because the form_with and fields for sets that up exactly how it need to be. You just need to update the id and for so that the label selects the correct checkbox %> 
+<div class="pt-3">
+  <div class="custom-control custom-checkbox">
+    <%= f.check_box :attribute, class: "custom-control-input" %>
+    <%# NOTE: to make checkbox always not checked by default, include checked: false (sometime on success render, it will be marked as checked even if you don't want it to be %>
+    <%# NOTE: to make checked conditional, include checked: some_logic_for_true_or_false %>
+    <%= f.label :attribute, "some optional text instead of attribute name", class: "custom-control-label text-wrap" %>
+  </div>
+</div>
+
+<%# Date with datepicker (when you need to compare to nearby dates) %>
+<%# NOTE: data-date-format needs to mach strftime format) %>
+<div class="input-group date datetimepicker py-0 mt-0" data-min-view="2" data-date-format="DD, MM dd, yyyy">
+  <%= f.text_field :attribute, class: "form-control", onclick: "removeInlineCalendarsAfterAjax()", required: "true", maxlength: "255", placeholder: "Select date", value: fodel.attribute.try(:strftime, "%A, %B %e, %Y") %>
+  <div class="input-group-append">
+    <a class="btn btn-primary cal-button do-not-disable" onclick="removeInlineCalendarsAfterAjax()"><i class="icon-th mdi mdi-calendar"></i></a>
+  </div>
+</div>
+<%# NOTE: REALLY IMPORTANT! after ajax, Beagle will add these buggy inline calendars to any calendar input on the page (regardless if the calendar input was re-rendered with the ajax or not). (also,I think it's only with AJAX AND when there is more than 1 datepicker input). This needs to be fixed and there are 3 options %>
+  <%# NOTE: place onclick="removeInlineCalendarsAfterAjax()" on the button required to press to see the edit form (ie. the Edit Button) - This is the preferred method if there is such a button because it protects regardless of future ajax additiona or refactoring %>
+  <%# NOTE: place onclick="removeInlineCalendarsAfterAjax()" in all ajax files for page - not preferred because it’s easy to lose track if the page has multople ajax or if you add additional forms / ajax later %>
+  <%# NOTE: place onclick="removeInlineCalendarsAfterAjax()" on both the text input AND button above (NOTE this is the default and is done already) BUT this is not preferred because when user clicks text input, extra inline calendars flash real quick before being removed (which looks so bad). However, we're leaving this as the default in case future additions are made and the refactorer forgets to manage calendar issues %>
+  <%# NOTE: This option (default) requires input_mananger js file %>
+
+<%# Date by typing, but masked for date (When you want quick input or input dates that could be far past or far future)  %>
+<%# instance with errors %>
+<% if fodel && fodel.errors.any? %>
+  <% attribute_value = fodel.string_attribute %>
+<%# instance without errors %>
+<% elsif fodel %>
+  <% attribute_value = fodel.attribute.try(:strftime, "%m%d%Y") #if there are no errors on the instance, everything goes as expected. If there are errors any errors on the dob attribute, display the input attempts (which comes from @dob from controller). If there are errors on a different column, show @employee dob which is the @employee with the error which is the attempted input. If this is cancelled, it will revert to the previous @employee dob.  %>
+<%# instance is nil %>
+<% else %>
+  <% attribute_value = nil %>  
+<% end %>
+<%= f.text_field :string_attribute, class: "form-control", value: attribute_value, data: {mask: "date"}, placeholder: "MM/DD/YYYY" %>
+<%# NOTE: To do list %>
+  <%# add "attribute :string_attribute" to model - input is actually for a string_attribute. so you need to save the virtual attribute which then is converted to the actual attribute %>
+  <%# add "validates :string_attribute, masked_date: true" to model -string_attribute will need to be validated which also automatcally sets the regular (non-string, non-virtual) attribute %>
+  <%# error message should be for attribute, not string_attribute %> 
+<%# NOTE:if string attribute is for nested attribute, replace first part of control flow above ("attribute_value = fodel.string_attribute") with this below: %> 
+  <%# cycle through all children %>
+  <% parent.children.each  do |child| %> 
+    <%# set attribute_value to the string attribute of any child that has a string_attribute virtual attribute. There should only be 1 since string attribute is virutal attribute and therefore could only be loaded by the child that is loaded from the ajax response %>
+    <% attribute_value = child.string_attribute if child.string_attribute %>
+  <% end %>
+
+<%# Date by selecting month, day, year separets (Mainly for mobile because date by typing is easier for desktop) %>
+
+<%# Rich Text %>
+
+<%# upload %>
+<%# NOTE: if upload is required, do the following: %>
+  <%# include input manager js file AND add: onclick: "requiredFilesError(['id_1', 'id_2', 'ect.'])" to the submit button with the id of each file_feild input you need to be required. Reason:  "required" front end validation works but will be hidden here (beagle sucking real hard). Also, any errors from back end validations kill the format - rails clashes with beagle (with field with errors"). I'd just keep front end validation even though it is hidden %>
+  <%# add the following to the first two lines of the controller action  %>
+    # raise if no upload is attached. The js alert will have been triggered notifying the user that they need to attach a file and then no other changes or ajax response will be triggered on the front end, which is exactly what we want. Without the raise, the alert will show, but then the controller action will still be hit
+    raise if create_params[:attribute].nil?
+<%= f.file_field :attribute, id: "add_id_if_necessary", class: "inputfile", required: "", accept: "image/jpeg, image/gif, image/png, application/pdf, video/quicktime, video/mp4, video/webm, audio/ogg", onchange: "validateUploadSize('insert_input_id', insert_max_mb_as_an_integer)"; disableSubmitWhenNoFile('insert_input_id', 'insert_submit_id', '[insert true if button is icon]') %>
+  <%# NOTE if adding front end size validation, must include input manager js file %>
+  <%# NOTE if disabling and enabling submit button with js: %>
+    <%# NOTE: must include input manager js file %>
+    <%# NOTE: have initial submit with attribute disabled="disabled" %>
+    <%# NOTE: if submit is an icon, also give it a class of text-secondary instead of text-primary %>
+<%= f.label :attribute, content_tag(:span, content_tag(:i, "", class: "mdi mdi-upload")+"Upload Document"), class: "btn-secondary", style: "word-break: break-all;" %>
+<div class="pt-1 pl-1">
+  Accepted formats: jpeg, gif, png, pdf, mov, mp4, webm, ogg
+  <br>
+  Max size: 10 MB
+</div>
+
+<%# Mask - Social %>
+<%= f.text_field :attribute, class: "form-control", data: {mask: "ssn"}, value: "#{fodel.attribute[0..2]}-#{fodel.attribute[3..4]}-#{fodel.attribute[5..8]}" %>
+

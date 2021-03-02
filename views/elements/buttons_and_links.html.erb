@@ -1,0 +1,145 @@
+<%# BUTTONS AND LINKS %>
+  <%# NOTE: on any a's, if not using href, delete %>
+  <%# NOTE: for a's, c-pointer is only necessary if there is no href %>
+  <%# NOTE: for actual buttons, try to use natural width. If it looks better to set witch, use make "w-XXXx" whatever witdth you want. See app.scss for list of options %>
+  <%# NOTE: an html button and html a with class btn btn-whateber will look exactly the same. However, without classes, they will recieve default button and a styles, which are very different %>  
+  <%# NOTE: BUTTON elements will submit form if on a form. They cannot have an href but can trigger actions (ex. toggle modal). A elemets will not submit form if on a form. They can have href. They can also trigger other actions (ex. toggle modals). A elements are preferred over buttons for other actions because they will work whether on a form or not. %>
+
+  <%# 4 main types %>
+    <%# NOTE: if hitting a Non-GET controller action, use link_to and add opton "method: :some_html_method", ex :post, :patch, :delete %>
+    <%# NOTE: to make it remote, use link_to and add remote: true %>
+    
+    <%# button button %> 
+    <button class="w-XXXx btn btn-primary">BUTTON BUTTON</button>
+    <%= content_tag(:button, "BUTTON BUTTON RAILS", class: "w-XXXx btn btn-primary") %>
+
+    <%# a link %>
+    <a class="c-pointer text-primary" href="<%= "#" %>">A LINK</a>
+    <%= link_to("A LINK RAILS", "#", class: "c-pointer text-primary") %>
+    <%= content_tag(:a, "A LINK RAILS", href: "#", class: "c-pointer text-primary") %>
+
+    <%# a button %>
+    <a class="c-pointer btn btn-primary text-white" href="<%= "#" %>">A BUTTON</a>
+    <%= link_to("A BUTTON RAILS", "#", class: "c-pointer btn btn-primary text-white") %>
+    <%= content_tag(:a, "A BUTTON RAILS", href: "#", class: "c-pointer btn btn-primary text-white") %>
+    <%# NOTE: "text-white" is not necessary as long href is present. However if you remove the href (ex. for modal buttons or show edit swap edit buttons), the text will default to a dark gray (#404040). So I'm keeping text-white as a default. Also, text-white is for btn-primary. For btn-secondary you actually do want style="color: #404040"; %>
+
+    <%# a icon %> 
+    <a class="c-pointer text-primary fs-3 mdi mdi-edit" href="<%= "#" %>"></a>
+    <%= link_to("", "#", class: "text-primary fs-3 mdi mdi-edit") %>
+    <%= content_tag(:a, nil, href: "#", class: "text-primary fs-3 mdi mdi-edit") %>
+    <%# NOTE: icons need to be html a elements and not html button elements because buttons automatically get styled and looks bad %>
+
+  <%# Aux Types & Eamples %> 
+    <%# modal examples %>
+    <%# NOTE: Modals need to be an html "a" element because if it's inside a form and it is an html button element, clicking the button will actually try to submit the form... which is really annoyign... but html a's are great %>
+
+      <%# modal a-link %>
+      <a class="c-pointer text-primary" data-toggle="modal" data-target="#adjective-model-<%= model.id %>-nouns-action-modal">Some link</a> 
+      <%# INSERT: Actual modal %>
+      
+      <%# modal a-link - inline help %>
+      <a class="c-help text-primary" data-toggle="modal" data-target="#adjective-model-<%= model.id %>-nouns-action-modal">text that links to modal</a> 
+      <%# INSERT: Actual modal %>
+
+      <%# modal a-link - question mark help %>
+      <a class="c-pointer text-primary font-weight-bold" data-toggle="modal" data-target="#adjective-model-<%= model.id %>-nouns-action-modal">?</a> 
+      <%# INSERT: Actual modal %>
+
+      <%# modal a-button %>
+      <a class="btn btn-primary text-white" data-toggle="modal" data-target="#adjective-model-<%= model.id %>-nouns-action-modal">MODAL</a>
+      <%# INSERT: Actual modal %>
+      
+      <%# modal a-icon %>
+      <a class="c-pointer text-danger fs-3 mdi mdi-delete" data-toggle="modal" data-target="#model-<%= model.id %>-nouns-destroy-modal"></a> 
+      <%# NOTE: most common modal icon is for for deleting, so defaulting to text-danger and mdi-delete %>
+      <%# INSERT: Actual modal %>
+
+      <%# Actual modal %>
+      <div id="adjective-model-<%= model.id %>-nouns-action-modal-container">
+        <%# NOTE its important to render the entire modal wihtin a "modal-container" element because if / when you re-render a modal via success ajax, it's better to re-render the entire modal and not just the cotnents. This is because rendering the entire modal will help close the modal. It doesn't entirely close it though - we still have to remove a class from the main <html> element as well as remove the modal backdrop (see ajax.js.erb template) %>
+        <%= render(partial: 'app/section/middle_path/final_controller/action_modal', locals: { model: model }) %>
+      </div>
+
+      
+    <%# show edit swap edit examples %>
+      <%# show edit swap edit - a-icon (typical for standard form) %>
+      <a class="c-pointer text-primary fs-3 mdi mdi-edit adjective-model-<%= model.id %>-nouns-show-element adjective-model-<%= model.id %>-nouns-edit-button"> 
+        <script>
+           $('.adjective-model-<%= model.id %>-nouns-edit-button').click(function() {
+            displayEditForm('adjective-model-<%= model.id %>-nouns')
+           }) 
+        </script>
+      </a>
+      <%# NOTE: add px-2 if next to a delete button or any other button %>
+
+      <%# show edit swap edit - a-button (typical for "New Above Block" on add index and add from card header )%>
+      <a class="btn btn-primary text-white adjective-model-new-nouns-show-element adjective-model-new-nouns-edit-button">
+        <script>
+           $('.adjective-model-new-nouns-edit-button').click(function() {
+            displayEditForm('adjective-model-new-nouns')
+           }) 
+        </script>
+        Add Fodel
+      </a>
+
+      <%# show edit swap edit - a-link (typical for "New Below Block" on add index) %>
+      <a class="c-pointer text-primary adjective-model-new-nouns-show-element"> 
+        <script>
+           $('.adjective-model-new-nouns-edit-button').click(function() {
+            displayEditForm('adjective-model-new-nouns')
+           }) 
+        </script>
+        Add Fodel
+      </a>
+
+    <%# accordion examples %>
+      <%# standard accordion buttons %>
+      <i class="c-pointer icon fs-3 mdi mdi-chevron-right ml-auto some-name-primary-element" onclick="displaySecondary('some-name')"></i> 
+      <i class="c-pointer icon fs-3 mdi mdi-chevron-down ml-auto some-name-secondary-element" style="display: none;" onclick="displayPrimary('some-name')"></i>  
+
+    <%# Cancel and Submit Buttons %>
+      <%= FOLLOW UP / TASK: look into data-disable-with for submit buttons. It changes submit (which is actually an input, not a button) text while waiting for response %>
+      <%# NOTE: if 2 or more buttons / icons in a row, give all EXCEPT the last a class of mr-2 %>
+      <%# NOTE: Modal buttons live in modal. You may need to update those occasionally (or move them here?!?) %>
+
+      <%# button pair %>
+        <%# Cancel - a-button %>
+        <a class="btn btn-secondary do-not-disable adjective-model-<%= model.id %>-nouns-cancel-button">
+          <script>
+            $('.adjective-model-<%= model.id %>-nouns-cancel-button').click(function() {
+              cancelEdit('adjective-model-<%= model.id %>-nouns')
+            }) 
+          </script>
+          Cancel
+        </a>
+        <%# Submit - input-button %>
+        <%= f.submit "Save", class: "btn btn-primary" %>
+
+      <%# icon pair %>
+        <%# Cancel - a-icon %>
+        <a class="pr-2 c-pointer text-secondary fs-4 mdi mdi-close-circle-o do-not-disable adjective-model-<%= model.id %>-nouns-cancel-button">
+          <script>
+            $('.adjective-model-<%= model.id %>-nouns-cancel-button').click(function() {
+              cancelEdit('adjective-model-<%= model.id %>-nouns')
+            }) 
+          </script>
+        </a>
+        <%# Submit - button-icon %>
+        <button class="px-0 text-primary fs-4 mdi mdi-check-circle do-not-disable" style="background-color: transparent; border: none; outline:0px !important;"></button>
+      
+    <%# AJAX examples %>
+      <%# AJAX a-button %>
+      <%= link_to("Delete", some_named_path, class: "btn btn-danger", method: :delete, remote: true ) %>
+      <%# NOTE: Most common is for delete so showoing options to a-icon with mdi-delete and btn-danger %>
+
+      <%# AJAX a-link %>
+      <%= link_to("Delete", some_named_path, class: "c-pointer text-danger", method: :delete, remote: true ) %>
+      
+      <%# AJAX a-icon %>
+      <%= link_to("", some_named_path, class: "c-pointer text-danger fs-3 mdi mdi-delete", method: :delete, remote: true ) %>
+
+      <%# HTML / Non Rails Helper %>
+      <anyelement href="<%= some_named_path %>" data-method="delete" data-remote="true" rel="nofollow">
+        Some content 
+      </anyelement>

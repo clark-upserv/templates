@@ -1,0 +1,130 @@
+<%# REVIEW: rplace the below and delete this section when done %> 
+adjective-model-<%= model.id %>-nouns - name of the identifier (ask manager if you are not sure)
+model - singular name of the model - ex. 'user' <%# NOTE: BE CAREFUL not to replace the "model" option used in the form_for method %>
+
+<%# Begin Form %>
+<%# REVIEW: insert form option - see templates/views/show_edit_formats/form_options.html.erb %>
+
+  <%# REVIEW: insert hidden field tags here if needed %>
+  <%# Hiddent fields %>
+
+
+  <%# card body contents %>
+  <%# Top of Page Error Messages %>
+  <%# REVIEW: only included top of page error messages if necessary (most of the time, delete the top of page error messages %>
+  <div class="row mx-4">
+    <div class="col-12 px-0">
+      <%# if only base error messages (and attribute error messages on actual inputs) %>
+      <%= render(partial: 'shared/base_error_messages.html.erb', object: model) %>
+      <%# if showing all error messages at top (and not showing attribute error messages on actual inputs) %>
+      <%= render(partial: 'shared/error_messages.html.erb', locals: { object: model }) %>
+      <%# NOTE: I kept running into erros when using object here, so I changed to locals... but I'm not sure why locals worked and object didn't... %>
+    </div>
+  </div>
+
+  <%# begin single column top label row %>
+  <div class="row py-1">
+    <%# begin first column %>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p class="pb-1 col-form-label font-weight-bold">
+          Some Label:
+          <%# REVIEW: update label %>
+        </p>
+        <%# edit data frame %>
+        <div class="row">
+          <div class="col-12">
+            <%# REVIEW: insert edit element - see templates/views/elements/edit_elements.html.erb %>
+          <%# end edit data frame  %>
+          </div>
+        </div>
+        <%# error messages %>
+        <div class="row">
+          <div class="col-12">
+            <%= render "shared/attr_error_messages_only", object: model.errors[:attribute] %>
+            <%# REVIEW typically we use the above error message and delete the below. The above error message only shows the error message (ex. "Cannot be blank." as opposed to the below which shows the attribute and error message - ex. "Name cannot be blank". This is why we typcially create custom error messages in our models... so we can use the above error message %>
+            <%= render partial: "shared/attr_full_error_messages", locals: { record: model, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+          </div>
+        </div>
+      <%# end first column %>
+      </div>
+    </div>
+  <%# end edit row %>
+  </div>
+
+  <%# begin 2 column 50:50 top label row %>
+  <div class="row py-1">
+    <%# begin first column %>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <p class="pb-1 col-form-label font-weight-bold">
+          Some Label:
+          <%# REVIEW: update label %>
+        </p>
+        <%# edit data frame %>
+        <div class="row">
+          <div class="col-12">
+            <%# REVIEW: insert edit element - see templates/views/elements/edit_elements.html.erb %>
+          <%# end edit data frame  %>
+          </div>
+        </div>
+        <%# error messages %>
+        <div class="row">
+          <div class="col-12">
+            <%= render "shared/attr_error_messages_only", object: model.errors[:attribute] %>
+            <%# REVIEW typically we use the above error message and delete the below. The above error message only shows the error message (ex. "Cannot be blank." as opposed to the below which shows the attribute and error message - ex. "Name cannot be blank". This is why we typcially create custom error messages in our models... so we can use the above error message %>
+            <%= render partial: "shared/attr_full_error_messages", locals: { record: model, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+          </div>
+        </div>
+      <%# end first column %>
+      </div>
+    </div>
+    <%# begin second column %>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <p class="pb-1 col-form-label font-weight-bold">
+          Some Label:
+          <%# REVIEW: update label %>
+        </p>
+        <%# edit data frame  %>
+        <div class="row">
+          <div class="col-12">
+            <%# REVIEW: insert edit element - see templates/views/elements/edit_elements.html.erb %>
+          <%# end edit data frame %>
+          </div>
+        </div>
+        <%# error messages %>
+        <div class="row">
+          <div class="col-12">
+            <%= render "shared/attr_error_messages_only", object: model.errors[:attribute] %>
+            <%# REVIEW typically we use the above error message and delete the below. The above error message only shows the error message (ex. "Cannot be blank." as opposed to the below which shows the attribute and error message - ex. "Name cannot be blank". This is why we typcially create custom error messages in our models... so we can use the above error message %>
+            <%= render partial: "shared/attr_full_error_messages", locals: { record: model, attribute: "attribute", humanized_attribute: "Whatever (optional)" } %>
+          </div>
+        </div>
+      <%# end second column %>
+      </div>
+    </div>
+  <%# end edit row %>
+  </div>
+
+  <%# Cancel & Submit Buttons Wrapper %>
+  <div class="form-group row pt-2">
+    <div class="col-12 col-sm-2 px-0 mr-6">
+    </div>
+    <div class="d-flex justify-content-between col-12 col-sm-8 col-xl-7 pl-0">
+      <%# Cancel - a-button %>
+      <a class="btn btn-secondary do-not-disable adjective-model-<%= model.id %>-nouns-cancel-button">
+        <script>
+           $('.adjective-model-<%= model.id %>-nouns-cancel-button').click(function() {
+            cancelEdit('adjective-model-<%= model.id %>-nouns')
+           }) 
+        </script>
+        Cancel
+      </a>
+      <%# Submit - input-button %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+<%# End Form %>
+<% end %>

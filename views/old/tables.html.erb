@@ -1,0 +1,196 @@
+<%# search - on card body %>
+              <%# search %>
+              <%# NOTE: if you want to make search conditional to number of entries, wrap it in an if control flow. If not, then remove the if control flow and update indentatios %>
+              <%# NOTE: the conditional search bar needs to be if the TOTAL AVAILABLE options is greater than 10... NOT if the search results are less than 10. Otherwise, this can happen: You have 50 items. You search for items matching "asdf". The result is 4 items AND THE SEARCH BAR DISAPPEARED because 4 is < 10. So you want it to be all available, not all search results %>
+              <% if Fs::Fodel.index_scope(attribute)  > 10 %>
+                <div class="col-12">
+                  <%= form_with(url: fpp_fesources_path, method: :get, local: true) do |f| %>
+                  <%# NOTE: defaulting to Resource Section - Index named path but may differ inf necessary %>
+                    <div class="input-group mb-3 pr-1">
+                      <div class="form-control d-flex">
+                        <%= text_field_tag :fesources_search, params[:fesources_search], class: "w-100", style: "border:none; outline:none", placeholder: "Search by [attribute(s)]" %>
+                        <% if fesources_searched == true %>
+                          <a href="<%= fpp_fection_tab_path %>" class="text-primary d-flex align-items-center"><span class="pr-1">clear</span><span class="mdi mdi-close-circle-o"></span></a>
+                        <% end %>
+                      </div>
+                      <div class="input-group-append">
+                        <%= f.submit "Search Resources_U", class: "btn w-150x btn-primary" %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+<%# Table - on card body %>
+              <%# INSERT: search %>
+
+              <%# table - on card body %>
+              <div class="table-responsive noSwipe"> 
+              <%# NOTE: remove class if is not responsive / is always full screen. makes table responsive. "noSwipe" is jquery related / makes sure on mobile that horizontal swipe does not trigger a forward or backward action%>
+                <table class="table table-striped table-hover" id="">
+                  <thead>
+                    <tr>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody class="<%= "light-gray-border-lg-plus? if fesources.count != 0 %>"> 
+                  <%# NOTE remove class if responsive / not always full screen table. Gives gray border whenver card margin is present (lg+) %>
+                    <%# add this for when there are no search results %>
+                    <% if fesources.count == 0 %>
+                      <tr style="display: none"> 
+                        <%# NOTE: this is a blank row to make the first row white since there's only 1 row %>
+                      </tr>  
+                      <tr id="show-adjective-fodel-new-nouns" class="adjective-fodel-new-nouns-show-element"> 
+                        <td colspan="ALL OF THE COLUMNS"><%= !params[search] ? "No fesources_u" : "No results" %>.</td> 
+                        <%# NOTE: UPDATE colspan %>
+                      </tr> 
+
+                    <% end %> 
+
+                    <%# shorthand block method with _fodel partial from render fesources %>
+                    <%= render fesources %>
+
+                    <%# manual block method %>
+                    <% fesources.each do |fodel| %>
+                      <tr> 
+                        <td></td>
+                      </tr>
+                    <% end %>
+
+                    <%# render block method %>
+                    <% fesources.each do |fodel| %>
+                      <tr id="some-id"> 
+                        <%= render(partial: 'fpp/fection/fiddle_fath/fesources_or_fodel_nouns/show',  locals: { fodel: @fodel }) %> 
+                      </tr>
+                    <% end %>
+
+                    <%# show edit swap block method %>
+
+                    <%# New Above Block %> 
+                    <%# NOTE: use this if adding a new as well. You can put "new" rows above or below the block. Defaulted to use same partial as edit, but you can customize a new partial if you want. %>
+                    <%# blank row to preserve the alternating row colors %>
+                    <tr style="display: none"> 
+                    </tr>
+                    
+                    <%# New Partial With Errors. This needs to be on top in case there are check boxes %>
+                    <tr id="edit-adjective-fodel-new-nouns-with-errors" class="adjective-fodel-new-nouns-edit-element" style="display: none;">
+                    </tr>
+
+                    <%# blank row to preserve the alternating row colors %>
+                    <tr style="display: none"> 
+                    </tr>
+                    
+                    <%# New Partial (defaulted same as edit but you can also have a ) %>
+                    <tr id="edit-adjective-fodel-new-nouns" class="adjective-fodel-new-nouns-edit-element" style="display: none;">
+                      <%= render(partial: 'fpp/fection/fiddle_fath/fesources_or_fodel_nouns/edit', locals: { fodel: Fpp::Fodel.new }) %> 
+                    </tr>
+
+                    <% fesources.each do |fodel| %>
+                      <tr id="show-adjective-fodel-<%= fodel.id %>-nouns" class="adjective-fodel-<%= fodel.id %>-nouns-show-element"> 
+                        <%= render(partial: 'fpp/fection/fiddle_fath/fesources_or_fodel_nouns/show', locals: { fodel: fodel }) %> 
+                      </tr>
+
+                      <%# blank row to preserve the alternating row colors %>
+                      <tr style="diaplay: none"> 
+                      </tr>
+
+                      <%# Edit Partial With Errors. Needs to be on top in case there are check boxes %>
+                      <div id="edit-adjective-fodel-<%= fodel.id %>-nouns-with-errors" class="adjective-fodel-<%= fodel.id %>-nouns-edit-element" style="display: none;">
+                      </div>
+
+                      <%# blank row to preserve the alternating row colors %>
+                      <tr style="diaplsy: none"> 
+                      </tr>
+                      
+                      <%# Edit Partial %>
+                      <div id="edit-adjective-fodel-<%= fodel.id %>-nouns" class="adjective-fodel-<%= fodel.id %>-nouns-edit-element" style="display: none;">
+                        <%= render(partial: 'fpp/fection/fiddle_fath/fesources_or_fodel_nouns/edit', locals: { fodel: fodel }) %> 
+                      </div>
+                
+                    <% end %>
+
+                    <%# New Below Block %> 
+                    <%# NOTE: use this if adding a new as well. You can put "new" rows above or below the block. Defaulted to use same partial as edit, but you can customize a new partial if you want. %>
+                    <%# New Partial With Errors. Needs to be on top in case there are check boxes %>
+                    <tr id="edit-adjective-fodel-new-nouns-with-errors" class="adjective-fodel-new-nouns-edit-element" style="display: none;">
+                    </tr>
+
+                    <%# blank row to preserve the alternating row colors %>
+                    <tr style="display: none"> 
+                    </tr>
+                    
+                    <%# New Partial (defaulted same as edit but you can also have a ) %>
+                    <tr id="edit-adjective-fodel-new-nouns" class="adjective-fodel-new-nouns-edit-element" style="display: none;">
+                      <%= render(partial: 'fpp/fection/fiddle_fath/fesources_or_fodel_nouns/edit', locals: { fodel: Fpp::Fodel.new }) %> 
+                    </tr>
+
+                    <%# Bottom New Add Button %>
+                    <tr> 
+                      <%# INSERT: show-edit-swap a-link new button %>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <%# INSERT: pagination %>
+
+<%# pagination - on card body %>
+              <%# pagination %>
+              <% if !@pagy.last == 1 %>
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-end">
+                    <div class="p-3">
+                      <%== pagy_bootstrap_nav(@pagy) %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+<%# Table Show Partial Options %>
+
+                        <%# NOTE: Gasls are: %>
+                          <%# columns align when resize regardless of when in show or edit view %>
+                          <%# if the table is responsive and larger than the screen, the edit / delete buttons are at a set width to the right %>
+                          <%# if the table is not responsive and smaller than the screen, the edit / delete buttons are mr-auto from the last column (or mr-l within their own column) %>
+
+                        <%# NOTE: THIS NEEDS WORK... there should be: %> 
+                          <%# single td (or div or span within 1 td?) with mr-auto buttons %>
+                          <%# multi td (or div or span within 1 td?) with set width. Dflex... but no flex wrap? %>
+                          <%# multi td (or div or span within 1 td?) with min-width and %. Dflex... but no flex wrap? %>
+                          <%# other? %>
+                        
+                        <%# Show row.  %>
+                        <td>
+                          <div>
+                            <%# insert data frame ??? %>
+                          </div>
+                        </td>
+
+<%# Table Edit Partial Options  %>
+                        <%# NOTE: THIS NEEDS WORK... there should be: %> 
+                          <%# single td with mr-auto buttons %>
+                          <%# multi td (or div or span within 1 td?) with set width. Dflex... but no flex wrap? %>
+                          <%# multi td (or div or span within 1 td?) with min-width and %. Dflex... but no flex wrap? %>
+                          <%# other? %>
+                        
+                        <%# begin edit row form %>
+                        <%# INSERT: form option %>
+
+                          <td>
+
+                            <div fixed width or min-width with % >
+                              <%# INSERT: data frame %>
+                            </div>
+
+                            <div class="pt-4" style="vertical-align: top;">
+                              <div class="d-flex">
+                                <%# INSERT: cancel and submit buttons %>
+                              </div>
+                            </div>
+
+                          </td>
+
+                        <%# end edit row form %>
+                        <% end %>
+
