@@ -2,6 +2,8 @@
 
 module Change
   # Change
-  class Change < ApplicationController
+  class Change < ApplicationRecord
+    class << self
+    end
   end
 end
