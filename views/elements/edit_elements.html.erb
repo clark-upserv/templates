@@ -214,10 +214,12 @@
 <%# checkbox inline #>
 
 <%# cheeckbox stacked %>
-<%# NOTE: beagle puts in 2 inputs for each input. If the user selects the input, it will add a param: "some_param_name" => "1" and if the input is not checked it will add the param "some_param_name" => "0" %>
+<%# NOTE: beagle puts in 2 inputs for each input. If the user selects the input, it will add a param: "some_param_name" => 
+      "1" and if the input is not checked it will add the param "some_param_name" => "0" %>
 <%# NOTE: for booleans, "" and nil are nil; false, 0 and "0" are false; true, 1, "1" and any other string are true"%>
 <%# NOTE: if you do not want to create the param when the checkbox is unchecked (ie "some_param_name" => "0"), then you need to follow the instructions below. %> 
-<%# NOTE: examples of when you may not want the "0" param: if the form is nested and / or select multiple. Regardless, if params don't work as expected or the "0" param causes issues, follow the below steps to remove the hidden field %>
+<%# NOTE: examples of when you may not want the "0" param: if the form is nested and / or select multiple. Regardless, 
+    if params don't work as expected or the "0" param causes issues, follow the below steps to remove the hidden field %>
   <%# NOTE: need to includ input_manager js file so you can user "removeFirstCheckBoxInput();" (see below) %>
   <%# NOTE: need to include "removeFirstCheckBoxInput();". Easist option is on edit button, but could also do on on page load - basically you just need to make sure it is run before the form is submitted. %>
   <%# NOTE: you will also need to include "removeFirstCheckBoxInput();" on invalid ajax file (or any ajax file that renders the checkbox directly) because the method used to initially run the function probably was not used in the ajax render %>
