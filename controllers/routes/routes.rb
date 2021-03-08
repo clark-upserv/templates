@@ -23,19 +23,23 @@
   # manual shallow nested resources (also nested namespacing; also adding url param to individual route)
   # manual member routes 
   # individual / non resful routes
+  # namespace
   namespace :core do
+    # resource
     resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    # nested resource
     namespace :users do
       get ':id/pets', to: 'pets#index', as: :pets
       post ':id/pets', to: 'pets#create'
       resources :pets, only: [:show, :new, :edit, :update, :destroy]
     end
-    get 'users/:id/subprofile', to: 'users#subprofile', as: :user_subprofile
-    get 'cgn/:id/cgn', to: 'cgn#cgn', as: :cgn_cgn 
+    # get member
     # REMEMBER TO MAKE PARENT PLURAL ON INITIAL ARGUMENT AND "TO" BUT SINGULAR ON "AS"
     # Example: get 'users/:id/sub_profile', to: 'users#sub_profile', as: :user_subprofile
     # This is because the helper method is pointing to a single user just like the show, edit, update and destroy actions
     # core_user_subprofile_path is appropriate but core_users_subprofile_path is not
+    get 'users/:id/subprofile', to: 'users#subprofile', as: :user_subprofile
+    # non-restful route
     get 'non_restful_route', to: 'non_restful#action_name'
   end
 # Helper methods created: 
