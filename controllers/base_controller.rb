@@ -2,6 +2,6 @@
 
 module Change
   # Change
-  class Change < ApplicationController
+  class ChangeController < ApplicationController
   end
 end
