@@ -1,0 +1,22 @@
+<!-- 
+  Basic form
+-->
+<%= form_with(scope: Change, url: Change, method: :Change) do |form| %>
+
+<% end %>
+<!-- Form with non-model 
+-->
+<%# if using same form for new & edit %>
+<% if model.new_record? %>
+  <% url = some_named_path %>
+  <%# REVIEW: update url %>
+  <% id_or_new = "new" %>
+<% else %>
+  <% url = some_named_path %>
+  <%# REVIEW: update url %>
+  <% id_or_new = model.id %>
+<% end %>
+<%= form_with(model: model, url: url) do |f| %>
+<%# REVIEW: make sure you didn't replace the model key above with the actual name of the model %>
+
+
