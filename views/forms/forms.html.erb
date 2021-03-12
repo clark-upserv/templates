@@ -150,7 +150,7 @@
     - add fields_for(:friends_attributes)
     - set up inputs with same options for array forms (see above for simple array and array of hashes)
   - strong params
-    - params.require('user').permit(friends_attributes: [:ChangeThisPls])
+    - params.require('user').permit(friends_attributes: [:name, :is_cool])
     - see conrollers/strong_params for details
 -->
 <%= form_with(scope: 'user', url: user_path(1), method: :patch) do |user_form| %>             
