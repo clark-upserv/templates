@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Change 
-  # Change
-  class Change < VirtualModel 
+module ChangeThisPls 
+  # ChangeThisPls
+  class ChangeThisPls < VirtualModel 
     class << self
     end
   end

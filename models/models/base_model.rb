@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Change 
-  # Change
-  class Change < ApplicationRecord
+module ChangeThisPls 
+  # ChangeThisPls
+  class ChangeThisPls < ApplicationRecord
   #--- Relationships ---#
   #--- scopes ---#
   #--- Virtual Attributes ---# 

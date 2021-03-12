@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Change
-  # Change
-  module Change
+module ChangeThisPls
+  # ChangeThisPls
+  module ChangeThisPls
   end
 end

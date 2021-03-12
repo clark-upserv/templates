@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module Change
-  # Change
-  class ChangeController < ApplicationController
+module ChangeThisPls
+  # ChangeThisPls
+  class ChangeThisPlsController < ApplicationController
 
     private
 
-    def Change_params
-      params.require('Change').permit(:Change)
+    def ChangeThisPls_params
+      params.require('ChangeThisPls').permit(:ChangeThisPls)
     end
   end
 end
