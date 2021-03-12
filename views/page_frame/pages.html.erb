@@ -1,57 +1,54 @@
-<%# Page Header / shows on mobile %>
+<%= content_for :head do %>
+  <%# Javascript Files %>
+  <%# ChangeThisPls: remove js files that are not needed %>
+  <%= javascript_include_tag('animations') %>
+  <%= javascript_include_tag('input_manager') %>
+  <%= javascript_include_tag('show_edit_swap') %>
+  <%= javascript_include_tag('swap_elements') %>
+  <%# Stylesheet %>
+<% end %>
+
+<%# Page Header %>
+
 <div class="pt-4 pb-2 px-5"> 
-<%# NOTE: change to class="page-head" if you want head to be hidden on mobile. This is a beagle feature but really is kinda stupid IMO %>
   <div class="row">
     <div class="col-12 d-flex flex-wrap">
       <div class="mr-auto">
+        <%# Page Title %>
         <h2 class="page-head-title mr-2">
-          PAGE TITLE
-          <%# REVIEW: update page title %>
+          ChangeThisPls
         </h2>
-        <%# REVIEW: if the breadcrumb is not needed, delete section below %>
-
-        <%# breadcumb %>
-        <% if can? first_argument, second_argument %>
-        <%# REVIEW: sometime breadcrumb can only be accessed by certain user types. If that is the case, make sure to update the "can?" method. If no authorization is needed, you can remove the "can?" method %>
-        <%# NOTE: see templates/controller/ability.rb template for can? method examples %>
+        <%# Breadcumb %>
+        <% if can? ChangeThisPls, ChangeThisPls %>
           <nav aria-label="breadcrumb" role="navigation" style="line-height: 6px;">
             <ol class="breadcrumb page-head-nav" style="padding: 3px 0px; margin: 0px 0px 7px 0px; background-color: #eeeeee;">
               <li class="breadcrumb-item"><%= link_to "First Level", "#" %></li>
             </ol>
           </nav>
         <% end %>
-
       </div>
-      <%# page header buttons %>
+      <%# Page header buttons %>
       <div class="d-flex align-items-center flex-wrap">
-        <%# REVIEW: insert page header buttons here if necessary %>
         <%# NOTE: if multiple buttons, all buttons EXCEPT FOR THE LAST BUTTON need a class of mr-2 %>
       </div>
     </div>
   </div>
 </div>
 
-<%# start page body %>
+<%# Start page body %>
 <div class="main-content container-fluid">
   <div class="row">
     <div class="col-sm-12">
 
-      <%# REVIEW: insert tabs here (if necessary) %>
-      <%# page tabs %>
+      <%# Page tabs %>
       <div id="tabs" class="pb-4">
-        <%= render 'app/section/middle_path/final_controller/tabs' %>
-        <%# REVIEW: update path to partial %>
-        <%# NOTE: html for tabs can be found at: templates/views/pages_tabs_and_cards/tabs.html.erb %>
+        <%= render(partial: 'ChangeThisPls', locals: { ChangeThisPls }) %>
       </div>
 
-      <%# REVIEW: insert cards here %>
-      <%# card partial %>
-      <div id="final-controller-card">
-        <%= render(partial: 'app/section/middle_path/final_controller_card', locals: { model: @model, fesources: @fesources }) %>
-        <%# REVIEW: update path to partial %>
-        <%# NOTE: html for cards can be found at: templates/views/pages_tabs_and_cards/cards.html.erb %>
+      <%# Card partial %>
+      <div id="ChangeThisPls_card">
+        <%= render(partial: 'ChangeThisPls', locals: { ChangeThisPls }) %>
       </div>
-      <%# REVIEW: repeate above for addtional cards %>
 
 <%# finish page body  %>
     </div>
@@ -60,16 +57,4 @@
 
 <%# partial for unsaved changes warning modal if using show_edit_swap %>
 <%= render 'shared/unsaved_changes_warning' %>
-<%# REVIEW: only use this partial if also using show-edit-swap %>
-
-<%# Javascript Event Listners %>
-<script>
-  <%# REVIEW: add custom js that will be used for this page OR it's partials. Any JS that will be used in multiple different pages should be added to a separate js file in either the assets or in a javascrip pack %>
-</script>
-
-<%# Javascript Files %>
-<%# REVIEW: remove js files that are not needed %>
-<%= javascript_include_tag('animations') %>
-<%= javascript_include_tag('input_manager') %>
-<%= javascript_include_tag('show_edit_swap') %>
-<%= javascript_include_tag('swap_elements') %>
+<%# ChangeThisPls: only use this partial if also using show-edit-swap %>

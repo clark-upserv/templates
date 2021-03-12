@@ -1,5 +1,5 @@
 # user roles control flow
-if user.role?(:cgn)
+if user.role?(:super_admin)
   # model based auth
   # the first attribute is an array of permissible actions  
   # the second attribute is the model to test against (you will test against a specific instance of the model when actually used)
@@ -7,24 +7,27 @@ if user.role?(:cgn)
   # the keys are database attributes or relationships
   # the values are anything you can come up with. Usually user.something or some scope ending in some logic. Can be an array.
   # every layer of hash is a relationship
-  can [:cgn], cgn::cgn, cgn:{ cgn: user.cgn, cgn: { cgn: cgn::cgn.where(cgn: cgn).cgn } }
+  # simple example:
+  can [:assign_documents], Office::Documents, owner_id: user.id
+  # long example:
+  can [:assign_documents], Office::Documents, owner_id: user.id, creator: { status: 'active', rank: ['primary', 'secondary'], account: { country_id: Country.where(zone: "Europe").pluck(:id) } }
   # symbol based auth
   # the first attribute is an array of permissible actions  
   # the second is a limitation of the permission 
-  can [:cgn], :cgn
+  can [:assign], :documents
 end
  
 # Auth in controller actions:
   # Model Based
-  authorize!(:cgn, @cgn)
+  authorize!(:assign_documents, @document)
   # Non-Model Based
-  authorize!(:cgn, :cgn)
+  authorize!(:assign, :documents)
 
 # can? method in views AND controllers
   # Model Based
-  can?(:cgn, @cgn)
+  can?(:assign_documents, @document)
   # Non-Model Based
-  can?(:cgn, :cgn)
+  can?(:assign, :documents)
 
 
 # OLD

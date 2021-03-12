@@ -10,24 +10,17 @@
     <%# NOTE: to make it remote, use link_to and add remote: true %>
     
     <%# button button %> 
-    <button class="w-XXXx btn btn-primary">BUTTON BUTTON</button>
-    <%= content_tag(:button, "BUTTON BUTTON RAILS", class: "w-XXXx btn btn-primary") %>
+    <button class="btn btn-ChangeThisPls"></button>
 
     <%# a link %>
-    <a class="c-pointer text-primary" href="<%= "#" %>">A LINK</a>
     <%= link_to("A LINK RAILS", "#", class: "c-pointer text-primary") %>
-    <%= content_tag(:a, "A LINK RAILS", href: "#", class: "c-pointer text-primary") %>
 
     <%# a button %>
-    <a class="c-pointer btn btn-primary text-white" href="<%= "#" %>">A BUTTON</a>
     <%= link_to("A BUTTON RAILS", "#", class: "c-pointer btn btn-primary text-white") %>
-    <%= content_tag(:a, "A BUTTON RAILS", href: "#", class: "c-pointer btn btn-primary text-white") %>
     <%# NOTE: "text-white" is not necessary as long href is present. However if you remove the href (ex. for modal buttons or show edit swap edit buttons), the text will default to a dark gray (#404040). So I'm keeping text-white as a default. Also, text-white is for btn-primary. For btn-secondary you actually do want style="color: #404040"; %>
 
     <%# a icon %> 
-    <a class="c-pointer text-primary fs-3 mdi mdi-edit" href="<%= "#" %>"></a>
     <%= link_to("", "#", class: "text-primary fs-3 mdi mdi-edit") %>
-    <%= content_tag(:a, nil, href: "#", class: "text-primary fs-3 mdi mdi-edit") %>
     <%# NOTE: icons need to be html a elements and not html button elements because buttons automatically get styled and looks bad %>
 
   <%# Aux Types & Eamples %> 
