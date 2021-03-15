@@ -1,0 +1,36 @@
+<%# Begin Form %>
+<%= form_with(scope: 'ChangeThisPls', url: ChangeThisPls, method: :ChangeThisPls) do |ChangeThisPls_form| %>
+<%# ChangeThisPls: for variations on other form types (array forms, nested forms, etc. see templates/views/forms/forms.html.erb %>
+
+  <%# Hiddent fields %>
+  <%# ChangeThisPls: insert hidden field tags here if needed; otherwise, delete %>
+
+  <%# Top of Page Error Messages %>
+  <!-- WIP -->
+
+  <div class="form-row">
+    <div class="form-group col-12">
+      <%= ChangeThisPls_form.label(:ChangeThisPls, 'ChangeThisPls', class: 'col-form-label font-weight-bold') %>
+      <%= ChangeThisPls_form.text_field(:ChangeThisPls, value: ChangeThisPls, class: 'form-control') %>
+      <!-- WIP inline errors -->
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-12 col-sm-6">
+      <%= ChangeThisPls_form.label(:ChangeThisPls, 'ChangeThisPls', class: 'col-form-label font-weight-bold') %>
+      <%= ChangeThisPls_form.text_field(:ChangeThisPls, value: ChangeThisPls, class: 'form-control') %>
+      <!-- WIP inline errors -->
+    </div>
+    <div class="form-group col-12 col-sm-6">
+      <%= ChangeThisPls_form.label(:ChangeThisPls, 'ChangeThisPls', class: 'col-form-label font-weight-bold') %>
+      <%= ChangeThisPls_form.text_field(:ChangeThisPls, value: ChangeThisPls, class: 'form-control') %>
+      <!-- WIP inline errors -->
+    </div>
+  </div>
+
+
+  <%# Cancel & Submit Buttons Wrapper %>
+  <!-- WIP cancel and submit buttons -->
+
+<%# End Form %>
+<% end %>

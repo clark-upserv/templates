@@ -9,7 +9,6 @@
 <% end %>
 
 <%# Page Header %>
-
 <div class="pt-4 pb-2 px-5"> 
   <div class="row">
     <div class="col-12 d-flex flex-wrap">
@@ -42,7 +41,7 @@
 
       <%# Page tabs %>
       <div id="tabs" class="pb-4">
-        <%= render(partial: 'ChangeThisPls', locals: { ChangeThisPls }) %>
+        <%= render(partial: 'ChangeThisPls', locals: { tab: @tab }) %>
       </div>
 
       <%# Card partial %>

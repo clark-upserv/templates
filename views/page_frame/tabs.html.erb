@@ -3,13 +3,15 @@
     <div class="col-sm-12">
       <div class="row">
         <ul class="nav nav-tabs" role="tablist">
-          <% if can? first_argument, second_argument %>
-          <%# REVIEW: update "can?" method. See ability template for can? method examples %>
-            <li class="nav-item"><a class="nav-link <%= "active" if @tab == "insert name" %>" href="<% some_named_path %>">insert name</a></li>
+          <% if can? ChangeThisPls, ChangeThisPls %>
+            <li class="nav-item">
+              <%= link_to(ChangeThisPls, ChangeThisPls, class: "nav-link#{ " active" if tab == 'ChangeThisPls' }") %> 
+            </li>
           <% end %>
-          <% if can? first_argument, second_argument %>
-          <%# REVIEW: update "can?" method. See ability template for can? method examples %>
-            <li class="nav-item"><a class="nav-link <%= "active" if @tab == "other name" %>" href="<% some_named_path %>">other name</a></li>
+          <% if can? ChangeThisPls, ChangeThisPls %>
+            <li class="nav-item">
+              <%= link_to(ChangeThisPls, ChangeThisPls, class: "nav-link#{ " active" if tab == 'ChangeThisPls' }") %> 
+            </li>
           <% end %>
         </ul>
       </div>

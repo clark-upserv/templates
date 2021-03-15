@@ -3,11 +3,12 @@ adjective-model-<%= model.id %>-nouns - name of the identifier (ask manager if y
 model - singular name of the model - ex. 'user' <%# NOTE: BE CAREFUL not to replace the "model" option used in the form_for method %>
 
 <%# Begin Form %>
-<%# REVIEW: insert form option - see templates/views/show_edit_formats/form_options.html.erb %>
+<%= form_with(scope: 'ChangeThisPls', url: ChangeThisPls, method: :ChangeThisPls) do |ChangeThisPls_form| %>
+<%# ChangeThisPls: for variations on other form types (array forms, nested forms, etc. see templates/views/forms/forms.html.erb %>
+<% end %>
 
-  <%# REVIEW: insert hidden field tags here if needed %>
   <%# Hiddent fields %>
-
+  <%# ChangeThisPls: insert hidden field tags here if needed; otherwise, delete %>
 
   <%# card body contents %>
   <%# Top of Page Error Messages %>
@@ -21,7 +22,7 @@ model - singular name of the model - ex. 'user' <%# NOTE: BE CAREFUL not to repl
       <%# NOTE: I kept running into erros when using object here, so I changed to locals... but I'm not sure why locals worked and object didn't... %>
     </div>
   </div>
-
+  
   <%# begin single column top label row %>
   <div class="row py-1">
     <%# begin first column %>
@@ -128,3 +129,4 @@ model - singular name of the model - ex. 'user' <%# NOTE: BE CAREFUL not to repl
 
 <%# End Form %>
 <% end %>
+
