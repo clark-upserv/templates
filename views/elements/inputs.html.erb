@@ -44,8 +44,10 @@
 
 <%# search select with "select2" %>
 <%# INSERT: any basic selelct with html %>
+<%# NOTE: no need for color: #FFFFFF anymore because it's been fixed with gloval css %>
 <%# NOTE: add class of "select2" and style of "color: #FFFFFF" %>
 <%# NOTE: The class sets it to seelct2.  The color is because, for a split second, the page will load a basic select, which then is converted to a select2. By setting the color to #FFFFFF, the basic select will blend with background making it effecitely invisible. An alternative approad is to add the class of "invisible" as well, but then front end validation messages (ex. "required") will also be hidden by the browser. So changing the color is a better solution. %>
+<%# NOTE: the note about blank is not entirely true... include_blank: 'Select' works just fine. But to make it selectable, you do have to manually add an option %>
 <%# NOTE: to add a blank selection, you cannot use include_blank: true. Instead, you have to add amanual select option with no value.)%>
   <%# NOTE: if you want the user to be able to select the blank option, then you have to give the blank option a value or 0 (or some non-nil representation of nil) AND THEN convert it from 0 to nil in the strong params in the controller. Reason for this is because if there is no value for the option, then select2 will hide the option %>
 <%# NOTE: if inside a modal, need to remove tabindex="-1" on the hightest modal container or else the search bar wont work... but this could have side effects such as trying to scroll or press esc...??? %>
