@@ -21,10 +21,20 @@
 
 <!-- 
   Form with non-model 
-  - value comes from simple hash instead of model
+  - controller
+    - on first action - set new Model Impersonator 
+      @contact_us = ModelImplersonator.new
+    - on create / update action - set value and error message on invalid flow 
+      @contact_us.set_value(:subject,  'Hello')
+      @contact_us.add_error_message(:subject, 'Please change subject')
+  - on view: 
+    - set value and inline errors locals)
+      value: @contact_us.values[:subject]
+      locals: { errors_hash: @contact_us.error_messages, attribute: :subject, ian: false }
 -->
 <%= form_with(scope: 'contact_us', url: contact_us_path, method: :post) do |contact_us_form| %>
-  <%= contact_us_form.text_field(:subject, value: @contact_us[:subject], class: 'form-control') %>
+  <%= contact_us_form.text_field(:subject, value: @contact_us.values[:subject], class: 'form-control') %>
+  <%= render(partial: 'shared/inline_errors', locals: { errors_hash: @contact_us.error_messages, attribute: :subject, ian: false }) %>
 <% end %>
 
 <!--
