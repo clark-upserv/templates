@@ -63,7 +63,7 @@
 <%# fields to select from %>
 <div class="pt-3">
   <strong class="">Select From:</strong>
-  <%= f.select :attribute, {}, {}, { class: "form-control" }  do  %>
+  <%= f.select :attribute, {}, {}, { class: "form-control add-remove-select" }  do  %>
     <option class="option-some-manual-unique-identifier-primary-element" style="display: <%= some_logic_if_already_selected ? "none" : "block" %>;" onclick="addArrayElement('option-some-manual-unique-identifier');" value="">Some Manaul Option</option>
     <% fodel.sorted_options.each do |option| %>
       <option class="option-<%= option.some_unique_identifier %>-primary-element" style="display: <%= some_logic_if_already_selected ? "none" : "block" %>;" onclick="addArrayElement('option-<%= option.some_unique_identifier %>');" value=""><%= option.display %></option>
