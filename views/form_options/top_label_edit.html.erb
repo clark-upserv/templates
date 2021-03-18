@@ -1,4 +1,4 @@
-<%# Begin Form %>
+<%# Start Form %>
 <%= form_with(scope: 'ChangeThisPls', url: ChangeThisPls, method: :ChangeThisPls) do |ChangeThisPls_form| %>
 <%# ChangeThisPls: for variations on other form types (array forms, nested forms, etc. see templates/views/forms/forms.html.erb %>
 
@@ -6,8 +6,9 @@
   <!-- WIP -->
 
   <%# Hiddent fields %>
-  <%# ChangeThisPls: insert hidden field tags here if needed; otherwise, delete %>
+  <%# ChangeThisPls: insert hidden field tags here %>
 
+  <%# Row with 100% column %>
   <div class="form-row">
     <div class="form-group col-12">
       <%= ChangeThisPls_form.label(:ChangeThisPls, 'ChangeThisPls', class: 'col-form-label font-weight-bold') %>
@@ -15,6 +16,8 @@
       <!-- WIP inline errors -->
     </div>
   </div>
+  
+  <%# Row with 2 50% columns %>
   <div class="form-row">
     <div class="form-group col-12 col-sm-6">
       <%= ChangeThisPls_form.label(:ChangeThisPls, 'ChangeThisPls', class: 'col-form-label font-weight-bold') %>
@@ -28,8 +31,7 @@
     </div>
   </div>
 
-
-  <%# Cancel & Submit Buttons Wrapper %>
+  <%# Cancel & Submit Buttons %>
   <!-- WIP cancel and submit buttons -->
 
 <%# End Form %>

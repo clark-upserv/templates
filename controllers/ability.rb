@@ -1,20 +1,28 @@
 # user roles control flow
 if user.role?(:super_admin)
   # model based auth
-  # the first attribute is an array of permissible actions  
+  # the first attribute is an array of permissible actions - always start with namespace
   # the second attribute is the model to test against (you will test against a specific instance of the model when actually used)
   # the final hash is the restrictions (the user can only take the action on the instnace of the model if these condition are met)
-  # the keys are database attributes or relationships
-  # the values are anything you can come up with. Usually user.something or some scope ending in some logic. Can be an array.
-  # every layer of hash is a relationship
-  # simple example:
-  can [:assign_documents], Office::Documents, owner_id: user.id
-  # long example:
-  can [:assign_documents], Office::Documents, owner_id: user.id, creator: { status: 'active', rank: ['primary', 'secondary'], account: { country_id: Country.where(zone: "Europe").pluck(:id) } }
+  # the keys are any method - commonly database attributes or associations (ie relationships)
+  # the values are anything you can come up with. Usually user.something or some scope ending in some logic. 
+  # Value can be an array - this gives list of options as opposed to a single options
+  # Hashes can be used to simpulate chaining
+  # simple examples:
+  can [:office_assign_documents], Office::Documents, owner_id: user.id
+  can [:office_assign_documents], Office::Documents, owner_id: Core::User.find_by(email: '1@e.com').id
+  # examples with options:
+  can [:office_assign_documents], Office::Documents, owner_id: [1,2,3]
+  can [:office_assign_documents], Office::Documents, owner_id: user.account.pluck(:id)
+  # examples with chain:
+  can [:office_assign_documents], Office::Documents, creator: { status: 'active' }
+  can [:office_assign_documents], Office::Documents, creator: { country_id: Country.where(zone: "Europe").pluck(:id) }
+  # example with all 3
+  can [:office_assign_documents], Office::Documents, owner_id: user.id, creator: { status: 'active', rank: ['primary', 'secondary'] }
   # symbol based auth
   # the first attribute is an array of permissible actions  
   # the second is a limitation of the permission 
-  can [:assign], :documents
+  can [:office_assign], :documents
 end
  
 # Auth in controller actions:
