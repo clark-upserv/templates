@@ -1,48 +1,45 @@
+# General Guidelines:
+# - have one param per action or form submission
+# - it can have multople objects and however much complexity you want
+# - then use [:some_item] to get what you want
+# - be carefule for chains and nil - ex:
+#   - create_params[:user][:name] will error if create_params[:user] is nil
+
 # basic params
 def create_params
   params.require('user').permit(:name)
 end
 
-# params for when multiple unrelated objects are submitted
-def user_params
-  params.require('application').require('user').permit(:name)
+# complext params
+# - use hash for complex params. Hash must be at end of params OR otherwise must be surrounded by {} in order to prevent
+#   syntax error
+# - use hash with value of empty array for param that can be an array
+# - use hash with value of filled array for single child model (array simple)
+# - use hash with value of array with hash with value of filled array multiple child models (array hash)
+def create_params
+  params.require('user').permit(:name,
+                                favorite_colors: [],
+                                car: %i[make model],
+                                friends: [friend: %i[name favorite_color]])
 end
 
-def school_params
-  params.require('application').require('school').permit(:mascot)
+# params where require could be nil
+def create_params
+  params.permit(user: [:name])
 end
 
-# params for simple array
-#   - empty array is needed to note that object is an array
-#   - [:ids] at end makes strong params an array of permitted params
-#     which is exactly what we want
-#   - add rescue from to manage if it is possible for none to be selected
-def update_params
-  params.require('user').permit(ids: [])[:ids]
-end
-rescue_from ActionController::ParameterMissing do
-  if exception.param == 'user'
-    # ChangeThisPls - insert value if user is nil OR insert logic when user is nil - ex. [] or nil
-  end
+# params for array simple (because user could be nil if no favorite_colors are selected
+def create_params
+  params.permit(user: [favorite_colors: []])
 end
 
-# params for array of hashes
-#   - array with symbols is needed to note what is permitted for each
-#     hash instance that is submitted
-#   - [:users_list] at end makes strong params an array of strong params
-#     which is exactly what we want
-params.require('users').permit(users_list: %i[name email])[:users_list]
+# params for array hash
+def create_params
+  params.require('user').permit(friends: [friend: %i[name favorite_color]])
+end
 
 # accepts nested attributes for single child
 params.require('user').permit(home_attributes: [:color])
 
 # accepts nested attributes for multiple children
 params.require('user').permit(friends_attributes: %i[name is_cool])
-
-# params when it is possible for required item to be nil
-def update_params
-  params.require('user').permit(:name, :email)
-end
-rescue_from ActionController::ParameterMissing do
-  # ChangeThisPls - insert value if user is nil OR insert logic when user is nil - ex. [] or nil
-end

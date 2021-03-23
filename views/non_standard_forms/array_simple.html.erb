@@ -1,14 +1,16 @@
 <%# DeleteThis: goal for html name attribute on each input: some_model[list_of_some_attribute][] %>
-<%= ChangeParentForm_form.fields_for('ChangeAttributes') do |ChangeForm_form| %>
+<%= ChangeParentForm_form.fields_for('ChangeAttributes') do |ChangeAttributes_form| %>
   <% ChangeModels.each do |ChangeModel| %>
-    <%# DeleteThis: make sure to include propper wrappers (left label, top label, form rows, form groups, etc.) %>
-    <%# DeleteThis: if using checkbox - use tag to prevent rails hidden checkbox %>
+    <%# ReplaceThis: make sure to include propper wrappers (left label, form rows, form groups, etc.) %>
+    <%# DeleteThis: if using checkbox (NOTE: use tag to prevent rails hidden checkbox): %>
     <div class="custom-control custom-checkbox">
-      <%= check_box_tag(ChangeForm_form.object_name + '[]', ChangeModel.ChangeAttribute, false, id: "ChangeModel_#{ChangeModel.id}_ChangeAttribute", class: 'custom-control-input') %>
-      <%= ChangeForm_form.label(:id, ChangeModel.ChangeAttribute, for: "ChangeModel_#{ChangeModel.id}_ChangeAttribute", class: "custom-control-label text-wrap") %>
+      <%= check_box_tag(ChangeAttributes_form.object_name + '[]', ChangeModel.ChangeAttribute, false, id: "ChangeModel_#{ChangeModel.id}_ChangeAttribute", class: 'custom-control-input') %>
+      <%# ReplaceThis: insert standard check box label and include html "for" attrubute - for: "ChangeModel_#{ChangeModel.id}_ChangeAttribute" %>
     </div>
-    <%# DeleteThis: if using other input type - setting method to nil creates [] %>
-    <%= ChangeForm_form.label(:ChangeAttribute, 'ChangeAttribute', for: "ChangeModel_#{ChangeModel.id}_ChangeAttribute") %>
-    <%= ChangeForm_form.text_field(nil, value: ChangeModel.ChangeAttribute, id: "ChangeModel_#{ChangeModel.id}_ChangeAttribute", class: 'form-control') %>
+    <%# DeleteThis: if using other input type %>
+    <%# ReplaceThis: if label is needed, insert standard label and include html "for" attrubute - for: "ChangeModel_#{ChangeModel.id}_ChangeAttribute" %>
+    <%# ReplaceThis: insert any (non-tag) input 
+        - make method (the first argument) nil - this will create [] in input name which is exactly what we want
+        - include html "id" attrubute - id: "ChangeModel_#{ChangeModel.id}_ChangeAttribute" %>
   <% end %>
 <% end %>

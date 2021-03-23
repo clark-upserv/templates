@@ -3,4 +3,3 @@
       authorize!(:ChangeNamespace_ChangeVerb, :ChangeObjects)
       @ChangeLoads_searched = true unless params[:ChangeLoads_search].blank?
     end
-
