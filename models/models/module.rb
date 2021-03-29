@@ -2,8 +2,10 @@
 
 module ChangeThisPls
   # ChangeThisPls
-  class ChangeThisPls < ApplicationRecord
-    class << self
+  module ChangeThisPls
+    def ChangeThisPls
     end
+
+  private
   end
 end
