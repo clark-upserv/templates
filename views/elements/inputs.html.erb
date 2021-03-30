@@ -43,14 +43,14 @@
 <% end %>
 
 <%# search select with "select2" %>
-<%# INSERT: any basic selelct with html %>
-<%# NOTE: no need for color: #FFFFFF anymore because it's been fixed with gloval css %>
-<%# NOTE: add class of "select2" and style of "color: #FFFFFF" %>
-<%# NOTE: The class sets it to seelct2.  The color is because, for a split second, the page will load a basic select, which then is converted to a select2. By setting the color to #FFFFFF, the basic select will blend with background making it effecitely invisible. An alternative approad is to add the class of "invisible" as well, but then front end validation messages (ex. "required") will also be hidden by the browser. So changing the color is a better solution. %>
-<%# NOTE: the note about blank is not entirely true... include_blank: 'Select' works just fine. But to make it selectable, you do have to manually add an option %>
-<%# NOTE: to add a blank selection, you cannot use include_blank: true. Instead, you have to add amanual select option with no value.)%>
-  <%# NOTE: if you want the user to be able to select the blank option, then you have to give the blank option a value or 0 (or some non-nil representation of nil) AND THEN convert it from 0 to nil in the strong params in the controller. Reason for this is because if there is no value for the option, then select2 will hide the option %>
-<%# NOTE: if inside a modal, need to remove tabindex="-1" on the hightest modal container or else the search bar wont work... but this could have side effects such as trying to scroll or press esc...??? %>
+<%# this uses custom beagle select2 file AND custom upserv select 2 file. So any app that uses this will need those file (Ultimately, this needs to be replaced with a better solution... but till then, this will work %>
+<%# give select a class of "mySelect2 %>
+<%# it will automatically come with a width of 100%, allowClear set to true and placeholder set to "Select" %>
+<%# options: %>
+<%#   - to set allowClear to false, add class "noClear" %>
+<%#   - to change placeholder, set placeholder attribute on select element %>
+<%#   - to set witdth, add data-width attribute with any css width value, ex. data-width="50%" %>
+<%# NOTE: idk about this one - need to check...  if inside a modal, need to remove tabindex="-1" on the hightest modal container or else the search bar wont work... but this could have side effects such as trying to scroll or press esc...??? %>
 
 <%# select multiple - basic %>
 <div class="pt-3">
@@ -58,6 +58,7 @@
 <div>
 
 <%# search select multiple with select2 %>
+<%# NOTE: I think this is still true with mySelect2 but idk %>
 <%# INSERT: search select with "select2" with html option of multiple="multiple" added %>
 
 <%# add/remove select multiple with no search %> 
