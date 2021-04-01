@@ -1,12 +1,10 @@
 <%= content_for :head do %>
-  <%# Javascript Files %>
-  <%# ChangeThisPls: remove js files that are not needed %>
-  <%= javascript_include_tag('animations') %>
-  <%= javascript_include_tag('input_manager') %>
-  <%= javascript_include_tag('show_edit_swap') %>
-  <%= javascript_include_tag('swap_elements') %>
   <%# Stylesheet %>
 <% end %>
+<%= content_for :javascript_at_end_of_body do %>
+  <%# Javascript %>
+<% end %>
+<% provide(:nav_type, 'default_logged_in') %>
 
 <%# Page Header %>
 <div class="pt-4 pb-2 px-5"> 
