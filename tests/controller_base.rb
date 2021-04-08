@@ -8,10 +8,15 @@ module ChangeThisPls
   class ChangeThisPlsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
 
-    def setup
+    setup do
       @base_user = core_users(:base_user)
-      @ChangePermission_user = core_users(:ChangeUserWithPermission)
+      @ChangeUserWithPermission = core_users(:ChangeUserWithPermission)
       @ChangeThisPls = change_model_name(:ChangeModel)
+    end
+
+    # DeleteThisIfNotNecessary - reset cache after each test
+    teardown do
+      Rails.cache.clear
     end
   end
 end
