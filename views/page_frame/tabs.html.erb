@@ -1,16 +1,16 @@
-<div class="tab-container">
+<div class="tab-container p-5">
   <div class="row px-3">
     <div class="col-sm-12">
       <div class="row">
         <ul class="nav nav-tabs" role="tablist">
           <% if can? ChangeThisPls, ChangeThisPls %>
             <li class="nav-item">
-              <%= link_to(ChangeThisPls, ChangeThisPls, class: "nav-link#{ " active" if tab == 'ChangeThisPls' }") %> 
+              <%= link_to(ChangeDisplay, ChangeUrl, class: "nav-link#{ " active" if tab == 'ChangeThisPls' }") %> 
             </li>
           <% end %>
           <% if can? ChangeThisPls, ChangeThisPls %>
             <li class="nav-item">
-              <%= link_to(ChangeThisPls, ChangeThisPls, class: "nav-link#{ " active" if tab == 'ChangeThisPls' }") %> 
+              <%= link_to(ChangeDisplay, ChangeUrl, class: "nav-link#{ " active" if tab == 'ChangeThisPls' }") %> 
             </li>
           <% end %>
         </ul>

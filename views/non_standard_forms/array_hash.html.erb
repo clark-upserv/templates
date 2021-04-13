@@ -1,6 +1,6 @@
 <%# DeleteThis: goal for name on each input: some_models[][some_model][some_attribute] %>
-<%= ChangeParentForm_form.fields_for('ChangeModels[]ChangeModel') do |ChangeModels_form| %>
-  <% ChangeModels.each do |ChangeModel| %>
+<% ChangeModels.each do |ChangeModel| %>
+  <%= ChangeParentForm_form.fields_for('ChangeModels[]ChangeModel', ChangeModel) do |ChangeModel_form| %>
     <%# ReplaceThis: make sure to include propper wrappers (left label, form rows, form groups, etc.) %>
     <%# DeleteThis: if using checkbox - use tag to prevent rails hidden checkbox %>
     <div class="custom-control custom-checkbox">

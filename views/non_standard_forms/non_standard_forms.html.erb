@@ -68,8 +68,8 @@
 -->
 <%= form_with(scope: 'user', url: user_path(1), method: :patch) do |user_form| %>             
   <%= users_form.text_field(:name, value: user.name, class: 'form-control') %>
-  <%= users_form.fields_for(:friends_attributes) do |freinds_attributes_form| %>
-    <% user.friends.each do |friend| %>
+  <% user.friends.each do |friend| %>
+    <%= users_form.fields_for(:friends_attributes) do |freinds_attributes_form| %>
       <%= freinds_attributes_form.label(:name, 'Friend name', for: "friend_#{friend.id}_name") %>
       <%= freinds_attributes_form.text_field(nil, value: freind.name, id: "friend_#{index + 1}_name", class: 'form-control') %>
       <div class="custom-control custom-checkbox">

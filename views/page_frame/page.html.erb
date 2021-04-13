@@ -1,0 +1,23 @@
+<%= content_for :head do %>
+  <%# Stylesheet %>
+<% end %>
+<%= content_for :end_of_body do %>
+  <%# Javascript %>
+<% end %>
+<% provide(:nav_type, 'default_logged_in') %>
+<%# DeleteThisPls - nav_type options: 'default_logged_in', 'full_height_columns', 'splash', and 'custom' %>
+
+<%# ChangeTemplate header %>
+<div id="ChangeTemplate_header">
+  <%= render(partial: 'ChangePath/ChangeTemplate_header', locals: { ChangeLocals }) %>
+</div>
+
+<%# ChangeTemplate tabs %>
+<div id="ChangeTemplate_tabs" class="pb-4">
+  <%= render(partial: 'ChangePath/ChangeTemplate_tabs', locals: { tab: @tab }) %>
+</div>
+
+<%# ChangeTemplate body %>
+<div id="ChangeTemplate_body">
+  <%= render(partial: 'ChangePath/ChangeTemplate_body', locals: { ChangeLocals }) %>
+</div>
