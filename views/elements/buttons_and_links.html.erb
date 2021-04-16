@@ -53,7 +53,6 @@
         <%# NOTE its important to render the entire modal wihtin a "modal-container" element because if / when you re-render a modal via success ajax, it's better to re-render the entire modal and not just the cotnents. This is because rendering the entire modal will help close the modal. It doesn't entirely close it though - we still have to remove a class from the main <html> element as well as remove the modal backdrop (see ajax.js.erb template) %>
         <%= render(partial: 'app/section/middle_path/final_controller/action_modal', locals: { model: model }) %>
       </div>
-
       
     <%# show edit swap edit examples %>
       <%# show edit swap edit - a-icon (typical for standard form) %>
