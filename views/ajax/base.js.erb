@@ -1,0 +1,12 @@
+// re-run beagle js app.init
+$("#init-beagle-js").html("<%= escape_javascript(render('layouts/init_beagle_js')) %>");
+// render top bar for collapsable side nav
+$("#top-bar").html("<%= escape_javascript(render('layouts/beagle_top_bar')) %>");
+// render the appropriate side nav. NOTE: beagle navigation bugs out on mobile after ajax. So every ajax needs to re-render the left side nav. BUT You need to make sure it's the correct side nav version
+$("#left-sidebar").html("<%= escape_javascript(render('layouts/beagle_left_sidebar')) %>");
+
+// DeleteThis - insert ajax body (success, invalid create, invalid update, etc.)
+
+// DeleteThis - include the following if replacing original form element (because if replacing original form element, then ajaxComplete will not be triggered and must be triggered manually
+// Manually trigger ajaxComplete because re-rendering original form element
+document.dispatchEvent(new Event('ajax:complete'));

@@ -1,35 +1,16 @@
-// re-run beagle js app.init
-$("#init-beagle-js").html("<%= escape_javascript(render('layouts/init_beagle_js')) %>");
-// render top bar for collapsable side nav
-$("#top-bar").html("<%= escape_javascript(render('layouts/beagle_top_bar')) %>");
-// render the appropriate side nav. NOTE: beagle navigation bugs out on mobile after ajax. So every ajax needs to re-render the left side nav. BUT You need to make sure it's the correct side nav version
-$("#left-sidebar").html("<%= escape_javascript(render('layouts/beagle_left_sidebar')) %>");
+// OTHER / OPTIONS - typically on invalid
 
-// set flash.now 
-<% flash.now[:success] = "Fodel_ [insert action]." %>  
-<%# NOTE: if ation is deactivate destroy, you may want to add notes about recovering "deleted" records %>
-// render flash.
-$("#flash").html("<%= escape_javascript(render('layouts/flash')) %>");
+// [if checkboxes are causing issues with nested forms / select multiple inputs] 
+//clean beagle check boxes because beagle creates input that screws things up
+removeFirstCheckBoxInput();
 
-// Partial(s) to render on success
-$("#copy_id_from_view").html("<%= escape_javascript(render(partial: 'copy_render_from_code', locals: { })) %>");
+// if this wasn't alredy put, add this to remove buggy inline calendars that beagle adds to calendar inputs after AJAX (add to all AJAX files even if form doesn't have datepicker because a different form on the page might have a datepicker) - If any other form on the page has a beagle datepicker calendar, we have to remove the inline calendars beagle adds. NOTE: you have to add this to every AJAX file - success and invalid - for ever form on the page, even if the calendar is on a form that is different that the one submitted, because any AJAX affect ALL forms on the page, not just the one being re-rendered
+removeInlineCalendarsAfterAjax();
 
-// [if coming from an edit on "show edit swap] restore links and buttons because we are now showing show and user is allowed to click around
-restoreLinksAndButtons();
 
-// [if rendering from modal]
-// manually finish closing the modal
-<%# NOTE: rendering partial above should have re-rendered the entire modal which basically closes the modal. The steps below help finish closing the modal. If the render above does not render the entire modal (ie it only renders some of the modal contents) then you will need to manually close the modal with js below. HOWEVER that option is not preferable, so just re-render the entire modal and not parts of it %> 
-// Remove the be-modal-open class from the <HTML> element 
-$('.be-modal-open')[0].classList.remove('be-modal-open');
-// Remove the modal-open class from the <body> element 
-$('.modal-open')[0].classList.remove('modal-open');
-// remove modal back drop elements  
-$('.modal-backdrop').remove();
 
-// [insert or initiate any custom js / event listeners that need to be initiated on ajax]
 
-// OTHER / OPTIONS
+// OTHER / OPTIONS - typically on success:
 
 // if you want to open the edit form on ajax
 displayEditForm('description-fe-sources-<%= some_id %>')

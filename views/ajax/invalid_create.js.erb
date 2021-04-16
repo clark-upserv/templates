@@ -1,0 +1,8 @@
+// render edit partial with errors 
+$("#CopyIdFromView-with-errors").html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeModel: ChangeModel })) %>");
+
+// render edit partial without errors 
+$("#CopyIdFromView").html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeModel: ChangeModel.new })) %>");
+// make non-error partial hidden
+document.getElementById("CopyIdFromView").setAttribute("style", "display: none;");
+
