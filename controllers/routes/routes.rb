@@ -23,6 +23,7 @@
   # manual shallow nested resources (also nested namespacing; also adding url param to individual route)
   # manual member routes 
   # individual / non resful routes
+  
   # namespace
   namespace :core do
     # resource
