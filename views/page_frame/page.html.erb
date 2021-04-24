@@ -1,8 +1,10 @@
 <%= content_for :head do %>
-  <%# Stylesheet %>
+  <%# Custom stylesheet for this file %>
+  <%#= stylesheet_link_tag(__FILE__.split("app/views/").last.remove('.html.erb')) %>
 <% end %>
 <%= content_for :end_of_body do %>
-  <%# Javascript %>
+  <%# Custom javascript for this file %>
+  <%#= javascript_pack_tag(__FILE__.split("app/views/").last.remove('.html.erb'), 'data-turbolinks-track': 'reload') %>
 <% end %>
 <% provide(:nav_type, 'default_logged_in') %>
 <%# DeleteThisPls - nav_type options: 'default_logged_in', 'full_height_columns', 'splash', and 'custom' %>

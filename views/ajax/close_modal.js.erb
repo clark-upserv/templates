@@ -1,5 +1,5 @@
 // manually finish closing the modal
-<%# DeleteThis - rendering partial above should have re-rendered the entire modal which basically closes the modal. The steps below help finish closing the modal. If the render above does not render the entire modal (ie it only renders some of the modal contents) then you will need to manually close the modal with js (see additional options). HOWEVER that option is not preferable, so just re-render the entire modal and not parts of it %> 
+<%# DeleteThis - rendering partial above should have re-rendered the entire modal which basically closes the modal the removing the "in" and "show" classes when it re-renders. The steps below help finish closing the modal. If the render above does not render the entire modal (ie it only renders some of the modal contents) then you will need to manually close the modal with js (see additional options). HOWEVER that option is not preferable, so just re-render the entire modal and not parts of it %> 
 // Remove the be-modal-open class from the <HTML> element 
 $('.be-modal-open')[0].classList.remove('be-modal-open');
 // Remove the modal-open class from the <body> element 
