@@ -2,10 +2,10 @@
 
 // [if checkboxes are causing issues with nested forms / select multiple inputs] 
 //clean beagle check boxes because beagle creates input that screws things up
-removeFirstCheckBoxInput();
+removeFirstCheckBoxInput()
 
 // if this wasn't alredy put, add this to remove buggy inline calendars that beagle adds to calendar inputs after AJAX (add to all AJAX files even if form doesn't have datepicker because a different form on the page might have a datepicker) - If any other form on the page has a beagle datepicker calendar, we have to remove the inline calendars beagle adds. NOTE: you have to add this to every AJAX file - success and invalid - for ever form on the page, even if the calendar is on a form that is different that the one submitted, because any AJAX affect ALL forms on the page, not just the one being re-rendered
-removeInlineCalendarsAfterAjax();
+removeInlineCalendarsAfterAjax()
 
 
 
@@ -20,46 +20,46 @@ displayEditForm('description-fe-sources-<%= some_id %>')
 <%# NOTE: first, delete everything above %>
 // make sure regular flash is set in controller, (ie. flash[:success], NOT flash.now[:success]) 
 // replace window (ie redirect to [some page])
-window.location.replace("<%= named_route_url %>");
+window.location.replace("<%= named_route_url %>")
 
 // [if checkboxes are causing issues with nested forms / select multiple inputs] 
 //clean rails check boxes because rails creates input that screws things up 
 // NOTE: if the item is not selected, the html form will not send ANY param. Ie "name: 0" will not be sent. Instead nothing will be sent for the name attribute (which can cause problems if you want to chagne some value when un-checking a check box
-removeFirstCheckBoxInput();
+removeFirstCheckBoxInput()
 
 // if this wasn't alredy put for calendars, add this to remove buggy inline calendars that beagle adds to calendar inputs after AJAX (add to all AJAX files even if form doesn't have datepicker because a different form on the page might have a datepicker) - If any other form on the page has a beagle datepicker calendar, we have to remove the inline calendars beagle adds. NOTE: you have to add this to every AJAX file - success and invalid - for ever form on the page, even if the calendar is on a form that is different that the one submitted, because any AJAX affect ALL forms on the page, not just the one being re-rendered
-removeInlineCalendarsAfterAjax();
+removeInlineCalendarsAfterAjax()
 
 // Open a beagle modal manually
 // click the modal button
-$('#modal-button').trigger('click');
+$('#modal-button')[0].click()
 // add classes "in" and "show" from modal NOTE: "show" may not be necessary, but idk... need to check
-$('#modal')[0].classList.add('in', 'show');
+$('#modal')[0].classList.add('in', 'show')
 
 // open beagle modal at close of another modal
 // Render first modal so that it removes the "in" and "show" classes 
-$("#first-modal-or-some-parent-container").html("<%= escape_javascript(render(partial: 'copy_render_from_code', locals: { })) %>");
+$("#first-modal-or-some-parent-container").html("<%= escape_javascript(render(partial: 'copy_render_from_code', locals: { })) %>")
 // OR manually close the modal by removing the "in" and "show" classes, but don't remove the modal back-drop, the modal open or be-modal-open
-$('#first-modal')[0].classList.remove('in', 'show');
+$('#first-modal')[0].classList.remove('in', 'show')
 // show second modal by adding the "in" and "show" classes
-$('#second-modal')[0].classList.add('in', 'show');
+$('#second-modal')[0].classList.add('in', 'show')
 // the above code messes up the cancel button and cancel X so add classes "modal-close-button" to buttons and add event listeners so user can close the second modal (NOTE: the second modal cannot be closed by clicking the modal backdrop like on other modals
 $('.modal-close-button').click(function() {
   // Remove the be-modal-open class from the <HTML> element 
-  $('.be-modal-open')[0].classList.remove('be-modal-open');
+  $('.be-modal-open')[0].classList.remove('be-modal-open')
   // Remove the modal-open class from the <body> element 
-  $('.modal-open')[0].classList.remove('modal-open');
+  $('.modal-open')[0].classList.remove('modal-open')
   // remove modal back drop elements  
-  $('.modal-backdrop').remove();
+  $('.modal-backdrop').remove()
 }) 
 
 // full code for closing modal manually - this is helpful if you want to add an event listener to a something that will close the modal OR if getting hacky on ajax
 // remove classes "in" and "show" from modal NOTE: this is not included in ajax close modal because by re-rendering the modal, theses classes will be removed in the re-render
-$('#designation-update-modal')[0].classList.remove('in', 'show');
+$('#designation-update-modal')[0].classList.remove('in', 'show')
 // Remove the be-modal-open class from the <HTML> element 
-$('.be-modal-open')[0].classList.remove('be-modal-open');
+$('.be-modal-open')[0].classList.remove('be-modal-open')
 // Remove the modal-open class from the <body> element 
-$('.modal-open')[0].classList.remove('modal-open');
+$('.modal-open')[0].classList.remove('modal-open')
 // remove modal back drop elements  
-$('.modal-backdrop').remove();
+$('.modal-backdrop').remove()
 
