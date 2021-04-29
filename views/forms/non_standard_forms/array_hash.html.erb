@@ -1,0 +1,14 @@
+<%# DeleteThis: goal for name on each input: some_models[][some_model][some_attribute] %>
+<% ChangeObjects.each do |ChangeObject| %>
+  <%= ChangeParentForm_form.fields_for('ChangeObjects[]ChangeObject', ChangeObject) do |ChangeObject_form| %>
+    <%# ReplaceThis: make sure to include propper wrappers (left label, form rows, form groups, etc.) %>
+    <%# DeleteThis: if using checkbox - use tag to prevent rails hidden checkbox %>
+    <div class="custom-control custom-checkbox">
+      <%= check_box_tag(ChangeObjects_form.object_name + 'ChangeAttribute', ChangeObject.ChangeAttribute, false, id: "ChangeObject_#{ChangeObject.id}_ChangeAttribute", class: 'custom-control-input') %>
+      <%# ReplaceThis: insert standard check box label and include html "for" attrubute - for: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
+    </div>
+    <%# DeleteThis: if using other input type %>
+    <%# ReplaceThis: if label is needed, insert standard label and include html "for" attrubute - for: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
+    <%# ReplaceThis: insert any (non-tag) input and include html "id" attrubute - id: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
+  <% end %>
+<% end %>
