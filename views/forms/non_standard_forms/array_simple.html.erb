@@ -1,16 +1,22 @@
-<%# DeleteThis: goal for html name attribute on each input: some_model[list_of_some_attribute][] %>
-<% ChangeObjects.each do |ChangeObject| %>
-  <%= ChangeParentForm_form.fields_for('ChangeAttributes') do |ChangeAttributes_form| %>
-    <%# ReplaceThis: make sure to include propper wrappers (left label, form rows, form groups, etc.) %>
-    <%# DeleteThis: if using checkbox (NOTE: use tag to prevent rails hidden checkbox): %>
-    <div class="custom-control custom-checkbox">
-      <%= check_box_tag(ChangeAttributes_form.object_name + '[]', ChangeObject.ChangeAttribute, false, id: "ChangeObject_#{ChangeObject.id}_ChangeAttribute", class: 'custom-control-input') %>
-      <%# ReplaceThis: insert standard check box label and include html "for" attrubute - for: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
-    </div>
-    <%# DeleteThis: if using other input type %>
-    <%# ReplaceThis: if label is needed, insert standard label and include html "for" attrubute - for: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
-    <%# ReplaceThis: insert any (non-tag) input 
-        - make method (the first argument) nil - this will create [] in input name which is exactly what we want
-        - include html "id" attrubute - id: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
+<%# DeleteThis: goal for input names: model[attributes][]. For example: user[ids][] %>
+<%# DeleteThis: "model" (ex. "user") comes from scope attribute on form_with %>
+<%# DeleteThis: "attributes" (ex. "ids") comes from the first attribute on form_with %>
+<%# DeleteThis: the value that ulitmate is submitted comes from the input value %>
+<%# DeleteThis: No model attribute on form - just scope since we are not using a single objext (ex. user 1) but rather gathering attributes of many objects (ie the id of many users) %>
+<%= form_with(scope: 'ChangeModel', url: ChangeUrl, method: :ChangeMethod) do |ChangeParentForm_form| %>
+  <% ChangeObjects.each do |ChangeObject| %>
+    <%= ChangeParentForm_form.fields_for('ChangeAttributes') do |ChangeAttributes_form| %>
+      <%# ReplaceThis: make sure to include propper wrappers (left label, form rows, form groups, etc.) %>
+      <%# DeleteThis: if using checkbox (NOTE: use tag to prevent rails hidden checkbox): %>
+      <div class="custom-control custom-checkbox">
+        <%= check_box_tag(ChangeAttributes_form.object_name + '[]', ChangeObject.ChangeAttribute, false, id: "ChangeObject_#{ChangeObject.id}_ChangeAttribute", class: 'custom-control-input') %>
+        <%# ReplaceThis: insert standard check box label and include html "for" attrubute - for: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
+      </div>
+      <%# DeleteThis: if using other input type %>
+      <%# ReplaceThis: if label is needed, insert standard label and include html "for" attrubute - for: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
+      <%# ReplaceThis: insert any (non-tag) input 
+          - make method (the first argument) nil - this will create [] in input name which is exactly what we want
+          - include html "id" attrubute - id: "ChangeObject_#{ChangeObject.id}_ChangeAttribute" %>
+    <% end %>
   <% end %>
 <% end %>
