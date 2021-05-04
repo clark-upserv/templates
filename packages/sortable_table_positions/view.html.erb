@@ -11,13 +11,14 @@
     <% ChangeParent.ChangeChildren.order(:position).each do |ChangeChild| %>
       <tr class="ChangeStpId-stp-table-row" data-stpValue="<%= ChangeChild.id %>">
         <td>  
-          <!-- DeleteThis: the icon below is an example element for grabbing when sorting. However, any element with class "handle" can be grabbed and used for sorting -->
-          <i class="handle px-3 fs-4 text-secondary mdi mdi-more" style="cursor: grab; :active {cursor: grabbing}"></i>
+        <%# DeleteThis: you may want to set the td style to not have a border top color (style="border-top-color: transparent;) if customizing the styles beyond basic table - otherwise there will be a bar at the top of the placeholder that jquery sortable creates %>
           <!-- DeleteThis: insert HTML here -->
+          <i class="handle px-3 fs-4 text-secondary mdi mdi-more" data-HandleStpId="ChangeStpId" style="cursor: grab; :active {cursor: grabbing}"></i>
+          <!-- DeleteThis: the icon above is an example element for grabbing when sorting. However, any element with class "handle" and date-HandleStpId="ChangeStpId" can be grabbed and used for sorting -->
         </td>
       </tr>
     <% end %>
-    <!-- DeleteThis: this final row allows you to drag items to the very bottom. Set height to whatever works best for your table -->
-    <tr class="unsortable" style="height: ChangeFinalHiddenRowHeightpx; visibility: hidden"></tr>
+    <tr id="ChangeStpId-stp-filler-row" class="unsortable" style="visibility: hidden"></tr>
+    <!-- DeleteThis: this final row allows you to drag items to the very bottom. -->
   </tbody>
 </table>

@@ -1,11 +1,15 @@
 <%= content_for :head do %>
   <%# Custom stylesheet for this file %>
   <%#= stylesheet_link_tag(__FILE__.split("app/views/").last.remove('.html.erb')) %>
+  <%# Insert additional stylesheets as needed %>
+  <%#= stylesheet_link_tag(InsertSingleStylesheet) %>
 <% end %>
-<%= content_for :end_of_body do %>
-  <%#= javascript_pack_tag(InsertJSPacksAsNeeded, 'data-turbolinks-track': 'reload') %>
-  <%# to add a custom JS pack for this file, add the following file to your javascript pack tag: __FILE__.split("app/views/").last.remove('.html.erb') %>
-<% end %>
+
+<%# Insert Javascript Packs as needed %>
+<% @javascript_packs_from_template = ['InsertPack', 'InsertPack', 'Etc.'] %>
+<%# Custom JS pack for this file %>
+<%# @javascript_packs_from_template << __FILE__.split("app/views/").last.remove('.html.erb') %>
+
 <% provide(:nav_type, 'default_logged_in') %>
 <%# DeleteThisPls - nav_type options: 'default_logged_in', 'full_height_columns', 'splash', and 'custom' %>
 

@@ -3,7 +3,24 @@
   <div id="full_height_columns_page_body">
 
     <%# ChangeColumnName %>
-    <div id="ChangeColumnName" class="full_height_column pt-3 d-ChangeScreenSize-or-larger" style="width: ChangeWidth;">
+    <div id="ChangeColumnName" class="full_height_column ChangePadding d-ChangeScreenSize-or-larger" style="width: ChangeWidth;">
+      <%# DeleteThis: for columns with cards, padding is usually p-5; narrow columns might have py-5 and no px; for non-cards padding is typically removed; make sure pt matches for all columns %>
+      <%= render(partial: 'ChangePath/ChangeColumnName_column', locals: { ChangeLocals }) %>
+    </div>
+
+    <%# DeleteThis: use these sample columns below for reference or as a starting point. Make sure to delete what is not used %>
+    <%# Sample Optional Column %>
+    <div id="ChangeColumnName" class="full_height_column py-5 d-md-or-larger" style="width: 10%; max-width: 200px;">
+      <%= render(partial: 'ChangePath/ChangeColumnName_column', locals: { ChangeLocals }) %>
+    </div>
+
+    <%# Sample Main Column %>
+    <div id="ChangeColumnName" class="full_height_column p-5" style="width: 100%; min-width: 50%;">
+      <%= render(partial: 'ChangePath/ChangeColumnName_column', locals: { ChangeLocals }) %>
+    </div>
+
+    <%# Sample Settings Column %>
+    <div id="ChangeColumnName" class="full_height_column py-5" style="width: 40%; max-width: 400px;">
       <%= render(partial: 'ChangePath/ChangeColumnName_column', locals: { ChangeLocals }) %>
     </div>
 
