@@ -1,0 +1,23 @@
+<%= form_with(scope: 'ChangeStpId-stp-form', 
+              url: ChangePath_path,
+              method: :post,
+              data: { stpId: 'ChangeStpId'  }) do |ChangeStpIdForm_stp_form| %>
+  <%= ChangeStpIdForm_stp_form.hidden_field 'ChangeParent_id', value: ChangeParent.id %>
+  <div id='ChangeStpId-stp-hidden-inputs'>
+  </div>
+<% end %>
+<table class="table table-striped table-hover">
+  <tbody class='ChangeStpId-stp-table-body'>
+    <% ChangeParent.ChangeChildren.order(:position).each do |ChangeChild| %>
+      <tr class="ChangeStpId-stp-table-row" data-stpValue="<%= ChangeChild.id %>">
+        <td>  
+          <!-- DeleteThis: the icon below is an example element for grabbing when sorting. However, any element with class "handle" can be grabbed and used for sorting -->
+          <i class="handle px-3 fs-4 text-secondary mdi mdi-more" style="cursor: grab; :active {cursor: grabbing}"></i>
+          <!-- DeleteThis: insert HTML here -->
+        </td>
+      </tr>
+    <% end %>
+    <!-- DeleteThis: this final row allows you to drag items to the very bottom. Set height to whatever works best for your table -->
+    <tr class="unsortable" style="height: ChangeFinalHiddenRowHeightpx; visibility: hidden"></tr>
+  </tbody>
+</table>
