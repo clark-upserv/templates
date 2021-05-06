@@ -1,12 +1,18 @@
 // render edit partial with errors 
-var editWithErrors = $("#CopyIdFromView-ses-edit-with-errors")
+var editWithErrors = $("#ChangeSesId-ses-errors-edit")
 editWithErrors.html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeObject: @ChangeObject })) %>");
 editWithErrors[0].style.display = 'block'
+// DeleteThisPls: Make sure to set correct display (ex. if editWithErrors[0] is a table row, then display should be 'table-row'
+$('.ChangeSesId-ses-cancel-button').css('display', 'block')
 
-// relaod instance variables so you can render a partial with origianl data
+// relaod instance variables to render a partial with original data
 <% @ChangeObject = @ChangeObject.reload %>
 // clear errors so that partial with original data also has no errors
 <% @ChangeObject.errors.clear %>
 
 // render edit partial without errors 
-$("#CopyIdFromView").html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeObject: @ChangeObject })) %>");
+var editWithoutErrors = $("#ChangeSesId-ses-edit")
+$("#ChangeSesId-ses-edit")
+editWithoutErrors.html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeObject: @ChangeObject })) %>");
+editWithoutErrors[0].style.display = 'none'
+editWithoutErrors[0].classList.remove('ses-set')
