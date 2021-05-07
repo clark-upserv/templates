@@ -1,0 +1,5 @@
+// render edit partial with errors 
+$("#ChangeSesId-ses-errors-edit").html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeObject: @ChangeObject })) %>");
+
+// render edit partial without errors 
+$("#ChangeSesId-ses-edit").html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeObject: ChangeModel.new })) %>");

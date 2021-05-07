@@ -1,0 +1,10 @@
+// DeleteThis: if using a non-standard top bar or left side nav, then shared/ajax_base might not work. May need to add custom code
+<%= render('shared/ajax/base') %>
+
+$("#flash").html("<%= escape_javascript(render('layouts/flash')) %>");
+
+// DeleteThis: insert ajax body (success, invalid create, invalid update, etc.)
+
+// DeleteThis: include the following if replacing original form element (because if replacing original form element, then ajaxComplete will not be triggered and must be triggered manually
+// Manually trigger ajaxComplete because re-rendering original form element
+document.dispatchEvent(new Event('ajax:complete'));

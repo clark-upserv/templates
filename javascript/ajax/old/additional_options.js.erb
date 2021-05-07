@@ -52,14 +52,3 @@ $('.modal-close-button').click(function() {
   // remove modal back drop elements  
   $('.modal-backdrop').remove()
 }) 
-
-// full code for closing modal manually - this is helpful if you want to add an event listener to a something that will close the modal OR if getting hacky on ajax
-// remove classes "in" and "show" from modal NOTE: this is not included in ajax close modal because by re-rendering the modal, theses classes will be removed in the re-render
-$('#designation-update-modal')[0].classList.remove('in', 'show')
-// Remove the be-modal-open class from the <HTML> element 
-$('.be-modal-open')[0].classList.remove('be-modal-open')
-// Remove the modal-open class from the <body> element 
-$('.modal-open')[0].classList.remove('modal-open')
-// remove modal back drop elements  
-$('.modal-backdrop').remove()
-

@@ -1,0 +1,20 @@
+      <%# Modal header %>
+      <div class="text-center">
+        <div class="text-warning"> 
+          <span class="modal-main-icon mdi mdi-alert-triangle"></span>
+        </div>
+        <%# DeleteThis: change title or simply leave as "Warning!" %>
+        <h3>
+          Warning!
+        </h3> 
+      </div>
+
+      <%# Modal body %>
+      <%# DeleteThis: reivew and update message below %>
+      <p>
+        Are you sure you want to permanently delete the <strong class="text-primary">"<%= ChangeObject.ChangeAttribute %>"</strong>? This action cannot be undone.
+      </p> 
+      <div class="mt-6 d-flex justify-content-around">
+        <button class="btn mr-2 btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <%= link_to("Delete", ChangeUrl_url, class: "btn btn-danger", method: :delete, remote: SetToTrueOrRemove ) %>
+      </div>
