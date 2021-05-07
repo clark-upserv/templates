@@ -1,0 +1,48 @@
+elements
+  button
+  link
+  input type="submit"
+
+styles
+  "button" - what you would expect a button to look like
+  "link" - what you would expect a link to look like
+  icon
+  image
+
+elements / notes
+  links - preferred over buttons because they do not submit forms
+    style options
+      link
+      button
+      icon
+    variations
+      ajax
+      no-href
+      modal (no href + data-target + modal wrapper after button)
+  buttons - only used when needing to submit button via icon (because inputs type="submit" do not work well with icon styling)
+    style options
+      [button - this should not be used]
+      [link - this should not be used]
+      icon- used to submit forms
+  inputs type="submit"
+    style options
+      button
+      link
+      image
+      NOTE: does not work well with icon styles
+  other button / link types
+    ses edit button (this is a no-href link so payattention)
+      styles options
+        button
+        icon
+        link
+      variations
+        modal
+    group ses cancel and submit buttons (this one does not have style options and variations, but rather just options that you can customize as needed if needed)
+      options
+        button
+        icon
+        modal - very similiar to the "button" opion but this one uses justify-contents-around (instead of justify-content-end) and closes modal on cancel (as well as performs cancelEdit function) (this needs to be tested...)
+        [link style is basically never used so not creating template or mapping for it... but it could easily be done manually]
+    group to close modal - there is just one base example and variations can be made from there
+ 
