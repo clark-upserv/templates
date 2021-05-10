@@ -6,9 +6,9 @@
 <% end %>
 
 <%# Insert Javascript Packs as needed %>
-<% @javascript_packs_from_template = ['InsertPack', 'InsertPack', 'Etc.'] %>
+<% add_javascript_packs('InsertPack', 'InsertPack', 'Etc.') %>
 <%# Custom JS pack for this file %>
-<%# @javascript_packs_from_template << __FILE__.split("app/views/").last.remove('.html.erb') %>
+<%# add_javascript_packs(__FILE__.split("app/views/").last.remove('.html.erb')) %>
 
 <% provide(:nav_type, 'default_logged_in') %>
 <%# DeleteThisPls - nav_type options: 'default_logged_in', 'full_height_columns', 'splash', and 'custom' %>
