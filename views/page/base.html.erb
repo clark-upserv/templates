@@ -4,17 +4,14 @@
 <%# DeleteThisPls - 'default_logged_in' or 'splash' are included automatically if user is logged in or not logged in, respectively (and therefore do not need to be set manually) %>
 <% provide(:nav_type, 'ChangeNavTypeOrDeleteThisLine') %>
 
-<%# ChangeTemplate header %>
+<%# Page header %>
 <div id="ChangeTemplate_header">
   <%= render(partial: 'ChangePath/ChangeTemplate_header', locals: { ChangeLocals }) %>
 </div>
 
-<%# ChangeTemplate tabs %>
+<%# Page tabs %>
 <div id="ChangeTemplate_tabs" class="pb-4">
   <%= render(partial: 'ChangePath/ChangeTemplate_tabs', locals: { tab: @tab }) %>
 </div>
 
-<%# ChangeTemplate body %>
-<div id="ChangeTemplate_body">
-  <%= render(partial: 'ChangePath/ChangeTemplate_body', locals: { ChangeLocals }) %>
-</div>
+<%# DeleteThisPls: insert page body %>
