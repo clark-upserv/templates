@@ -1,7 +1,7 @@
   test 'should ChangeThisPls when ChangeThisPls' do
     sign_in(@ChangeUserWithPermission)
     ChangeMethodUrlAndParams
-    # DeleteThisPls use assert_template or assert_redirected_to and delete whatever is not used
+    # DeleteThisPls use assert_response :success or assert_response :redirect and delete whatever is not used
     assert_response :success
     assert_template 'ChangeTemplate'
     assert_response :redirect

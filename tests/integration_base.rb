@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-# rails t test/integration/ChangePathToTest_test.rb
 
+# rails t ChangePathAndFileName
 require 'test_helper'
 
 module ChangeThisPls

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rails t test/controllers/ChangePathToTest_controller_test.rb
+# rails t ChangePathAndFileName
 require 'test_helper'
 
 module ChangeThisPls
@@ -14,7 +14,7 @@ module ChangeThisPls
       @ChangeThisPls = change_model_name(:ChangeModel)
     end
 
-    # DeleteThisIfNotNecessary - reset cache after each test
+    # DeleteThisIfNotNecessary - reset cache after each test if necessary (ex. if you need to remove current user)
     teardown do
       Rails.cache.clear
     end

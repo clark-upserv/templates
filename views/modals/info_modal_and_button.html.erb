@@ -1,0 +1,35 @@
+<%= content_tag('A', '', class: "no-href-icon px-3 fs-4 text-primary mdi mdi-info-outline", data: { toggle: "modal", target: "#ChangeModalId-info-modal" }) %>
+<div class="modal fade" id="ChangeModalId-info-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><span class="mdi mdi-close"></span></button>
+      </div>
+      <div class="modal-body">
+
+        <%# Modal header %>
+        <div class="text-center">
+          <div class="text-primary"> 
+            <span class="modal-main-icon mdi mdi-info-outline"></span>
+          </div>
+          <h3>
+            ChangeTitle
+          </h3> 
+        </div>
+
+        <%# Modal body %>
+        <p>
+          ChangeContent
+        </p>
+
+        <div class="mt-6 d-flex justify-content-center">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+        </div>
+
+      <%# End modal %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

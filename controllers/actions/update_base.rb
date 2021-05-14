@@ -18,6 +18,7 @@
 
       # DeleteThis - if js response
         flash.now[:success] = 'ChangeObject updated.'
+        # DeleteThis - render method is automatically set to render 'update'. If rendering a file other than update.js then include it here explicitly
         render 'update'
       else
         flash[:danger] = 'Failed to update ChangeObject. See errors below.'
