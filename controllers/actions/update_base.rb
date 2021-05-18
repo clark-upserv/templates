@@ -19,7 +19,7 @@
       # DeleteThis - if js response
         flash.now[:success] = 'ChangeObject updated.'
         # DeleteThis - render method is automatically set to render 'update'. If rendering a file other than update.js then include it here explicitly
-        render 'update'
+        # DeleteThis - see here for additional examples: https://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option (ex. render status: :no_content)
       else
         flash[:danger] = 'Failed to update ChangeObject. See errors below.'
         render 'invalid_update'

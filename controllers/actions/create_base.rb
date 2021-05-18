@@ -17,7 +17,8 @@
 
       # DeleteThis - if js response
         flash.now[:success] = 'ChangeObject created.'
-        render 'create'
+        # DeleteThis - render method is automatically set to render 'create'. If rendering a file other than create.js then include it here explicitly
+        # DeleteThis - see here for additional examples: https://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option (ex. render status: :no_content)
       else
         flash[:danger] = 'Failed to create ChangeObject. See errors below.'
         render 'invalid_create'

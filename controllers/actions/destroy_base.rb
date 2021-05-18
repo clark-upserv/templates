@@ -15,9 +15,10 @@
  
       # DeleteThis: if js response
         flash.now[:success] = 'ChangeObject deleted.'
-        render 'destroy'
+        # DeleteThis - render method is automatically set to render 'destroy'. If rendering a file other than destroy.js then include it here explicitly
+        # DeleteThis - see here for additional examples: https://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option (ex. render status: :no_content)
       else
-        flash[:danger] = 'Failed to update ChangeObject. See errors below.'
+        flash[:danger] = 'Failed to delete ChangeObject. See errors below.'
         render 'invalid_destroy'
 
       end
