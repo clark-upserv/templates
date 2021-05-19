@@ -1,8 +1,17 @@
 # General Guidelines:
-# - have one param per action or form submission
+# - have one param per action
 # - make sure to account for all params - DO NOT have any unpermitted params
 # - it can have multople objects and however much complexity you want
-# - then use [:some_item] in controller to get what you want from the params
+# - then create separate methods for sub params. ex
+#   def create params
+#     ...
+#   end
+#
+#   def create_params_users
+#     create_params[:users]
+#   ends
+#   
+# - this way, there is one param method and no unpermitted params, but you can still have sub params
 # - be carefule for chains and nil - ex:
 #   - create_params[:user][:name] will error if create_params[:user] is nil
 
