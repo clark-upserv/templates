@@ -5,4 +5,6 @@
       task ChangeTaskName: :environment do
         insert task notes
         # DeleteThis - insert code, repeat block or date helper if migration helper task
+        # DeleteThis - include message after success if necessary
+        puts 'ChangeMessage'
       end
