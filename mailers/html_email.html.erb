@@ -1,12 +1,15 @@
-<%# NOTE: all styles must be inline %>
+<%# DeleteThis - all styles must be inline %>
+<%# DeleteThis - set salutation %>
 <p>
   Hi <%= @to_user.first_name %>,
 </p>
 
+<%# DeleteThis - regular paragraph %>
 <p>
   Some regular paragraph
 </p>
 
+<%# DeleteThis - paragraph followed directly (ie no margin) by list %>
 <p style="margin-bottom: 0px;">
   Some paragraph with list directly following (ie no margin-bottom)
 </p>
@@ -18,6 +21,7 @@
   <% end %>
 </ul>
 
+<%# DeleteThis - paragraph followed by list with margin separating it %>
 <ul>
   <% some_list_of_items.order(:some_attribute).each do |item| %>
     <li>
@@ -26,19 +30,19 @@
   <% end %>
 </ul>
 
-<%= link_to("Some link as needed", "#", style: "color: #4285f4;", target: :_blank) %>
-<%# NOTE: use URL and NOT PATH. Also see buttons template for more options %>
+<%# DeleteThis - link with style. NOTE: use url helper and not path %>
+<%= link_to("Some link as needed", ChangeUrl, style: "color: #4285f4;", target: :_blank) %>
 
+<%# DeleteThis - some font examples %>
 <span style="color: #4285f4">Some text with upserv blue font</span>
 <span style="color: #ea4335">Some text with upserv danger font</span>
 <span style="color: #ff6a0d">Some text with upserv warning-2 font</span>
 
 
+<%# DeleteThis - set closing salutation - do no include this if sending on behalf of another suer %>
 <p>
   Sincerely,
 </p>
-<%# NOTE: do not include "Sincerely" if sending on behalf of another user %>
-
 <p>
   <%# for cron job triggers %>
   Upserv Reminders
@@ -47,8 +51,3 @@
   <%# if sent on behalf of some user %>
   <%= @from_user.full_name %>
 </p>
-
-<%# on text version where user needs to take action: %>
-Follow the url below to do something:
-<%# on text version where user does not need to take action to take action: %>
-You can do something by following the url below:
