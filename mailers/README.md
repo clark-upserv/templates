@@ -30,10 +30,11 @@ Create Mailer / Emails
 
 5. Build preview and preview HTML email
   - NOTE: if adding new emails to existing mailer, you will need to add the email methods
-  - Preview method SHOULD NOT use any deliver method (`deliver_later`)
-  - good: `Namespace/SomeMailer.some_email`
-  - good: `Namespace/SomeMailer.some_email`
-  - bad: `Namespace/SomeMailer.some_email.deliver_later`
+  - prepare arguments  
+  - call email WITHOUT using deliver method (ex.`deliver_later`)
+    - good: `Namespace/SomeMailer.some_email`
+    - bad: `Namespace/SomeMailer.some_email.deliver_later`
+  - check preview, fix errors and iterate style
 
 6. Build text email and preview AFTER you feel GREAT about html email
 
