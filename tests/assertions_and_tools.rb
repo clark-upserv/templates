@@ -83,3 +83,7 @@ session # Any object living in session variables
 
 
 
+assert_difference ['ActionMailer::Base.deliveries.size'], 1 do
+  ...
+end
+

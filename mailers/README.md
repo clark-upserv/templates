@@ -29,22 +29,19 @@ Create Mailer / Emails
 4. Finish HTML first (don't build text till later)
 
 5. Build preview and preview HTML email
-  - NOTE: if adding new emails to existing mailer, you will need to add the email methods
-  - prepare arguments  
-  - call email WITHOUT using deliver method (ex.`deliver_later`)
-    - good: `Namespace/SomeMailer.some_email`
-    - bad: `Namespace/SomeMailer.some_email.deliver_later`
-  - check preview, fix errors and iterate style
+  - clean initial mailer to fit rubocop standards
+  - per preview 
+    - create preview method if adding emails to existing mailer
+    - prepare arguments
+    - call email WITHOUT using deliver method (ex.`deliver_later`)
+      - good: `Namespace/SomeMailer.some_email`
+      - bad: `Namespace/SomeMailer.some_email.deliver_later`
+    - check preview, fix errors and iterate style
 
 6. Build text email and preview AFTER you feel GREAT about html email
 
-7. QA
-  - Create QA list (make QA doc name match file path)
-  - create seeds needed for QA
-  - Run initial QA
+7. Create Tests
 
-9. Create Tests
-
-10. Deploy to review app, staging and production
+8. Deploy to review app, staging and production
   - check mailtrap when testing on review app and staging
   - check actual mail when testing on production
