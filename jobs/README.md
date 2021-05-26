@@ -43,5 +43,7 @@ Creating Job
     - `Namespace::SomeVerb.set(wait_until: Date.tomorrow.noon).perform_later(*args)`
 
 4. Create Tests
+  - replace auto-generated test file with test job base
+  - 
 
 5. Update QA Checklist
