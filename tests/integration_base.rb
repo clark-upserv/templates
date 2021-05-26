@@ -9,12 +9,13 @@ module ChangeThisPls
     include Devise::Test::IntegrationHelpers
 
     setup do
-      @ChangeThisPls = change_model_name(:ChangeModel)
+      @ChangeThisPls = change_model_name(:ChangeFixture)
     end
 
     # DeleteThisIfNotNecessary - reset cache after each test
     teardown do
       Rails.cache.clear
     end
+
   end
 end

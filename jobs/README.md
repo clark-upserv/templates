@@ -44,6 +44,7 @@ Creating Job
 
 4. Create Tests
   - replace auto-generated test file with test job base
-  - 
+  - create test(s)
+  - see here for additional assertions for jobs [here](https://edgeapi.rubyonrails.org/classes/ActiveJob/TestHelper.html)
 
 5. Update QA Checklist

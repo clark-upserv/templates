@@ -1,4 +1,4 @@
-    def ChangeThisPls_helper_ChangeThisPls_options(variable)
+    def ChangeThisPls_options(variable)
       # Create opitons array programatically
       variable.things.sort_or_order.map { |thing| [thing.display, thing.value] }
 

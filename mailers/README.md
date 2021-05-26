@@ -41,6 +41,9 @@ Create Mailer / Emails
 6. Build text email and preview AFTER you feel GREAT about html email
 
 7. Create Tests
+  - replace auto-generated test file with test mailer base
+  - use 
+  - create test(s)
 
 8. Deploy to review app, staging and production
   - check mailtrap when testing on review app and staging

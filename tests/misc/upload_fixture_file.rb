@@ -4,6 +4,9 @@
       # DeleteThisPls - path is full path with file name and extension AFTER 'test/fixtures/files'
       # DeleteThisPls - file type and subtypes:
       #   application/pdf
-      #   video/mov
-      #   etc.
+      #   image/png image/gif image/jpeg
+      #   video/mov video/mp4
+      #   audio/mpeg audio/wave
+      #   text/plain text/csv text/html
+      #   see here for more examples: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
       @ChangeObject.ChangeAttachment.attach(ChangeVariable)

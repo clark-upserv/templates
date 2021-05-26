@@ -1,4 +1,4 @@
-    def ChangeThisPls_helper_ChangeThisPls_grouped_options(variable)
+    def ChangeThisPls_grouped_options(variable)
       # Create opitons array programatically
       # group the things
       hash_of_grouped_things = variable.things.group_by { |thing| thing.group }
@@ -36,4 +36,3 @@
         ]
       ]
     end
-

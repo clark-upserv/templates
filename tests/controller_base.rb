@@ -4,7 +4,7 @@
 require 'test_helper'
 
 module ChangeThisPls
-  # Tests for ChangeThisPls Controller
+  # Tests for ChangeThisPlsController
   class ChangeThisPlsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
 
@@ -14,9 +14,11 @@ module ChangeThisPls
       @ChangeThisPls = change_model_name(:ChangeModel)
     end
 
-    # DeleteThisIfNotNecessary - reset cache after each test if necessary (ex. if you need to remove current user)
+    # DeleteThis - include tear down ONLY if necessary (ex. to reset cache after each test if you need to remove current user)
+    # DeleteThis - otherwise, remove teardown
     teardown do
       Rails.cache.clear
     end
+
   end
 end
