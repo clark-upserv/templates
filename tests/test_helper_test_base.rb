@@ -2,6 +2,7 @@
 
 # rails t ChangePathAndFileName
 require 'test_helper'
+require 'test_helpers/ChangePathToTestHelpeBeingTested'
 
 module ChangeThisPls
   # helper test for ChangeThisPlsTestHelper
@@ -12,4 +13,3 @@ module ChangeThisPls
 
   end
 end
-
