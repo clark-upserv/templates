@@ -11,5 +11,6 @@ module ChangeThisPls
       @ChangeThisPls = change_model_name(:ChangeFixture)
     end
 
+    test disclaimer
   end
 end

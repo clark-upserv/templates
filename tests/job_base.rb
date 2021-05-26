@@ -10,5 +10,6 @@ module ChangeThisPls
       @base_user = core_users(:base_user)
     end
 
+    test disclaimer
   end
 end

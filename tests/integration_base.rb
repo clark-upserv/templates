@@ -17,5 +17,6 @@ module ChangeThisPls
       Rails.cache.clear
     end
 
+    test disclaimer
   end
 end

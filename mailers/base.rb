@@ -1,3 +1,4 @@
+      @to_user = Core::User.find_by_id(ChangeId)
       @ChangeObject = ChangeModel.find_by_id(ChangeId)
       @ChangeVariable = options.fetch(ChangeOption, nil)
       @ChangeVariable = ChangeVariable

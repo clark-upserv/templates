@@ -14,5 +14,6 @@ module ChangeThisPls
     test 'valid ChangeModel' do
       assert @ChangeModel.valid?
     end
+    test disclaimer
   end
 end

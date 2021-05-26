@@ -34,7 +34,8 @@ Creating Job
 
 2. Edit file 
   - clean per rubo-cop standards
-  - delete perform method and replase with base job (,rjba)
+  - delete perform method and replace with base job (,rjba)
+  - you can add `retry_on` of `discard_on` methods if necessary. See [here](https://edgeguides.rubyonrails.org/active_job_basics.html#retrying-or-discarding-failed-jobs)
 
 3. Call Job
   - basic: `Namespace::SomeVerb.perform_later(*args)`
