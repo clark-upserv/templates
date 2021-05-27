@@ -81,7 +81,7 @@
 
 <%# Image - link to open image in modal %>
 <button class="text-wrap text-left btn-link p-0" data-toggle="modal" data-target="#attribute_show_modal-<%= some_unique_identifier_if_necessary %>"><%= fodel.attribute.blob.filename.sanitized.truncate(12) %></button>
-<%= render partial: 'attribute_preview_modal', locals: { fodel: fodel } %>   
+<%= render('attribute_preview_modal', fodel: fodel) %>   
 
 <%# PDF - show in page%>
 <%# use iframe or embed... WIP %>
@@ -92,7 +92,7 @@
 <%# PDF OR Image- Link to open attachment that could be image (in modal) OR PDF (in new tab) %>
 <% if fodel.attribute.variable? %>
   <button class="text-wrap text-left btn-link p-0" data-toggle="modal" data-target="#attribute_preview_modal"><%= fodel.attribute.blob.filename.sanitized.truncate(12) %></button>
-  <%= render partial: 'fpp/fection/fab/attribute_preview_modal', locals: { fodel: fodel } %>   
+  <%= render('fpp/fection/fab/attribute_preview_modal', fodel: fodel) %>   
 <% elsif fodel.attribute.previewable? %>
   <%= link_to fodel.attribute.blob.filename.sanitized.truncate(12), fodel.attribute, class:  "text-wrap text-left btn-link p-0", target: :_blank %>
 <% end %>

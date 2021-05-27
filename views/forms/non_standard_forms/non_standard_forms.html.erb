@@ -13,8 +13,9 @@
 -->
 <%= form_with(scope: 'contact_us', url: contact_us_path, method: :post) do |contact_us_form| %>
   <%= contact_us_form.text_field(:subject, value: @contact_us.values[:subject], class: 'form-control') %>
-  <%= render(partial: 'shared/inline_errors', locals: { errors_hash: @contact_us.error_messages, attribute: :subject, ian: false }) %>
+  <%= render('shared/inline_errors', errors: @contact_us.errors.messages[:subject]) %>
 <% end %>
+
 
 <!--
   Form with fields for unrelated models or non-models

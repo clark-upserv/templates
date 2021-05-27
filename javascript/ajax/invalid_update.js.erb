@@ -1,5 +1,5 @@
 // render edit partial with errors 
-$("#ChangeSesId-ses-errors-edit").html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeObject: @ChangeObject })) %>");
+$("#ChangeSesId-ses-errors-edit").html("<%= escape_javascript(render('CopyPathFromView', ChangeObject: @ChangeObject)) %>");
 
 // relaod instance variables to render a partial with original data
 <% @ChangeObject = @ChangeObject.reload %>
@@ -7,4 +7,4 @@ $("#ChangeSesId-ses-errors-edit").html("<%= escape_javascript(render(partial: 'C
 <% @ChangeObject.errors.clear %>
 
 // render edit partial without errors 
-$("#ChangeSesId-ses-edit").html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeObject: @ChangeObject })) %>");
+$("#ChangeSesId-ses-edit").html("<%= escape_javascript(render('CopyPathFromView', ChangeObject: @ChangeObject)) %>");

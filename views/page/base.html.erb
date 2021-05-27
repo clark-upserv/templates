@@ -6,12 +6,12 @@
 
 <%# Page header %>
 <div id="ChangeTemplate_header">
-  <%= render(partial: 'ChangePath/ChangeTemplate_header', locals: { ChangeLocals }) %>
+  <%= render('ChangePath/ChangeTemplate_header' ChangeLocals) %>
 </div>
 
 <%# Page tabs %>
 <div id="ChangeTemplate_tabs" class="pb-4">
-  <%= render(partial: 'ChangePath/ChangeTemplate_tabs', locals: { tab: @tab }) %>
+  <%= render('ChangePath/ChangeTemplate_tabs' tab: @tab) %>
 </div>
 
 <%# DeleteThisPls: insert page body %>

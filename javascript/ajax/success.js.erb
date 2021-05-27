@@ -1,5 +1,5 @@
 // ChangeThisPls
-$("#CopyIdFromView").html("<%= escape_javascript(render(partial: 'CopyPathFromView', locals: { ChangeLocals })) %>");
+$("#CopyIdFromView").html("<%= escape_javascript(render('CopyPathFromView', ChangeLocals)) %>");
 
 // DeleteThis - if coming from modal, make sure to manually close modal 
 <%= render('shared/ajax/close_modal') %>
