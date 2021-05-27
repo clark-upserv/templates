@@ -11,26 +11,22 @@ Definitions & Intro
   - Worker servers are also "redis" servers (the procfile says "worker" but the server type on Heroku, Aws, etc. is "redis")
   
   
-1. Create file
-  - examples: 
-    - base: `lib/tasks/namespace_type_category.rake`
-    - for cron task: `lib/tasks/hr_cron_docs.rake` (all the cron jobs related to docs)
-    - for migration heloper task: `lib/tasks/training_migration_helper_update_due_dates.rake` (update due date attribute for previously created docs)
-  - components:
-    - namespace: this is the namespace the task belongs to (ex. "hr" or "training")
-    - type: this is the type of task ("cron" or "migration_helper")
+1. Create file - `lib/tasks/app/type/category.rake`
+    - app: this is the namespace the task belongs to (ex. `hr` or `training`)
+    - type: this is the type of task (`cron` or `migration_helper`)
     - category: this is a sub-group under the task type (ex. if hr has a lot of cron tasks, then split into groups based on category)
+    - Ex: `lib/tasks/hr/cron/docs.rake` (all the hr cron jobs related to docs)
+    - Ex: `lib/tasks/training/migration_helper/update_due_dates.rake` (update due date attribute for previously created docs)
 2. Create Task(s) - use mappings 
   - base: ,rtba
   - task: ,rttb
-3. Create additional items needed for completion of task
-  - instance methods, task methods, mailers, background jobs, etc.
-4. QA
-  - Create QA List
-  - Create seeds (Cron only)
+  - Create additional items needed for completion of task. Ex. instance methods, task methods, mailers, background jobs, etc.
+3. QA
+  - Create QA List (make QA doc name match file path???)
+  - Create seeds
   - QA locally
-5. Create tests / run (Cron only)
-6. Deploy  
+4. Create tests
+5. Deploy  
   - job types
     - cron jobs (with Heroku Scheduler)
       - open the scheduler add on
@@ -41,6 +37,6 @@ Definitions & Intro
     - Review app - test / QA
     - Staging - test / QA
     - Production - test / QA
-
+6. Delete migration helper (and tests) after running migration (you don't want to run it twice)
 
     
