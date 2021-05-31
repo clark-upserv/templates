@@ -44,7 +44,7 @@ Trix.config.textAttributes.highlight = {
   inheritable: true 
 }
 
-$(document).ready(function(){trixSetUp()})
+$(document).on('trix-initialize', function(){trixSetUp()})
 $(document).on('ajax:complete', function(){trixSetUp()})
 // Make sure to include logic after ajax and also make sure to prevent duplicate events
 function trixSetUp() {
