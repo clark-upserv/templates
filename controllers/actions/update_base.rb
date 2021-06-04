@@ -25,4 +25,5 @@
         render 'invalid_update'
 
       end
+      # DeleteThis - add private section and update params
     end
