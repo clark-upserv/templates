@@ -9,4 +9,10 @@
       assert assigns(:access_denied_while_logged_in)
     end
 
-    #ReplaceThisPls - insert base controller tests
+    #ReplaceThisPls - insert base controller tests for user that has access to feature
+
+    test 'logged in UserWithAccess user should not ChangePermission for different account' do
+      sign_in @base_user
+      ChangeMethodUrlAndParams
+      assert assigns(:access_denied_while_logged_in)
+    end

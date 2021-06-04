@@ -6,8 +6,8 @@
       
       # Redirect to first authorized
       if can?(:ChangeNamespace_ChangePermission, @ChangeModel)
-        redirect_to ChangeUrl(@ChangeLoad)
+        redirect_to ChangeUrl_url(@ChangeLoad)
       elsif can?(:ChangeNamespace_ChangePermission, @ChangeModel)
-        redirect_to ChangeUrl(@ChangeLoad)
+        redirect_to ChangeUrl_url(@ChangeLoad)
       end
     end

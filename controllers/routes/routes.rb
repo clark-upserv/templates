@@ -35,11 +35,12 @@
       resources :pets, only: [:show, :new, :edit, :update, :destroy]
     end
     # get member
+    # will route to the show action of a separate controller under the parent namespace
     # REMEMBER TO MAKE PARENT PLURAL ON INITIAL ARGUMENT AND "TO" BUT SINGULAR ON "AS"
     # Example: get 'users/:id/sub_profile', to: 'users#sub_profile', as: :user_subprofile
     # This is because the helper method is pointing to a single user just like the show, edit, update and destroy actions
-    # core_user_subprofile_path is appropriate but core_users_subprofile_path is not
-    get 'users/:id/subprofile', to: 'users#subprofile', as: :user_subprofile
+    # core_user_subprofile_path is preferred over core_users_subprofile_path
+    get 'users/:id/subprofile', to: 'users/subprofiles#show', as: :user_subprofile
     # non-restful route
     get 'non_restful_route', to: 'non_restful#action_name'
   end
@@ -55,13 +56,13 @@
     edit_core_user_url(id: @user.id)
   # nested "children" resources
     # for index and create: 
-    core_users_dogs_url
+    core_users_pets_url(id: @user.id)
     # show, update, destroy are singular: 
-    core_users_dog_url(id: @user.id)
+    core_users_pet_url(id: @pet.id)
     # new: 
-    new_core_users_dog_url
+    new_core_users_pet_url(id: @user.id)
     # edit: 
-    edit_core_users_dog_url(id: @user.id) 
+    edit_core_users_pet_url(id: @pet.id) 
   # member routes under parent
     core_user_subprofile(id: @user)
   # non restufl individual route
