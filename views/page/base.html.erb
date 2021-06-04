@@ -5,13 +5,8 @@
 <% provide(:nav_type, 'ChangeNavTypeOrDeleteThisLine') %>
 
 <%# Page header %>
-<div id="ChangeTemplate_header">
+<div id="page_header_container">
   <%= render('ChangePath/ChangeTemplate_header', ChangeLocals) %>
-</div>
-
-<%# Page tabs %>
-<div id="ChangeTemplate_tabs" class="pb-4">
-  <%= render('ChangePath/ChangeTemplate_tabs', tab: @tab) %>
 </div>
 
 <%# DeleteThisPls: insert page body %>
