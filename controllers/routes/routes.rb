@@ -36,11 +36,9 @@
     end
     # get member
     # will route to the show action of a separate controller under the parent namespace
-    # REMEMBER TO MAKE PARENT PLURAL ON INITIAL ARGUMENT AND "TO" BUT SINGULAR ON "AS"
-    # Example: get 'users/:id/sub_profile', to: 'users#sub_profile', as: :user_subprofile
-    # This is because the helper method is pointing to a single user just like the show, edit, update and destroy actions
-    # core_user_subprofile_path is preferred over core_users_subprofile_path
-    get 'users/:id/subprofile', to: 'users/subprofiles#show', as: :user_subprofile
+    namespace :users do
+      get ':id/subprofile', to: 'subprofiles#show', as: :subprofile
+    end
     # non-restful route
     get 'non_restful_route', to: 'non_restful#action_name'
   end
