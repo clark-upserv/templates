@@ -1,6 +1,6 @@
-    test 'Should update when ChangeThisPls' do
+    test 'Should update when ChangeScenario' do
       sign_in(@ChangeUserWithPermission)
-      patch ChangeUrl_url(id: @ChangeObject.id), params: update_params, xhr: true
+      patch ChangePath_path(id: @ChangeObject.id), params: update_params, xhr: true
       @ChangeObject.reload
       # DeleteThis - use assert_response :success or assert_response :redirect and delete whatever is not used
       assert_response :success
@@ -16,7 +16,7 @@
       sign_in(@ChangeUserWithPermission)
       invalid_update_params = update_params
       invalid_update_params[:ChangeScope][:ChangeAttribute] = ChangeInvalidValue
-      patch ChangeUrl_url(id: @ChangeObject.id), params: invalid_update_params, xhr: true
+      patch ChangePath_path(id: @ChangeObject.id), params: invalid_update_params, xhr: true
       @ChangeObject.reload
       # DeleteThis - use assert_response :success or assert_response :redirect and delete whatever is not used
       assert_response :success

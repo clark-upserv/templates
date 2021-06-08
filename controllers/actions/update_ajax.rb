@@ -12,7 +12,7 @@
         # DeleteThis - render method is automatically set to render 'update'. If rendering a file other than update.js then include it here explicitly
         # DeleteThis - see here for additional examples: https://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option (ex. render status: :no_content)
       else
-        flash[:danger] = 'Failed to update ChangeObject. See errors below.'
+        flash.now[:danger] = 'Failed to update ChangeObject. See errors below.'
         render 'invalid_update'
       end
       # DeleteThis - add private section (if not already present) and update params
