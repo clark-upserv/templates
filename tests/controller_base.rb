@@ -10,8 +10,9 @@ module ChangeThisPls
 
     setup do
       @base_user = core_users(:base_user)
-      @ChangeUserWithPermission = core_users(:ChangeUserWithPermission)
-      @ChangeThisPls = change_model_name(:ChangeModel)
+      @ChangeUserWithPermission_user = core_users(:ChangeUserWithPermission)
+      @dif_account_user = core_users(:dif_account_user)
+      @ChangeObject = change_model_name(:ChangeModel)
     end
 
     # DeleteThis - include tear down ONLY if necessary (ex. to reset cache after each test if you need to remove current user)
