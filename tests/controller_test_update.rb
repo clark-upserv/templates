@@ -1,4 +1,5 @@
-    test 'Should update when ChangeScenario' do
+    # DeleteThis - repeat this test for every user role that has access
+    test 'Should update when logged in as ChangeUserWithPermission' do
       sign_in(@ChangeUserWithPermission)
       patch ChangePath_path(id: @ChangeObject.id), params: update_params, xhr: true
       @ChangeObject.reload
@@ -12,6 +13,7 @@
       assert_equal 'ChangeValue', @ChangeObject.ChangeAttribute
     end
 
+    # DeleteThis - invalid control flow only needs to be tested for one user role (we're testing invalid flow, not authorization)
     test 'Should not update when params are invalid' do
       sign_in(@ChangeUserWithPermission)
       invalid_update_params = update_params

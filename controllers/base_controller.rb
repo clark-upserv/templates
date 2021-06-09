@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ChangeThisPls
-  # ChangeThisPls
+  # ChangeDescription
   class ChangeThisPlsController < ApplicationController
     # DeleteThis - insert actions
   end
