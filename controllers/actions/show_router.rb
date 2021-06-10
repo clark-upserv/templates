@@ -4,10 +4,12 @@
       # DeleteThis - model based auth
       authorize!(:ChangeNamespace_ChangePermission, @ChangeModel)
       
-      # Redirect to first authorized
+      # Deletethis - Redirect to first authorized or raise access denied error
       if can?(:ChangeNamespace_ChangePermission, @ChangeModel)
         redirect_to ChangeUrl_url(@ChangeLoad)
       elsif can?(:ChangeNamespace_ChangePermission, @ChangeModel)
         redirect_to ChangeUrl_url(@ChangeLoad)
+      else
+        raise CanCan::AccessDenied
       end
     end
