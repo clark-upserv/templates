@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ChangeThisPls
-  # ChangeThisPls
+  # ChangeThisPls model
   class ChangeThisPls < ApplicationRecord
     #--- Relationships ---#
     #--- scopes ---#
@@ -10,6 +10,7 @@ module ChangeThisPls
     #--- Class Methods ---#
     class << self
     end
+    
     #--- Validations ---#
     #--- Instance Methods ---#
 
