@@ -3,8 +3,8 @@
 module ChangeThisPls
   # ChangeThisPls model
   class ChangeThisPls < ApplicationRecord
-    #--- Relationships ---#
-    #--- scopes ---#
+    #--- Associations ---#
+    #--- Scopes ---#
     #--- Virtual Attributes ---#
     #--- Callbacks ---#
     #--- Class Methods ---#
@@ -15,8 +15,8 @@ module ChangeThisPls
     #--- Instance Methods ---#
 
     private
-    #-- Misc. Private methods --#
-    #-- Callbacks --#
+    #-- Misc. Private Methods --#
+    #-- Callback Methods --#
     #-- Custom Validate Methods --#
   end
 end
