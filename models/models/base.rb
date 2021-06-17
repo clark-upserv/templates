@@ -17,6 +17,6 @@ module ChangeThisPls
     private
     #-- Misc. Private methods --#
     #-- Callbacks --#
-    #-- Validate Methods --#
+    #-- Custom Validate Methods --#
   end
 end
