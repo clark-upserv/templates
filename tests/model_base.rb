@@ -10,7 +10,6 @@ module ChangeThisPls
       @ChangeModel = change_model_name(:ChangeModel)
     end
 
-    # initial valid test
     test 'valid ChangeModel' do
       assert @ChangeModel.valid?
     end

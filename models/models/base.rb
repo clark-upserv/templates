@@ -10,7 +10,7 @@ module ChangeThisPls
     #--- Class Methods ---#
     class << self
     end
-    
+
     #--- Validations ---#
     #--- Instance Methods ---#
 
