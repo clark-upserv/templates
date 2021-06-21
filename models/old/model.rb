@@ -167,37 +167,7 @@ fpp
     def nil_child_parent
       self.child_parent = nil
     end
-
-    # custom processing for specific attributes before validation
-    def process_attributes
-      # logic for processing any attributes goes here
-      
-      # remove dashes from social 
-      self.social = social.tr('-','') if !social.blank?
-      # add formatting if phone number is 10 digits
-      self.phone = '(#{phone[0..2]}) #{phone[3..5]}-#{phone[6..9]}' if !phone.blank? && phone.length == 10
-    end
     
-    # make nil any values with blank values but not nil values (ex. '' 0r [], etc.) but keep value if value is false because false.blank? is true which is not what we want
-    def nil_blank_attributes
-      self.attributes.each do |attribute, value|
-        self[attribute] = nil if value.blank? && value != false 
-      end
-    end
-
-    # remove leading and trailing blank spaces from certain attributes (use 'try' in case attributes are nil) 
-    def strip_attributes
-      self.attribute = attribute.try(:strip)
-    end
-
-    # some attributes don't make sense if another attribute is blank
-    def nil_dependent_attributes
-      # remove dependent if independent is nil 
-      self.attribute = nil if independent.nil?
-      # remove dependent if independent is boolean that is anyting other than true 
-      self.attribute = nil if !independent?
-    end
-
     #-- Validate Methods --#
     # [description of validation]
     def custom_validation

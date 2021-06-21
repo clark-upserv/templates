@@ -1,0 +1,17 @@
+// DeleteThis - if adding newly created item to end of list AND re-rendering new partial, first, create HTML element for newly created item and then re-render new partial
+// DeleteThis - create element for newly created item or delete below
+var div = document.createElement('CHANGEELEMENTTYPE')
+div.id = 'ChangeId'
+div.classList.add('ChangeClass')
+div.innerHTML = "<%= escape_javascript(render('ChangePath', ChangeLocals)) %>"
+var sibling = document.getElementById('#ChangeSibling')
+// DeleteThis - if inserting before sibling
+sibling.before(div)
+// DeleteThis - if inserting after sibling
+sibling.after(div)
+
+// DeleteThis - render new partial or some later partial
+$("#CopyIdFromView").html("<%= escape_javascript(render('ChangePath', ChangeLocals)) %>");
+
+// DeleteThis - if coming from modal, make sure to manually close modal 
+<%= render('shared/ajax/close_modal') %>
