@@ -1,11 +1,11 @@
     # Tests for ChangeAction action
     # DeleteThis - set up params or delete
     def ChangeAction_params
-      { ChangeScope: { ChangeAttribute: ChangeValue } }
+      { ChangeScope: { ChangeAttribute: 'ChangeValue' } }
     end
 
     test 'Should not ChangeAction when not logged in' do
-      ChangeHtmlMethod ChangeUrlHelper_path(id: ChangeId), params: ChangeAction_params, xhr: true
+      ChangeHtmlMethod ChangeUrlHelper_path(id: @ChangeObject.id), params: ChangeAction_params, xhr: true
       assert assigns(:access_denied_not_logged_in)
     end
 
@@ -15,12 +15,14 @@
       assert assigns(:access_denied_while_logged_in)
     end
 
-    # DeleteThis - this test may not be applicable for index or create (on inedex, test that other accout items are note part of load; on create if account_id is set based on current_user, check that account matches account of current_user)
-    # DeleteThis - repeat this test for every user role that has access
-    test 'Should not ChangeAction for different account when logged in as ChangeUserWithPermission user' do
-      sign_in @user_with
-      # DeleteThis - copy / paste request method here
+    # DeleteThis - use for show, edit, update, destroy; repeat this test for every user role that has access
+    # DeleteThis - do not use for index (other account will be tested in index tests)
+    # DeleteThis - do not use for create (test that current_user account is set automatically in action)
+    # DeleteThis - use for new if necessary
+    test 'Should not ChangeAction for different account when logged in as ChangeUserWithPermission' do
+      sign_in @ChangeUserWithPermission
+      # DeleteThis - copy / paste request method here and change id to @dif_account_ChangeObject.id
       assert assigns(:access_denied_while_logged_in)
     end
 
-    # DeleteThis - insert base controller tests
+    # DeleteThis - insert controller test for every user role that has access and all control flows
