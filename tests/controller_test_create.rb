@@ -11,7 +11,8 @@
       assert_redirected_to ChangePath
       assert flash[:success]
       @ChangeObject = ChangeModel.last
-      assert_equal @ChangeUserWithPermission.ChangeChainToCoreAccountId, @ChangeObject.ChangeChainToCoreAccountId
+      assert_equal @ChangeObject, assigns(:ChangeObject)
+      assert_equal @ChangeUserWithPermission.account_id, @ChangeObject.ChangeChainToCoreAccountId
       assert_equal 'ChangeValue', @ChangeObject.ChangeAttribute
       # DeleteThis - insert at least one assertions per line of code in control flow
     end

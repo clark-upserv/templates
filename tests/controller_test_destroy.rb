@@ -10,6 +10,7 @@
       assert_response :redirect
       assert_redirected_to ChangePath
       assert flash[:success]
+      assert_equal @ChangeObject, assigns(:ChangeObject)
       assert_raise 'ActiveRecord::RecordNotFound' do
         @ChangeObject.reload
       end

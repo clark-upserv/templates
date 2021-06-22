@@ -15,13 +15,17 @@
       assert assigns(:access_denied_while_logged_in)
     end
 
-    # DeleteThis - use for show, edit, update, destroy; repeat this test for every user role that has access
+    # DeleteThis - if this test is applicable, repeat it for every user role that has access AND for each variation that could end in object for different account
+    # DeleteThis - use for show, edit, update, destroy
+    # DeleteThis - use for create IF create params could lead to creating object for wrong account. OTHERWISE test in create test that current_user account is set automatically in controller action
     # DeleteThis - do not use for index (other account will be tested in index tests)
-    # DeleteThis - do not use for create (test that current_user account is set automatically in action)
     # DeleteThis - use for new if necessary
     test 'Should not ChangeAction for different account when logged in as ChangeUserWithPermission' do
       sign_in @ChangeUserWithPermission
-      # DeleteThis - copy / paste request method here and change id to @dif_account_ChangeObject.id
+      # DeleteThis - change params (using below) OR change id in reguest method below
+      invalid_ChangeAction_params = ChangeAction_params
+      invalid_ChangeAction_params[:ChangeScope][:ChangeAttribute] = ChangeInvalidValue
+      # DeleteThis - copy / paste request method here and make sure to update params to invalid or change id to @dif_account_ChangeObject.id
       assert assigns(:access_denied_while_logged_in)
     end
 

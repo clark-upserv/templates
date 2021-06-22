@@ -9,6 +9,7 @@
       assert_redirected_to ChangePath
       assert flash[:success]
       @ChangeObject.reload
+      assert_equal @ChangeObject, assigns(:ChangeObject)
       assert_equal 'ChangeValue', @ChangeObject.ChangeAttribute
       # DeleteThis - insert at least one assertions per line of code in control flow
     end
