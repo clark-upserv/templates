@@ -3,12 +3,10 @@
 module ChangeThisPls
   # ChangeThisPls
   class ChangeThisPls
-    #--- Virtual Attributes ---#
     attr_accessor :ChangeThisPls
-
-    #--- Instance Methods ---#
+    
     def initialize(change_args)
-      ChagneThisPls
+      ChangeThisPls
     end
 
     private
