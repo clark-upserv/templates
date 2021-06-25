@@ -17,8 +17,9 @@ whites and grays (lighest to darkest)
 
 main colors
   primary: #4285f4
-  secondary: 
+  secondary:
   warning: #fbbc05
   warning 2
-  danger
+  danger: #ea4335
+  alt (teal): #008d8d
 '
