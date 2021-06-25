@@ -1,3 +1,33 @@
+Creating Task
+1. Review defintions and intro
+2. Create file - `lib/tasks/app/type/category.rake`
+    - app: this is the namespace the task belongs to (ex. `hr` or `training`)
+    - type: this is the type of task (`cron` or `migration_helper`)
+    - category: this is a sub-group under the task type
+    - Ex: `lib/tasks/hr/cron/docs.rake` (all the hr cron jobs related to docs)
+    - Ex: `lib/tasks/training/migration_helper/update_due_dates.rake` (update due date attribute for previously created docs)
+3. Create Task(s) - use mappings 
+  - base: ,rtba
+  - task: ,rttb
+  - Create additional items needed for completion of task. Ex. instance methods, task methods, mailers, background jobs, etc.
+4. QA
+  - Create QA List (make QA doc name match file path???)
+  - Create seeds
+  - QA locally
+5. Create tests
+6. Deploy  
+  - job types
+    - cron jobs (with Heroku Scheduler)
+      - open the scheduler add on
+      - add a task
+      - inser the rake command - ex. `Bundle exec rake hr:scheduler:send_email`
+    - migration helpers - run from console
+  - steps
+    - Review app - test / QA
+    - Staging - test / QA
+    - Production - test / QA
+7. Delete migration helper (and tests) after running migration (you don't want to run it twice)
+
 Definitions & Intro
 - all tasks go in lib/tasks with .rake extension
 - Rake tasks are tasks that can be run from the shell 
@@ -11,32 +41,3 @@ Definitions & Intro
   - Worker servers are also "redis" servers (the procfile says "worker" but the server type on Heroku, Aws, etc. is "redis")
   
   
-1. Create file - `lib/tasks/app/type/category.rake`
-    - app: this is the namespace the task belongs to (ex. `hr` or `training`)
-    - type: this is the type of task (`cron` or `migration_helper`)
-    - category: this is a sub-group under the task type (ex. if hr has a lot of cron tasks, then split into groups based on category)
-    - Ex: `lib/tasks/hr/cron/docs.rake` (all the hr cron jobs related to docs)
-    - Ex: `lib/tasks/training/migration_helper/update_due_dates.rake` (update due date attribute for previously created docs)
-2. Create Task(s) - use mappings 
-  - base: ,rtba
-  - task: ,rttb
-  - Create additional items needed for completion of task. Ex. instance methods, task methods, mailers, background jobs, etc.
-3. QA
-  - Create QA List (make QA doc name match file path???)
-  - Create seeds
-  - QA locally
-4. Create tests
-5. Deploy  
-  - job types
-    - cron jobs (with Heroku Scheduler)
-      - open the scheduler add on
-      - add a task
-      - inser the rake command - ex. `Bundle exec rake hr:scheduler:send_email`
-    - migration helpers - run from console
-  - steps
-    - Review app - test / QA
-    - Staging - test / QA
-    - Production - test / QA
-6. Delete migration helper (and tests) after running migration (you don't want to run it twice)
-
-    

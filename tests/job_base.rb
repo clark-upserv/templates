@@ -7,7 +7,7 @@ module ChangeThisPls
   # Tests for ChangeThisPlsJob
   class ChangeThisPlsJobTest < ActiveJob::TestCase
     setup do
-      @base_user = core_users(:base_user)
+      @ChangeObject = ChangeTableName(:ChangeFixtureName)
     end
 
     test disclaimer

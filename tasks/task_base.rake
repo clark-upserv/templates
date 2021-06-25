@@ -1,4 +1,4 @@
-# DeleteThis - First, choose to either do one task or run a task that calls multiple tasks (see and delete below)
+# DeleteThis - First, delete the task type below that you are not using (either do one task or run a task that calls multiple tasks)
 # DeleteThis - Then, set app which is name of upserv "app" (ie core, training, hr, etc.)
 # DeleteThis - Then, set task type: :cron or :migration_helper
 # DeleteThis - Then, set category which is a name for the group of tasks specific to this file
