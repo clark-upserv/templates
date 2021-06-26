@@ -15,6 +15,9 @@ Creating Task
   - Create seeds
   - QA locally
 5. Create tests
+  - replace auto-generated test file with test task base
+  - create test(s)
+  - this article was helpful but slightly outdated - [see here](https://josh-works.medium.com/testing-rake-tasks-in-rails-6573f7185a0a)
 6. Deploy  
   - job types
     - cron jobs (with Heroku Scheduler)
