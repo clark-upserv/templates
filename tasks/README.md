@@ -19,16 +19,14 @@ Creating Task
   - create test(s)
   - this article was helpful but slightly outdated - [see here](https://josh-works.medium.com/testing-rake-tasks-in-rails-6573f7185a0a)
 6. Deploy  
+  - always start on review app, then move to staging, then move to production
   - job types
     - cron jobs (with Heroku Scheduler)
-      - open the scheduler add on
+      - open the Heroku Scheduler resource
       - add a task
-      - inser the rake command - ex. `Bundle exec rake hr:scheduler:send_email`
+      - inser the rake command - ex. `rake core_cron_deactivate_terminated_users`
+      - check and see if it worked (if it did, repeat process on production)
     - migration helpers - run from console
-  - steps
-    - Review app - test / QA
-    - Staging - test / QA
-    - Production - test / QA
 7. Delete migration helper (and tests) after running migration (you don't want to run it twice)
 
 Definitions & Intro
