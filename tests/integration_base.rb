@@ -12,11 +12,6 @@ module ChangeThisPls
       @ChangeThisPls = change_model_name(:ChangeFixture)
     end
 
-    # DeleteThisIfNotNecessary - reset cache (for example, to remove current_user) )after each test if necessary (remove this is it is not necessary)
-    teardown do
-      Rails.cache.clear
-    end
-
     test disclaimer
   end
 end

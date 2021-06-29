@@ -82,6 +82,14 @@ session # Any object living in session variables
 @response # The response object; methods: .body, ???
 
 
+setup do # run things before every test
+end
+teardown do # run things after every test
+end
+# NOTE: there is a difference between def setup and setup do (and def teardown and teardown do) but I cannot remember what it is. I researched it at one point and decided setup do (and teardown do) is the preferred option
+Rails.cache.clear # reset cash (ie current_user and anything else in cach)
+      
+
 
 assert_difference ['ActionMailer::Base.deliveries.size'], 1 do
   ...
