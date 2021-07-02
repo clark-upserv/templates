@@ -51,5 +51,3 @@ Best Practices & Notes:
   - `current_abilit = Ability.new(user)`
   - `Core::User.accessible_by(current_ability, index)...`
   - `current_ability.can?(...)`
-
-
