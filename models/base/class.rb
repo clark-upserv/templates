@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
 module ChangeThisPls
-  # ChangeThisPls
-  class ChangeThisPls
-    attr_accessor :ChangeThisPls
+  module ChangeThisPls
+    # ChangeThisPls
+    class ChangeThisPls
+      class << self
+      end
 
-    def initialize(change_args)
-      ChangeThisPls
+      attr_accessor :ChangeThisPls
+
+      def initialize(change_args)
+        ChangeThisPls
+      end
+
+      private
     end
-
-    private
   end
 end

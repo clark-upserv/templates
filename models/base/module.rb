@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module ChangeThisPls
-  # ChangeThisPls
   module ChangeThisPls
-    def ChangeThisPls
+    # ChangeThisPls
+    module ChangeThisPls
+      def ChangeThisPls
+      end
     end
-
-  private
   end
 end
