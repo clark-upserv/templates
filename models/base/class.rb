@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ChangeThisPls
-  module ChangeThisPls
+  class ChangeThisPls
     # ChangeThisPls
     class ChangeThisPls
       class << self
